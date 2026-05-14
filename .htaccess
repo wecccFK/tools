@@ -1,0 +1,12 @@
+# Cloudflare + Apache: 统一重定向到 https://www.web-tools.top
+
+RewriteEngine On
+
+# 1. HTTP -> HTTPS
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
+# 2. 非 www -> www
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]

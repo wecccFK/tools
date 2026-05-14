@@ -1,0 +1,33 @@
+{
+  "name": "MOMO工具箱",
+  "short_name": "Momo工具箱",
+  "description": "包含AI抠图、API测速、JSON格式化、Markdown编辑器等多种高效工具的专业在线工具箱",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://images.icon-icons.com/3178/PNG_WM/256/setting_settings_wrench_cogwheel_icon_193940.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://images.icon-icons.com/3178/PNG_WM/256/setting_settings_wrench_cogwheel_icon_193940.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://images.icon-icons.com/3178/PNG_WM/256/setting_settings_wrench_cogwheel_icon_193940.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["utilities", "productivity", "developer"],
+  "lang": "zh-CN",
+  "dir": "ltr"
+}

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Momo工具箱" />
+    <link rel="apple-touch-icon" href="https://images.icon-icons.com/3178/PNG_WM/256/setting_settings_wrench_cogwheel_icon_193940.png" />
+    <link rel="icon" type="image/png" href="https://images.icon-icons.com/3178/PNG_WM/256/setting_settings_wrench_cogwheel_icon_193940.png" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Preconnect for faster third-party DNS resolution -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://images.icon-icons.com" />
+    
+    <!-- Preload critical font (Noto Sans SC) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" as="style" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    
+    <style>
+      /* 移动端触摸优化 */
+      * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      
+      input, textarea, [contenteditable] {
+        -webkit-user-select: text;
+        user-select: text;
+      }
+      
+      /* 移动端滚动优化 */
+      body {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: none;
+      }
+      
+      /* 移动端按钮点击效果 */
+      button, a, .clickable {
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(59, 130, 246, 0.1);
+      }
+      
+      /* 移动端输入框优化 */
+      input, textarea, select {
+        font-size: 16px !important;
+      }
+
+      /* Screen-reader only (SEO-friendly hidden H1) */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+    </style>
+    <title>MOMO工具箱 - 极速、专业的在线工具集合</title>
+    <link rel="canonical" href="https://www.web-tools.top/" />
+    <meta name="description" content="MOMO工具箱是免费的一站式在线工具平台，提供AI智能抠图、API大模型测速、JSON格式化、Markdown编辑器、密码生成器、二维码工具、图片压缩等数十种高效实用工具，所有数据浏览器本地处理，即开即用保护隐私。" />
+    <meta name="baidu-site-verification" content="codeva-zoITxbnddy" />
+    <meta name="keywords" content="MOMO工具箱, 在线工具, AI抠图, API测速, JSON格式化, Markdown编辑器, 开发者工具, 图像处理" />
+    <meta property="og:title" content="MOMO工具箱 - 极速、专业的在线工具集合" />
+    <meta property="og:description" content="MOMO工具箱是免费的一站式在线工具平台，提供AI智能抠图、API大模型测速、JSON格式化、Markdown编辑器、密码生成器、二维码工具、图片压缩等数十种高效实用工具，所有数据浏览器本地处理，即开即用保护隐私。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.web-tools.top/" />
+    <meta property="og:image" content="https://images.icon-icons.com/3178/PNG_WM/256/setting_settings_wrench_cogwheel_icon_193940.png" />
+    <meta name="bytedance-verification-code" content="okrg5gHYnRxidYnMh5Xu" />
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "MOMO工具箱",
+      "description": "包含AI抠图、API测速、JSON格式化、Markdown编辑器等多种高效工具的专业在线工具箱",
+      "url": "https://www.web-tools.top/",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1000"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div class="sr-only" aria-label="MOMO工具箱 - 免费在线工具集合">
+      <h1>MOMO工具箱 - 免费在线工具集合</h1>
+    </div>
+    <div id="root">
+      <style>
+        .initial-loader {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          background: #0f172a;
+          color: white;
+          font-family: sans-serif;
+        }
+        .loader-spinner {
+          width: 40px;
+          height: 40px;
+          border: 4px solid rgba(255, 255, 255, 0.1);
+          border-left-color: #3b82f6;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin-bottom: 1rem;
+        }
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      </style>
+      <div class="initial-loader">
+        <div class="loader-spinner"></div>
+        <p style="font-weight: 800; letter-spacing: -0.025em; font-style: italic; text-transform: uppercase;">Momo工具箱</p>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Defer third-party scripts until after page load -->
+    <script>
+      window.addEventListener('load', function() {
+        // Google Ads
+        var ads = document.createElement('script');
+        ads.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1315335444091074';
+        ads.crossOrigin = 'anonymous';
+        ads.async = true;
+        document.head.appendChild(ads);
+        
+        // Google Analytics
+        var ga1 = document.createElement('script');
+        ga1.src = 'https://www.googletagmanager.com/gtag/js?id=G-KH7232WLP7';
+        ga1.async = true;
+        document.head.appendChild(ga1);
+        
+        ga1.onload = function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-KH7232WLP7');
+        };
+      });
+    </script>
+  </body>
+</html>

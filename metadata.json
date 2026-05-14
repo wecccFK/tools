@@ -1,0 +1,6 @@
+{
+  "name": "MOMO工具箱",
+  "description": "极速、专业的在线工具合集，涵盖 AI 处理、开发者调试及设计辅助。集成 Google AdSense，始终专注用户效率与数据隐私。",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": []
+}

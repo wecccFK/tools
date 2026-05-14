@@ -1,0 +1,17 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env.local
+.env.production
+.env.*.local
+!.env.example
+
+.next/
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Model files
+public/models/

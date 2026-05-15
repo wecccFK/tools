@@ -50,7 +50,7 @@ export const DataConverter: React.FC = () => {
         Papa.parse(csv, {
             header: true,
             skipEmptyLines: true,
-            complete: (results) => {
+            complete: (results: any) => {
                 if (results.errors.length > 0) {
                     setError(isZh ? '解析 CSV 失败，请检查格式' : 'Failed to parse CSV, check format');
                     setJson('');
@@ -67,7 +67,7 @@ export const DataConverter: React.FC = () => {
         if (file) {
             Papa.parse(file, {
                 header: true,
-                complete: (results) => {
+            complete: (results: any) => {
                     setJson(JSON.stringify(results.data, null, 2));
                     setCsv(Papa.unparse(results.data));
                 }

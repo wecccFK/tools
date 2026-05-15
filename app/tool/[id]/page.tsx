@@ -4,18 +4,17 @@
  */
 
 import { Metadata } from 'next';
-import { TOOLS } from '../../src/constants';
-import { ToolRenderer } from '../../src/components/ToolRenderer';
+import { TOOLS } from '../../../src/constants';
+import { ToolRenderer } from '../../../src/components/ToolRenderer';
 import { notFound } from 'next/navigation';
 
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const tool = TOOLS.find(t => t.id === params.id);
+  const { id } = await params;
+  const tool = TOOLS.find(t => t.id === id);
   
   if (!tool) {
     return {
@@ -39,8 +38,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function ToolPage({ params }: PageProps) {
-  const tool = TOOLS.find(t => t.id === params.id);
+export default async function ToolPage({ params }: PageProps) {
+  const { id } = await params;
+  const tool = TOOLS.find(t => t.id === id);
 
   if (!tool) {
     notFound();
@@ -59,7 +59,7 @@ export default function ToolPage({ params }: PageProps) {
         </div>
 
         <div className="overflow-x-hidden min-h-[400px]">
-          <ToolRenderer toolId={params.id} />
+          <ToolRenderer toolId={id} />
         </div>
       </div>
     </div>

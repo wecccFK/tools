@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Play, RotateCcw, Monitor, Users } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
-import { Chess, Square } from 'chess.js';
+import { Chess } from 'chess.js';
 import { FAQ } from './FAQ';
 
 // --- INTERNATIONAL CHESS ---
@@ -18,7 +18,7 @@ export const InternationalChess = () => {
     const [mode, setMode] = useState<'ai' | 'pvp'>('ai');
     
     // UI states
-    const [selectedSquare, setSelectedSquare] = useState<Square | null>(null);
+    const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
     const [possibleMoves, setPossibleMoves] = useState<string[]>([]);
     const [fen, setFen] = useState(game.fen());
 
@@ -56,7 +56,7 @@ export const InternationalChess = () => {
     ];
     
     // AI Logic
-    const evaluateBoard = useCallback((chess: Chess) => {
+    const evaluateBoard = useCallback((chess: any) => {
         let score = 0;
         const pieceValues: Record<string, number> = { p: 10, n: 30, b: 30, r: 50, q: 90, k: 900 };
         const board = chess.board();
@@ -72,7 +72,7 @@ export const InternationalChess = () => {
         return score;
     }, []);
 
-    const minimax = useCallback((chess: Chess, depth: number, alpha: number, beta: number, isMaximizing: boolean): number => {
+    const minimax = useCallback((chess: any, depth: number, alpha: number, beta: number, isMaximizing: boolean): number => {
         if (depth === 0) return evaluateBoard(chess);
         const moves = chess.moves();
         if (moves.length === 0) {
@@ -147,7 +147,7 @@ export const InternationalChess = () => {
     }, [fen, mode, game, makeAIMove]);
 
     // Handle clicks
-    const onSquareClick = (sq: Square) => {
+    const onSquareClick = (sq: string) => {
         if (game.isGameOver()) return;
         if (mode === 'ai' && game.turn() === 'b') return; // ignore clicks during AI turn
 
@@ -175,7 +175,7 @@ export const InternationalChess = () => {
         if (piece && piece.color === game.turn()) {
             setSelectedSquare(sq);
             const moves = game.moves({ square: sq, verbose: true });
-            setPossibleMoves(moves.map(m => m.to));
+            setPossibleMoves(moves.map((m: any) => m.to));
         } else {
             setSelectedSquare(null);
             setPossibleMoves([]);
@@ -236,11 +236,11 @@ export const InternationalChess = () => {
             </div>
 
             <div className="w-full max-w-[400px] aspect-square rounded-xl overflow-hidden border-4 border-border-site shadow-inner relative flex flex-col">
-                {board.map((row, rIdx) => (
+                {board.map((row: any, rIdx: number) => (
                     <div key={rIdx} className="flex-1 flex w-full">
-                        {row.map((cell, cIdx) => {
+                        {row.map((cell: any, cIdx: number) => {
                             const isDark = (rIdx + cIdx) % 2 === 1;
-                            const sq = `${columns[cIdx]}${8 - rIdx}` as Square;
+                            const sq = `${columns[cIdx]}${8 - rIdx}`;
                             const isSelected = selectedSquare === sq;
                             const isPossibleMove = possibleMoves.includes(sq);
                             

@@ -1,0 +1,85 @@
+---
+import '@/styles/globals.css';
+import AppShell from '../components/AppShell.tsx';
+import type { Language } from '../i18n/translations';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  lang?: Language;
+  canonical?: string;
+}
+
+const {
+  title = 'Momo工具箱 - 极速、专业的在线工具集合',
+  description = '所有数据浏览器本地处理，即开即用，保护隐私。',
+  lang = 'zh',
+  canonical,
+} = Astro.props;
+
+const fullCanonical = canonical || new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={fullCanonical} />
+
+    <!-- PWA -->
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#d97706" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={fullCanonical} />
+
+    <!-- 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Lora:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AdSense 占位（审核通过后填入 publisher ID） -->
+    {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> */}
+
+    <!-- 初始化语言（SSR 默认中文，客户端挂载后由 LanguageProvider 覆盖） -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('momo-lang');
+          if (saved === 'en' || saved === 'zh') {
+            document.documentElement.lang = saved;
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- 初始化主题（在 React hydrate 前应用，避免明暗闪烁） -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('momo-theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.setAttribute('data-theme', saved);
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <AppShell client:load />
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>

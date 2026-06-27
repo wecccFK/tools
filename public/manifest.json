@@ -1,0 +1,17 @@
+{
+  "name": "Momo工具箱",
+  "short_name": "Momo工具箱",
+  "description": "极速、专业的在线工具集合",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfaf7",
+  "theme_color": "#d97706",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

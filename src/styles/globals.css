@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+/* 温暖柔和风格 · 琥珀橙主色 · 跟随系统明暗 */
+:root {
+  /* 亮色（米色暖调） */
+  --bg: #fbfaf7;
+  --bg-2: #ffffff;
+  --bg-3: #f5f3ee;
+  --card-shadow: 0 1px 3px rgba(120,100,80,0.04), 0 8px 24px rgba(120,100,80,0.06);
+  --card-shadow-hover: 0 4px 8px rgba(120,100,80,0.08), 0 16px 40px rgba(120,100,80,0.1);
+  --border: rgba(60,50,40,0.06);
+  --border-hover: rgba(60,50,40,0.15);
+  --text: #2d2a26;
+  --text-muted: #8a8378;
+  --accent: #d97706;
+  --accent-soft: #fef3c7;
+  --accent-rgb: 217, 119, 6;
+  --success: #16a34a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1a1714;
+    --bg-2: #221e1a;
+    --bg-3: #2a2520;
+    --card-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 8px 24px rgba(0,0,0,0.25);
+    --card-shadow-hover: 0 4px 8px rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.35);
+    --border: rgba(255,255,255,0.06);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #e8e2d8;
+    --text-muted: #9a9285;
+    --accent: #f59e0b;
+    --accent-soft: #422006;
+    --accent-rgb: 245, 158, 11;
+    --success: #22c55e;
+  }
+}
+
+/* 手动切换：data-theme="dark" 强制暗色（覆盖系统） */
+:root[data-theme="dark"] {
+  --bg: #1a1714;
+  --bg-2: #221e1a;
+  --bg-3: #2a2520;
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 8px 24px rgba(0,0,0,0.25);
+  --card-shadow-hover: 0 4px 8px rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.35);
+  --border: rgba(255,255,255,0.06);
+  --border-hover: rgba(255,255,255,0.15);
+  --text: #e8e2d8;
+  --text-muted: #9a9285;
+  --accent: #f59e0b;
+  --accent-soft: #422006;
+  --accent-rgb: 245, 158, 11;
+  --success: #22c55e;
+}
+
+/* 手动切换：data-theme="light" 强制亮色（覆盖系统暗色） */
+:root[data-theme="light"] {
+  --bg: #fbfaf7;
+  --bg-2: #ffffff;
+  --bg-3: #f5f3ee;
+  --card-shadow: 0 1px 3px rgba(120,100,80,0.04), 0 8px 24px rgba(120,100,80,0.06);
+  --card-shadow-hover: 0 4px 8px rgba(120,100,80,0.08), 0 16px 40px rgba(120,100,80,0.1);
+  --border: rgba(60,50,40,0.06);
+  --border-hover: rgba(60,50,40,0.15);
+  --text: #2d2a26;
+  --text-muted: #8a8378;
+  --accent: #d97706;
+  --accent-soft: #fef3c7;
+  --accent-rgb: 217, 119, 6;
+  --success: #16a34a;
+}
+
+@theme {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --font-sans: 'Noto Sans SC', system-ui, sans-serif;
+  --font-serif: 'Lora', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 工具卡片 */
+.tool-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.25s ease;
+}
+.tool-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--border-hover);
+}
+.tool-icon-wrap {
+  background: var(--accent-soft);
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+.tool-card:hover .tool-icon-wrap {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+/* 工具类 */
+.accent-text { color: var(--accent); }
+.accent-bg { background: var(--accent); }
+.accent-soft-bg { background: var(--accent-soft); }
+
+/* Header 背景跟随明暗 */
+.app-header {
+  background: rgba(251, 250, 247, 0.85);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .app-header {
+    background: rgba(26, 23, 20, 0.85);
+  }
+}
+:root[data-theme="dark"] .app-header {
+  background: rgba(26, 23, 20, 0.85);
+}
+:root[data-theme="light"] .app-header {
+  background: rgba(251, 250, 247, 0.85);
+}
+
+/* 滚动条 */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 999px; opacity: 0.3; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* 动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fadeIn 0.25s ease-out; }
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-down { animation: slideDown 0.2s ease-out; }
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-scale-in { animation: scaleIn 0.2s ease-out; }

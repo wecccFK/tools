@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeContent from '../components/HomeContent.tsx';
+---
+
+<BaseLayout
+  title="Momo工具箱 - 极速、专业的在线工具集合"
+  description="Momo工具箱是免费的一站式在线工具平台，提供 JSON 格式化、Markdown 编辑器、二维码生成、密码生成器等数十种高效实用工具，所有数据浏览器本地处理，即开即用保护隐私。"
+>
+  <HomeContent client:load />
+</BaseLayout>

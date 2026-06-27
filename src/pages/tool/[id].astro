@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ToolContent from '../../components/ToolContent.tsx';
+import { TOOLS, getToolById } from '../../constants';
+
+// 为每个工具生成静态页面
+export function getStaticPaths() {
+  return TOOLS.map(tool => ({
+    params: { id: tool.id },
+    props: { tool },
+  }));
+}
+
+const { tool } = Astro.props;
+
+// SEO 元数据
+const title = tool.seoTitle?.zh || `${tool.name.zh} - Momo工具箱`;
+const description = tool.seoDescription?.zh || tool.description.zh;
+const canonical = new URL(`/tool/${tool.id}`, Astro.site).toString();
+
+// JSON-LD 结构化数据（SoftwareApplication schema）
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: tool.name.zh,
+  description: tool.description.zh,
+  applicationCategory: 'Utility',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  url: canonical,
+};
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <ToolContent tool={tool} client:load />
+</BaseLayout>

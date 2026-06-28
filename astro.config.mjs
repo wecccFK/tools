@@ -22,6 +22,7 @@ export default defineConfig({
         'marked',
         'crypto-js',
         'qrcode',
+        'jszip',
       ],
     },
   },

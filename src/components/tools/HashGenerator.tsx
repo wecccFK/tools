@@ -1,20 +1,43 @@
-import { useState, useMemo } from 'react';
-import CryptoJS from 'crypto-js';
+import { useState, useEffect } from 'react';
+import MD5 from 'crypto-js/md5';
+import SHA224 from 'crypto-js/sha224';
 import { useLanguage } from '../../i18n/LanguageContext';
 
 type Algo = 'MD5' | 'SHA1' | 'SHA256' | 'SHA512' | 'SHA224' | 'SHA384';
 
 const ALGOS: Algo[] = ['MD5', 'SHA1', 'SHA224', 'SHA256', 'SHA384', 'SHA512'];
 
-function hash(algo: Algo, text: string): string {
-  switch (algo) {
-    case 'MD5': return CryptoJS.MD5(text).toString();
-    case 'SHA1': return CryptoJS.SHA1(text).toString();
-    case 'SHA224': return CryptoJS.SHA224(text).toString();
-    case 'SHA256': return CryptoJS.SHA256(text).toString();
-    case 'SHA384': return CryptoJS.SHA384(text).toString();
-    case 'SHA512': return CryptoJS.SHA512(text).toString();
+// SHA 算法到 Web Crypto 算法名的映射(SHA-224 不被 SubtleCrypto 支持)
+const SHA_ALGO_MAP: Partial<Record<Algo, 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'>> = {
+  SHA1: 'SHA-1',
+  SHA256: 'SHA-256',
+  SHA384: 'SHA-384',
+  SHA512: 'SHA-512',
+};
+
+// 把 buffer 转 hex
+function bufToHex(buf: ArrayBuffer): string {
+  const bytes = new Uint8Array(buf);
+  let hex = '';
+  for (let i = 0; i < bytes.length; i++) {
+    hex += bytes[i].toString(16).padStart(2, '0');
   }
+  return hex;
+}
+
+// 统一的哈希函数(SHA 用 Web Crypto 异步;MD5/SHA224 用 crypto-js 同步)
+async function hash(algo: Algo, text: string): Promise<string> {
+  if (algo === 'MD5') {
+    return MD5(text).toString();
+  }
+  if (algo === 'SHA224') {
+    return SHA224(text).toString().toLowerCase();
+  }
+  const subtleAlgo = SHA_ALGO_MAP[algo];
+  if (!subtleAlgo) throw new Error(`Unsupported algo: ${algo}`);
+  const data = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest(subtleAlgo, data);
+  return bufToHex(digest);
 }
 
 export default function HashGenerator() {
@@ -24,13 +47,24 @@ export default function HashGenerator() {
   const [selected, setSelected] = useState<Algo>('SHA256');
   const [showAll, setShowAll] = useState(false);
   const [copiedAlgo, setCopiedAlgo] = useState('');
+  const [results, setResults] = useState<{ algo: Algo; value: string }[]>([]);
 
-  const results = useMemo(() => {
-    if (!input) return [];
-    if (showAll) {
-      return ALGOS.map((a) => ({ algo: a, value: hash(a, input) }));
+  // 异步计算哈希(Web Crypto 是异步的)
+  useEffect(() => {
+    if (!input) {
+      setResults([]);
+      return;
     }
-    return [{ algo: selected, value: hash(selected, input) }];
+    let cancelled = false;
+    const algos = showAll ? ALGOS : [selected];
+    Promise.all(algos.map(async a => ({ algo: a, value: await hash(a, input) })))
+      .then(r => {
+        if (!cancelled) setResults(r);
+      })
+      .catch(() => {
+        if (!cancelled) setResults([]);
+      });
+    return () => { cancelled = true; };
   }, [input, selected, showAll]);
 
   const copy = async (algo: string, value: string) => {

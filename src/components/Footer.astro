@@ -57,20 +57,25 @@ const year = new Date().getFullYear();
 <script is:inline>
   (function () {
     function applyLang(lang) {
+      if (lang !== 'zh' && lang !== 'en') return;
       // 切换单元素双语文字
       document.querySelectorAll('[data-zh][data-en]').forEach(function (el) {
         el.textContent = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-zh');
       });
-      // 切换整块双语区块
+      // 切换整块双语区块：清掉所有 inline display，让 CSS 的 html[data-lang] 规则接管
+      // （LanguageContext 已经同步设置了 <html data-lang>，CSS 会自动隐藏非当前语言区块）
       document.querySelectorAll('[data-lang]').forEach(function (el) {
-        el.style.display = el.getAttribute('data-lang') === lang ? '' : 'none';
+        el.style.display = '';
       });
     }
     try {
       var lang = localStorage.getItem('momo-lang') || 'zh';
       applyLang(lang);
       window.addEventListener('momo-lang-change', function (e) {
-        applyLang(e.detail && e.detail.lang);
+        // detail 可能是字符串（LanguageContext 直接传 lang）也可能是对象 { lang }
+        var next = e.detail;
+        if (typeof next === 'object' && next) next = next.lang;
+        applyLang(next);
       });
     } catch (e) {}
   })();

@@ -1,11 +1,40 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeContent from '../components/HomeContent.tsx';
+
+// WebSite 结构化数据：帮助搜索引擎识别站点品牌与入口
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Momo Toolbox',
+  alternateName: 'Momo工具箱',
+  url: 'https://www.web-tools.top',
+  description:
+    'Free online toolbox: JSON formatter, Markdown editor, QR generator, password generator, Base64, UUID, color converter and more. All data processed locally in the browser.',
+  inLanguage: ['zh-CN', 'en'],
+  publisher: {
+    '@type': 'Organization',
+    name: 'Momo Toolbox',
+    url: 'https://www.web-tools.top',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://www.web-tools.top/icon.svg',
+    },
+  },
+};
 ---
 
 <BaseLayout
   title="Momo工具箱 - 极速、专业的在线工具集合"
   description="Momo工具箱是免费的一站式在线工具平台，提供 JSON 格式化、Markdown 编辑器、二维码生成、密码生成器等数十种高效实用工具，所有数据浏览器本地处理，即开即用保护隐私。"
 >
+  {/* 静态 SEO 主标题：双语切换，保证页面有且仅有一个 h1 */}
+  <h1 class="sr-only">
+    <span data-zh="Momo工具箱 - 免费在线工具集合" data-en="Momo Toolbox - Free Online Tools">Momo工具箱 - 免费在线工具集合</span>
+  </h1>
+
   <HomeContent client:load />
+
+  <!-- WebSite JSON-LD：站点品牌 + 入口声明，利于 Google 品牌识别 -->
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 </BaseLayout>

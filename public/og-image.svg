@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Momo Toolbox - Free Online Tools">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="55%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#92400e"/>
+    </linearGradient>
+    <linearGradient id="logoBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- 装饰光斑 -->
+  <circle cx="1040" cy="120" r="160" fill="#ffffff" opacity="0.10" filter="url(#soft)"/>
+  <circle cx="160" cy="560" r="140" fill="#ffffff" opacity="0.08" filter="url(#soft)"/>
+
+  <!-- 顶部 Logo 区 -->
+  <g transform="translate(80, 80)">
+    <rect width="96" height="96" rx="22" fill="url(#logoBg)" stroke="#ffffff" stroke-opacity="0.5" stroke-width="2"/>
+    <text x="48" y="72" font-family="Lora, Georgia, serif" font-size="72" font-weight="700" text-anchor="middle" fill="#ffffff">M</text>
+  </g>
+  <text x="200" y="142" font-family="Lora, Georgia, serif" font-size="44" font-weight="600" fill="#ffffff">Momo Toolbox</text>
+  <text x="200" y="178" font-family="'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#ffffff" opacity="0.85">在线工具箱 · Online Tools</text>
+
+  <!-- 主标语 -->
+  <text x="80" y="330" font-family="'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif" font-size="64" font-weight="700" fill="#ffffff">免费、本地、隐私优先</text>
+  <text x="80" y="400" font-family="'Helvetica Neue', Arial, sans-serif" font-size="40" font-weight="500" fill="#ffffff" opacity="0.95">Free · Local · Private · Open</text>
+
+  <!-- 副标语 -->
+  <text x="80" y="455" font-family="'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#ffffff" opacity="0.8">数十种实用工具，所有数据在浏览器本地处理，即开即用，不上传服务器。</text>
+  <text x="80" y="485" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#ffffff" opacity="0.75">Dozens of handy tools. All data processed locally in your browser. No upload, no tracking.</text>
+
+  <!-- 工具标签条 -->
+  <g transform="translate(80, 530)" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="18" fill="#ffffff">
+    <g>
+      <rect x="0" y="0" width="120" height="34" rx="17" fill="#ffffff" fill-opacity="0.16" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="60" y="23" text-anchor="middle">JSON</text>
+    </g>
+    <g transform="translate(132, 0)">
+      <rect width="150" height="34" rx="17" fill="#ffffff" fill-opacity="0.16" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="75" y="23" text-anchor="middle">Markdown</text>
+    </g>
+    <g transform="translate(294, 0)">
+      <rect width="100" height="34" rx="17" fill="#ffffff" fill-opacity="0.16" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="50" y="23" text-anchor="middle">QR</text>
+    </g>
+    <g transform="translate(406, 0)">
+      <rect width="100" height="34" rx="17" fill="#ffffff" fill-opacity="0.16" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="50" y="23" text-anchor="middle">UUID</text>
+    </g>
+    <g transform="translate(518, 0)">
+      <rect width="110" height="34" rx="17" fill="#ffffff" fill-opacity="0.16" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="55" y="23" text-anchor="middle">Base64</text>
+    </g>
+    <g transform="translate(640, 0)">
+      <rect width="120" height="34" rx="17" fill="#ffffff" fill-opacity="0.16" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="60" y="23" text-anchor="middle">Hash</text>
+    </g>
+    <g transform="translate(772, 0)">
+      <rect width="160" height="34" rx="17" fill="#ffffff" fill-opacity="0.16" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="80" y="23" text-anchor="middle">Color / Unit</text>
+    </g>
+  </g>
+
+  <!-- 域名 -->
+  <text x="1120" y="595" text-anchor="end" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="20" fill="#ffffff" opacity="0.9">www.web-tools.top</text>
+</svg>

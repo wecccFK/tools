@@ -11,10 +11,11 @@ const year = new Date().getFullYear();
 
 <BaseLayout title={title} description={description} canonical={canonical}>
   <article class="legal-page">
-    <div data-lang="zh">
-      <h1>关于 Momo工具箱</h1>
-      <p class="updated">让工具更温暖一些</p>
+    {/* 静态 SEO 主标题：双语切换，保证页面有且仅有一个 h1 */}
+    <h1 data-zh="关于 Momo工具箱" data-en="About Momo Toolbox">关于 Momo工具箱</h1>
+    <p class="updated"><span data-zh="让工具更温暖一些" data-en="Tools, but warmer">让工具更温暖一些</span></p>
 
+    <div data-lang="zh">
       <p>Momo工具箱是一个<strong>专注隐私</strong>的在线工具集合。我们提供 {toolCount}+ 种实用工具，覆盖文本处理、开发辅助、图像处理、效率提升等多个场景，所有数据均在浏览器本地处理，不上传服务器，即开即用。</p>
 
       <h2>我们的理念</h2>
@@ -75,9 +76,6 @@ const year = new Date().getFullYear();
     </div>
 
     <div data-lang="en">
-      <h1>About Momo Toolbox</h1>
-      <p class="updated">Tools, but warmer</p>
-
       <p>Momo Toolbox is a <strong>privacy-focused</strong> collection of online tools. We offer {toolCount}+ practical tools covering text processing, developer utilities, image handling, productivity, and more. All data is processed locally in your browser — nothing is uploaded, instant and private.</p>
 
       <h2>Our Philosophy</h2>

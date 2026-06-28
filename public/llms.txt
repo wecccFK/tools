@@ -1,0 +1,49 @@
+# Momo Toolbox
+
+> Momo Toolbox (Momo工具箱) is a privacy-focused, free online toolbox. All tools run entirely in the browser — no uploads, no tracking cookies, no sign-up. Built with Astro + React and deployed on Cloudflare Pages. Bilingual (Chinese / English).
+
+> Site: https://www.web-tools.top
+> Contact: 1902243211@qq.com
+> Default language: zh-CN (English also available)
+
+## Overview
+
+- [Home](https://www.web-tools.top/): Tool directory with 13+ curated tools (JSON formatter, Markdown editor, QR generator, password generator, Base64, URL encoder, timestamp, hash, JWT decoder, image compressor, UUID/ULID, color converter, unit converter).
+- [About](https://www.web-tools.top/about/): Project philosophy, tech stack, privacy commitment and future plans.
+- [FAQ](https://www.web-tools.top/faq/): Common questions about free use, data safety, offline support and browser compatibility.
+- [Privacy Policy](https://www.web-tools.top/privacy/): All tool data processed locally in the browser; uses Cloudflare Web Analytics (no cookies); no third-party tracking.
+- [Terms of Service](https://www.web-tools.top/terms/): Free use terms, disclaimer, and limitation of liability.
+
+## Tools (all run locally in the browser)
+
+- [JSON Formatter](https://www.web-tools.top/tool/json-formatter/): Format, minify and validate JSON. Local only.
+- [Markdown Editor](https://www.web-tools.top/tool/markdown-editor/): Live preview with GFM syntax, export to HTML.
+- [QR Code Generator](https://www.web-tools.top/tool/qr-generator/): Generate QR codes with custom colors, logo and error correction.
+- [Password Generator](https://www.web-tools.top/tool/password-generator/): Strong random passwords with custom length and character sets. Generated locally.
+- [Base64 Encode/Decode](https://www.web-tools.top/tool/base64/): UTF-8 safe Base64 encode and decode for text and files.
+- [URL Encode/Decode](https://www.web-tools.top/tool/url-encoder/): Online URL encoder and decoder (encodeURIComponent / decodeURIComponent).
+- [Unix Timestamp Converter](https://www.web-tools.top/tool/timestamp/): Convert between Unix timestamp (seconds/milliseconds) and human-readable time.
+- [Hash Generator](https://www.web-tools.top/tool/hash-generator/): Calculate MD5, SHA1, SHA256, SHA512 locally in the browser.
+- [JWT Decoder](https://www.web-tools.top/tool/jwt-decoder/): Decode JWT Header and Payload. Token never leaves the browser.
+- [Image Compressor](https://www.web-tools.top/tool/img-compress/): Compress JPG/PNG/WebP locally with adjustable quality.
+- [UUID/ULID Generator](https://www.web-tools.top/tool/uuid-generator/): Generate UUID v4/v7 and ULID with crypto-secure randomness.
+- [Color Converter](https://www.web-tools.top/tool/color-converter/): Convert between HEX, RGB, HSL, HSV with picker and sliders.
+- [Unit Converter](https://www.web-tools.top/tool/unit-converter/): Convert length, mass, temperature, data, speed, area, time, angle.
+
+## Tutorials
+
+- [JSON Formatter Tutorial](https://www.web-tools.top/tutorial/json-formatter/): Usage, examples, best practices and FAQ.
+- [Markdown Editor Tutorial](https://www.web-tools.top/tutorial/markdown-editor/): Usage, examples, best practices and FAQ.
+- [QR Code Generator Tutorial](https://www.web-tools.top/tutorial/qr-generator/): Usage, examples, best practices and FAQ.
+- [Password Generator Tutorial](https://www.web-tools.top/tutorial/password-generator/): Usage, examples, best practices and FAQ.
+- [Base64 Tutorial](https://www.web-tools.top/tutorial/base64/): Usage, examples, best practices and FAQ.
+- [URL Encoder Tutorial](https://www.web-tools.top/tutorial/url-encoder/): Usage, examples, best practices and FAQ.
+- [Timestamp Converter Tutorial](https://www.web-tools.top/tutorial/timestamp/): Usage, examples, best practices and FAQ.
+- [Hash Generator Tutorial](https://www.web-tools.top/tutorial/hash-generator/): Usage, examples, best practices and FAQ.
+- [JWT Decoder Tutorial](https://www.web-tools.top/tutorial/jwt-decoder/): Usage, examples, best practices and FAQ.
+- [Image Compressor Tutorial](https://www.web-tools.top/tutorial/img-compress/): Usage, examples, best practices and FAQ.
+
+## Optional
+
+- [Sitemap](https://www.web-tools.top/sitemap-index.xml): XML sitemap for search engines.
+- [Robots.txt](https://www.web-tools.top/robots.txt): Crawler directives.

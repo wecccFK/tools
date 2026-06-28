@@ -25,10 +25,11 @@ const faqJsonLd = {
   <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
 
   <article class="legal-page">
-    <div data-lang="zh">
-      <h1>常见问题</h1>
-      <p class="updated">在这里找到 Momo工具箱的常见问题解答</p>
+    {/* 静态 SEO 主标题：双语切换，保证页面有且仅有一个 h1 */}
+    <h1 data-zh="常见问题" data-en="FAQ">常见问题</h1>
+    <p class="updated"><span data-zh="在这里找到 Momo工具箱的常见问题解答" data-en="Find answers to common questions about Momo Toolbox">在这里找到 Momo工具箱的常见问题解答</span></p>
 
+    <div data-lang="zh">
       <p>如果你在这里找不到答案，请通过<a href="mailto:1902243211@qq.com">邮箱</a>联系我们。</p>
 
       {SITE_FAQ.zh.map((item, i) => (
@@ -42,9 +43,6 @@ const faqJsonLd = {
     </div>
 
     <div data-lang="en">
-      <h1>FAQ</h1>
-      <p class="updated">Find answers to common questions about Momo Toolbox</p>
-
       <p>If you can't find an answer here, please <a href="mailto:1902243211@qq.com">email us</a>.</p>
 
       {SITE_FAQ.en.map((item, i) => (

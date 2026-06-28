@@ -44,10 +44,33 @@ const jsonLd = {
     text: example,
   })),
 };
+
+// 面包屑结构化数据：让 Google 在搜索结果显示 首页 > 工具 > 教程 路径
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '首页', item: 'https://www.web-tools.top/' },
+    { '@type': 'ListItem', position: 2, name: tool.name.zh, item: `https://www.web-tools.top/tool/${tool.id}/` },
+    { '@type': 'ListItem', position: 3, name: `${tool.name.zh} 使用教程`, item: canonical },
+  ],
+};
 ---
 
-<BaseLayout title={title} description={description} canonical={canonical}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  articleMeta={{
+    author: 'Momo Toolbox',
+    section: 'Tutorial',
+    tags: tool.tags,
+    publishedTime: '2026-06-28T00:00:00+08:00',
+    modifiedTime: '2026-06-28T00:00:00+08:00',
+  }}
+>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
 
   <article class="legal-page" style="max-width: 48rem;">
     <!-- 面包屑导航 -->
@@ -59,15 +82,11 @@ const jsonLd = {
       <span style="color: var(--text);" data-zh="教程" data-en="Tutorial">教程</span>
     </nav>
 
-    <!-- 标题 -->
-    <div data-lang="zh">
-      <h1 style="margin-bottom: 0.5rem;">{tool.name.zh} 使用教程</h1>
-      <p class="updated">详细使用指南、最佳实践与常见问题解答</p>
-    </div>
-    <div data-lang="en">
-      <h1 style="margin-bottom: 0.5rem;">{tool.name.en} Tutorial</h1>
-      <p class="updated">Detailed guide, best practices, and FAQ</p>
-    </div>
+    {/* 静态 SEO 主标题：双语切换，保证页面有且仅有一个 h1 */}
+    <h1 style="margin-bottom: 0.5rem;">
+      <span data-zh={`${tool.name.zh} 使用教程`} data-en={`${tool.name.en} Tutorial`}>{tool.name.zh} 使用教程</span>
+    </h1>
+    <p class="updated"><span data-zh="详细使用指南、最佳实践与常见问题解答" data-en="Detailed guide, best practices, and FAQ">详细使用指南、最佳实践与常见问题解答</span></p>
 
     <!-- 立即使用按钮 -->
     <div style="margin: 2rem 0; padding: 1.5rem; background: var(--bg-2); border: 1px solid var(--border); border-radius: 1rem; text-align: center;">

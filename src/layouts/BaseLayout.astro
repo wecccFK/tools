@@ -9,6 +9,15 @@ export interface Props {
   description?: string;
   lang?: Language;
   canonical?: string;
+  ogImage?: string;
+  // 文章类页面（教程/博客/法律页）专用 meta，普通工具页不传
+  articleMeta?: {
+    author?: string;
+    section?: string;
+    tags?: string[];
+    publishedTime?: string; // ISO 8601
+    modifiedTime?: string; // ISO 8601
+  };
 }
 
 const {
@@ -16,9 +25,13 @@ const {
   description = '所有数据浏览器本地处理，即开即用，保护隐私。',
   lang = 'zh',
   canonical,
+  ogImage = '/og-image.svg',
+  articleMeta,
 } = Astro.props;
 
 const fullCanonical = canonical || new URL(Astro.url.pathname, Astro.site).toString();
+const fullOgImage = new URL(ogImage, Astro.site).toString();
+const altLang = lang === 'zh' ? 'en' : 'zh';
 ---
 
 <!doctype html>
@@ -30,17 +43,47 @@ const fullCanonical = canonical || new URL(Astro.url.pathname, Astro.site).toStr
     <meta name="description" content={description} />
     <link rel="canonical" href={fullCanonical} />
 
+    <!-- hreflang: 声明中英双语版本 -->
+    <link rel="alternate" hreflang="zh" href={fullCanonical} />
+    <link rel="alternate" hreflang="en" href={fullCanonical} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site).toString()} />
+
     <!-- PWA -->
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/icon.svg" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#d97706" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    {/* Open Graph：文章类页面用 article，其余用 website（og:type 只能出现一次） */}
+    <meta property="og:type" content={articleMeta ? 'article' : 'website'} />
+    <meta property="og:site_name" content="Momo Toolbox" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={fullCanonical} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Momo Toolbox - Online Tools" />
+    <meta property="og:locale" content={lang === 'zh' ? 'zh_CN' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'zh' ? 'en_US' : 'zh_CN'} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+    <meta name="twitter:image:alt" content="Momo Toolbox - Online Tools" />
+
+    {/* 文章类页面专用 Open Graph article meta（仅当 articleMeta 传入时输出；og:type 已在上方条件渲染） */}
+    {articleMeta && (
+      <>
+        <meta property="article:author" content={articleMeta.author || 'Momo Toolbox'} />
+        <meta property="article:section" content={articleMeta.section || 'Tutorial'} />
+        {articleMeta.publishedTime && <meta property="article:published_time" content={articleMeta.publishedTime} />}
+        {articleMeta.modifiedTime && <meta property="article:modified_time" content={articleMeta.modifiedTime} />}
+        {(articleMeta.tags || []).map(tag => <meta property="article:tag" content={tag} />)}
+      </>
+    )}
 
     <!-- 字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -37,5 +37,9 @@ const jsonLd = {
 
 <BaseLayout title={title} description={description} canonical={canonical}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  {/* 静态 SEO 主标题：双语切换，保证页面有且仅有一个 h1（React 岛内显示同名 h2） */}
+  <h1 class="sr-only">
+    <span data-zh={tool.seoTitle?.zh || `${tool.name.zh} - Momo工具箱`} data-en={tool.seoTitle?.en || `${tool.name.en} - Momo Toolbox`}>{tool.seoTitle?.zh || `${tool.name.zh} - Momo工具箱`}</span>
+  </h1>
   <ToolContent tool={tool} client:load />
 </BaseLayout>

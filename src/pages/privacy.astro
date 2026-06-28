@@ -9,10 +9,11 @@ const updatedEn = 'June 28, 2026';
 
 <BaseLayout title={title} description={description} canonical="https://www.web-tools.top/privacy">
   <article class="legal-page">
-    <div data-lang="zh">
-      <h1>隐私政策</h1>
-      <p class="updated">最后更新：{updatedZh}</p>
+    {/* 静态 SEO 主标题：双语切换，保证页面有且仅有一个 h1 */}
+    <h1 data-zh="隐私政策" data-en="Privacy Policy">隐私政策</h1>
+    <p class="updated"><span data-zh={`最后更新：${updatedZh}`} data-en={`Last updated: ${updatedEn}`}>最后更新：{updatedZh}</span></p>
 
+    <div data-lang="zh">
       <p>Momo工具箱（以下简称"我们"）非常重视您的隐私。本隐私政策说明我们在您使用本网站（www.web-tools.top）时如何处理数据。</p>
 
       <h2>核心承诺：工具数据本地处理</h2>
@@ -72,9 +73,6 @@ const updatedEn = 'June 28, 2026';
     </div>
 
     <div data-lang="en">
-      <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: {updatedEn}</p>
-
       <p>Momo Toolbox ("we") takes your privacy seriously. This Privacy Policy explains how we handle data when you use this website (www.web-tools.top).</p>
 
       <h2>Core Promise: Local Tool Processing</h2>

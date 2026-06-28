@@ -23,9 +23,9 @@ function ToolContentInner({ tool }: { tool: Tool }) {
           </svg>
         </div>
         <div>
-          <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: 'Lora, serif' }}>
+          <h2 className="text-2xl font-bold mb-1" style={{ fontFamily: 'Lora, serif' }}>
             {tool.name[isZh ? 'zh' : 'en']}
-          </h1>
+          </h2>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             {tool.description[isZh ? 'zh' : 'en']}
           </p>

@@ -9,10 +9,11 @@ const updatedEn = 'June 28, 2026';
 
 <BaseLayout title={title} description={description} canonical="https://www.web-tools.top/terms">
   <article class="legal-page">
-    <div data-lang="zh">
-      <h1>服务条款</h1>
-      <p class="updated">最后更新：{updatedZh}</p>
+    {/* 静态 SEO 主标题：双语切换，保证页面有且仅有一个 h1 */}
+    <h1 data-zh="服务条款" data-en="Terms of Service">服务条款</h1>
+    <p class="updated"><span data-zh={`最后更新：${updatedZh}`} data-en={`Last updated: ${updatedEn}`}>最后更新：{updatedZh}</span></p>
 
+    <div data-lang="zh">
       <p>欢迎使用 Momo工具箱（以下简称"本服务"）。使用本服务即表示您同意以下条款。如果您不同意任何条款，请停止使用本服务。</p>
 
       <h2>服务说明</h2>
@@ -69,9 +70,6 @@ const updatedEn = 'June 28, 2026';
     </div>
 
     <div data-lang="en">
-      <h1>Terms of Service</h1>
-      <p class="updated">Last updated: {updatedEn}</p>
-
       <p>Welcome to Momo Toolbox ("the Service"). By using the Service, you agree to the following terms. If you do not agree with any of these terms, please stop using the Service.</p>
 
       <h2>Service Description</h2>

@@ -1,4 +1,22 @@
+# Momo Toolbox — robots.txt
+# Site: https://www.web-tools.top
+
+# 允许所有搜索引擎与 LLM 爬虫抓取全部页面与资源
 User-agent: *
 Allow: /
 
+# 明确欢迎主流 LLM 爬虫（默认即允许，此处显式声明以示友好）
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap
 Sitemap: https://www.web-tools.top/sitemap-index.xml

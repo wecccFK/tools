@@ -9,8 +9,8 @@ export default function MarkdownEditor() {
   const { lang } = useLanguage();
   const isZh = lang === 'zh';
   const [input, setInput] = useState(isZh
-    ? '# Markdown 编辑器\n\n支持 **GFM** 语法：表格、任务列表、代码块等。\n\n- [x] 实时预览\n- [ ] 导出 HTML\n\n```js\nconsole.log("Hello");\n```\n\n| 工具 | 状态 |\n|------|------|\n| JSON | ✓ |\n| MD  | ✓ |\n'
-    : '# Markdown Editor\n\nSupports **GFM** syntax: tables, task lists, code blocks.\n\n- [x] Live preview\n- [ ] Export HTML\n\n```js\nconsole.log("Hello");\n```\n');
+    ? '> Markdown 编辑器示例\n\n支持 **GFM** 语法：表格、任务列表、代码块等。\n\n- [x] 实时预览\n- [ ] 导出 HTML\n\n```js\nconsole.log("Hello");\n```\n\n| 工具 | 状态 |\n|------|------|\n| JSON | ✓ |\n| MD  | ✓ |\n'
+    : '> Markdown Editor Sample\n\nSupports **GFM** syntax: tables, task lists, code blocks.\n\n- [x] Live preview\n- [ ] Export HTML\n\n```js\nconsole.log("Hello");\n```\n');
 
   const html = useMemo(() => {
     try {

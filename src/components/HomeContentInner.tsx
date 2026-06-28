@@ -1,9 +1,47 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { categoryLabel } from '../i18n/translations';
 import { TOOLS } from '../constants';
 import type { ToolCategory } from '../types';
 import { useStarredTools } from '../hooks/useStarredTools';
+
+// 打字切换特效：循环显示一组词，逐字打字 → 停留 → 逐字删除 → 下一个
+function TypingText({ words }: { words: string[] }) {
+  const [index, setIndex] = useState(0);
+  const [displayed, setDisplayed] = useState('');
+  const [phase, setPhase] = useState<'typing' | 'holding' | 'deleting'>('typing');
+
+  useEffect(() => {
+    const current = words[index];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (phase === 'typing') {
+      if (displayed.length < current.length) {
+        timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 130);
+      } else {
+        timeout = setTimeout(() => setPhase('holding'), 800);
+      }
+    } else if (phase === 'holding') {
+      timeout = setTimeout(() => setPhase('deleting'), 1100);
+    } else {
+      if (displayed.length > 0) {
+        timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length - 1)), 55);
+      } else {
+        setIndex((index + 1) % words.length);
+        setPhase('typing');
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayed, phase, index, words]);
+
+  return (
+    <span className="accent-text">
+      {displayed}
+      <span className="typing-cursor">|</span>
+    </span>
+  );
+}
 
 // 工具图标（内联 SVG，避免引入整个图标库）
 const ICON_PATHS: Record<string, string> = {
@@ -88,16 +126,20 @@ export default function HomeContentInner() {
       {/* Hero */}
       <section className="mb-14 text-center">
         <div
-          className="inline-flex items-center gap-1.5 accent-soft-bg rounded-full px-3 py-1 text-xs mb-5 accent-text font-medium animate-fade-in"
+          className="inline-flex items-center gap-1.5 accent-soft-bg rounded-full px-3 py-1 text-xs mb-5 accent-text font-medium animate-bounce-in"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 3l1.9 5.8L20 10.7l-5.8 1.9L12 18l-1.9-5.4L4 10.7l6.1-1.9L12 3z" />
           </svg>
           <span>{TOOLS.length}+ {lang === 'zh' ? '精选工具' : 'Curated Tools'}</span>
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight" style={{ fontFamily: 'Lora, serif' }}>
-          {lang === 'zh' ? <>让工具更<span className="accent-text">温暖</span>一些</> : t('hero.title')}
-        </h1>
+        <div className="text-4xl md:text-5xl font-bold mb-4 leading-tight" style={{ fontFamily: 'Lora, serif' }}>
+          {lang === 'zh' ? (
+            <>让工具更<TypingText words={['温暖', '高效', '极速', '安全', '简单']} />一些</>
+          ) : (
+            <>Tools, but <TypingText words={['warmer', 'faster', 'safer', 'simpler']} /></>
+          )}
+        </div>
         <p className="text-lg max-w-xl mx-auto" style={{ color: 'var(--text-muted)' }}>
           {t('hero.subtitle')}
         </p>
@@ -105,7 +147,7 @@ export default function HomeContentInner() {
 
       {/* 分类筛选 */}
       <div className="flex items-center gap-2 mb-10 flex-wrap justify-center">
-        {FILTER_KEYS.map(key => {
+        {FILTER_KEYS.map((key, i) => {
           const isActive = filter === key;
           const count = key === 'starred'
             ? starredTools.length
@@ -118,12 +160,13 @@ export default function HomeContentInner() {
             <button
               key={key}
               onClick={() => setFilter(key)}
-              className="px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-1.5"
+              className="px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-1.5 animate-bounce-in"
               style={{
                 background: isActive ? 'var(--accent)' : 'var(--bg-2)',
                 color: isActive ? '#fff' : 'var(--text-muted)',
                 border: `1px solid ${isActive ? 'var(--accent)' : 'var(--border)'}`,
                 boxShadow: isActive ? '0 2px 8px rgba(var(--accent-rgb), 0.25)' : 'none',
+                animationDelay: `${0.05 * i}s`,
               }}
             >
               {key === 'starred' && <StarIcon filled={isActive} size={14} />}

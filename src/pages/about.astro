@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { TOOLS } from '../constants';
 
 const title = '关于我们 - Momo工具箱';
-const description = 'Momo工具箱是一个免费、专注隐私的在线工具集合，提供 JSON、Markdown、二维码、密码生成等数十种实用工具，所有数据浏览器本地处理。';
+const description = 'Momo工具箱是一个专注隐私的在线工具集合，提供 JSON、Markdown、二维码、密码生成等数十种实用工具，所有数据浏览器本地处理。';
 const canonical = 'https://www.web-tools.top/about';
 const toolCount = TOOLS.length;
 const year = new Date().getFullYear();
@@ -15,16 +15,16 @@ const year = new Date().getFullYear();
       <h1>关于 Momo工具箱</h1>
       <p class="updated">让工具更温暖一些</p>
 
-      <p>Momo工具箱是一个<strong>免费、专注隐私</strong>的在线工具集合。我们提供 {toolCount}+ 种实用工具，覆盖文本处理、开发辅助、图像处理、效率提升等多个场景，所有数据均在浏览器本地处理，不上传服务器，即开即用。</p>
+      <p>Momo工具箱是一个<strong>专注隐私</strong>的在线工具集合。我们提供 {toolCount}+ 种实用工具，覆盖文本处理、开发辅助、图像处理、效率提升等多个场景，所有数据均在浏览器本地处理，不上传服务器，即开即用。</p>
 
       <h2>我们的理念</h2>
       <p>市面上的在线工具网站大多存在两个问题：一是<strong>追踪用户</strong>，收集数据用于广告投放；二是<strong>体验糟糕</strong>，弹窗广告、慢速加载、操作繁琐。我们希望改变这个现状。</p>
       <p>Momo工具箱的核心理念：</p>
       <ul>
-        <li><strong>隐私优先</strong>：所有工具的数据处理都在你的浏览器完成，我们没有任何后端数据库，不收集任何个人数据</li>
+        <li><strong>隐私优先</strong>：所有工具的数据处理都在你的浏览器完成，我们不收集任何个人身份信息</li>
         <li><strong>极速体验</strong>：基于 Astro 静态站点架构，页面预渲染 + 按需 hydrate，加载速度快如闪电</li>
         <li><strong>温暖设计</strong>：琥珀橙主色 + 柔和米色背景，告别冷冰冰的工具界面，让使用过程更愉悦</li>
-        <li><strong>完全免费</strong>：所有工具无限制使用，无需注册、无付费墙、无隐藏费用</li>
+        <li><strong>基础工具永久免费</strong>：基础工具功能无限制使用，无需注册、无付费墙</li>
       </ul>
 
       <h2>技术栈</h2>
@@ -42,9 +42,9 @@ const year = new Date().getFullYear();
       <p>当前已上线 {toolCount} 个工具，覆盖以下类别：</p>
       <ul>
         <li><strong>文本工具</strong>：Markdown 编辑器等</li>
-        <li><strong>开发者工具</strong>：JSON 格式化、Base64、URL 编解码、时间戳、哈希、JWT 解码等</li>
+        <li><strong>开发者工具</strong>：JSON 格式化、Base64、URL 编解码、时间戳、哈希、JWT 解码、UUID 等</li>
         <li><strong>图像工具</strong>：图片压缩等</li>
-        <li><strong>效率工具</strong>：二维码生成、密码生成器等</li>
+        <li><strong>效率工具</strong>：二维码生成、密码生成器、颜色转换、单位换算等</li>
       </ul>
       <p>我们持续添加新工具，欢迎通过邮箱告诉我们你的需求。</p>
 
@@ -53,11 +53,21 @@ const year = new Date().getFullYear();
       <ul>
         <li>所有工具的输入输出都在你的浏览器处理，<strong>从不发送到服务器</strong></li>
         <li>我们不使用 Cookie 跟踪你</li>
-        <li>我们不接入任何第三方分析服务（如 Google Analytics）</li>
+        <li>我们使用 <strong>Cloudflare Web Analytics</strong>（隐私友好，无 Cookie，不跨站追踪）了解聚合的访问情况，不使用 Google Analytics 等追踪型分析服务</li>
         <li>仅使用 localStorage 保存语言、主题、收藏等 UI 偏好，数据仅存于你的设备</li>
-        <li>第三方服务仅限 Cloudflare（托管）和 Google Fonts（字体），它们有独立的隐私政策</li>
+        <li>第三方服务仅限 Cloudflare（托管与分析）和 Google Fonts（字体），它们有独立的隐私政策</li>
       </ul>
       <p>详情请查阅我们的<a href="/privacy">隐私政策</a>。</p>
+
+      <h2>未来规划</h2>
+      <p>我们正在持续扩展工具集，并探索以下方向：</p>
+      <ul>
+        <li><strong>更多工具</strong>：HTTP 状态码查询、AES 加解密、番茄钟等即将上线</li>
+        <li><strong>批量处理</strong>：批量图片压缩、批量 JSON 格式化等</li>
+        <li><strong>用户系统</strong>：可选的账户系统，用于跨设备同步收藏和偏好</li>
+        <li><strong>API 服务</strong>：为开发者提供工具 API 调用</li>
+      </ul>
+      <p>所有新增的<strong>基础工具</strong>都将<strong>永久免费</strong>。部分高级功能（如批量处理、API 高频调用）未来可能引入付费，但绝不会影响基础工具的免费使用。</p>
 
       <h2>联系我们</h2>
       <p>如果你有任何疑问、建议或发现了 bug，请通过邮箱联系我们：<a href="mailto:1902243211@qq.com">1902243211@qq.com</a>。</p>
@@ -68,16 +78,16 @@ const year = new Date().getFullYear();
       <h1>About Momo Toolbox</h1>
       <p class="updated">Tools, but warmer</p>
 
-      <p>Momo Toolbox is a <strong>free, privacy-focused</strong> collection of online tools. We offer {toolCount}+ practical tools covering text processing, developer utilities, image handling, productivity, and more. All data is processed locally in your browser — nothing is uploaded, instant and private.</p>
+      <p>Momo Toolbox is a <strong>privacy-focused</strong> collection of online tools. We offer {toolCount}+ practical tools covering text processing, developer utilities, image handling, productivity, and more. All data is processed locally in your browser — nothing is uploaded, instant and private.</p>
 
       <h2>Our Philosophy</h2>
       <p>Most online tool websites suffer from two issues: <strong>user tracking</strong> for ad targeting, and <strong>poor UX</strong> with popups, slow loads, and clunky flows. We want to change that.</p>
       <p>Core principles of Momo Toolbox:</p>
       <ul>
-        <li><strong>Privacy first</strong>: all tool processing happens in your browser. We have no backend database and collect no personal data</li>
+        <li><strong>Privacy first</strong>: all tool processing happens in your browser. We collect no personally identifiable information</li>
         <li><strong>Blazing fast</strong>: built on Astro's static-first architecture with on-demand hydration — lightning quick</li>
         <li><strong>Warm design</strong>: amber accent + soft cream background, a humane alternative to cold tool UIs</li>
-        <li><strong>Completely free</strong>: unlimited use of all tools, no registration, no paywalls, no hidden fees</li>
+        <li><strong>Core tools free forever</strong>: unlimited use of core tool functionality, no registration, no paywall</li>
       </ul>
 
       <h2>Tech Stack</h2>
@@ -95,9 +105,9 @@ const year = new Date().getFullYear();
       <p>{toolCount} tools are currently available across these categories:</p>
       <ul>
         <li><strong>Text tools</strong>: Markdown editor and more</li>
-        <li><strong>Developer tools</strong>: JSON formatter, Base64, URL encoder, timestamp, hash, JWT decoder and more</li>
+        <li><strong>Developer tools</strong>: JSON formatter, Base64, URL encoder, timestamp, hash, JWT decoder, UUID and more</li>
         <li><strong>Image tools</strong>: image compressor and more</li>
-        <li><strong>Productivity</strong>: QR code generator, password generator and more</li>
+        <li><strong>Productivity</strong>: QR code generator, password generator, color converter, unit converter and more</li>
       </ul>
       <p>We are constantly adding new tools — feel free to email us your needs.</p>
 
@@ -106,11 +116,21 @@ const year = new Date().getFullYear();
       <ul>
         <li>All tool inputs and outputs are processed in your browser and <strong>never sent to a server</strong></li>
         <li>We do not use cookies to track you</li>
-        <li>We do not integrate any third-party analytics (such as Google Analytics)</li>
+        <li>We use <strong>Cloudflare Web Analytics</strong> (privacy-friendly, no cookies, no cross-site tracking) for aggregated traffic insights. We do not use tracking-based analytics like Google Analytics</li>
         <li>We only use localStorage for UI preferences (language, theme, favorites) — data stays on your device</li>
-        <li>Third-party services are limited to Cloudflare (hosting) and Google Fonts (fonts), each with their own privacy policies</li>
+        <li>Third-party services are limited to Cloudflare (hosting and analytics) and Google Fonts (fonts), each with their own privacy policies</li>
       </ul>
       <p>See our <a href="/privacy">Privacy Policy</a> for details.</p>
+
+      <h2>Future Plans</h2>
+      <p>We are continuously expanding the toolset and exploring the following:</p>
+      <ul>
+        <li><strong>More tools</strong>: HTTP status code lookup, AES encryption, Pomodoro timer coming soon</li>
+        <li><strong>Batch processing</strong>: batch image compression, batch JSON formatting, etc.</li>
+        <li><strong>User system</strong>: optional accounts to sync favorites and preferences across devices</li>
+        <li><strong>API service</strong>: tool API access for developers</li>
+      </ul>
+      <p>All newly added <strong>core tools</strong> will <strong>remain free forever</strong>. Some advanced features (such as batch processing, high-frequency API calls) may introduce pricing in the future, but will never affect the free use of core tools.</p>
 
       <h2>Contact Us</h2>
       <p>If you have any questions, suggestions, or bug reports, please email us at <a href="mailto:1902243211@qq.com">1902243211@qq.com</a>.</p>

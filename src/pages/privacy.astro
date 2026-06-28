@@ -2,9 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = '隐私政策 - Momo工具箱';
-const description = 'Momo工具箱隐私政策：我们不收集任何个人数据，所有工具数据均在浏览器本地处理。';
-const updatedZh = '2026年6月27日';
-const updatedEn = 'June 27, 2026';
+const description = 'Momo工具箱隐私政策：所有工具数据均在浏览器本地处理，不收集个人身份信息。';
+const updatedZh = '2026年6月28日';
+const updatedEn = 'June 28, 2026';
 ---
 
 <BaseLayout title={title} description={description} canonical="https://www.web-tools.top/privacy">
@@ -15,12 +15,12 @@ const updatedEn = 'June 27, 2026';
 
       <p>Momo工具箱（以下简称"我们"）非常重视您的隐私。本隐私政策说明我们在您使用本网站（www.web-tools.top）时如何处理数据。</p>
 
-      <h2>核心承诺：零数据收集</h2>
-      <p>我们<strong>不收集任何个人身份信息</strong>。本网站的所有工具（包括但不限于 JSON 格式化、Markdown 编辑器、二维码生成、密码生成器、哈希计算等）均在您的浏览器本地处理数据。</p>
+      <h2>核心承诺：工具数据本地处理</h2>
+      <p>本网站的所有工具（包括但不限于 JSON 格式化、Markdown 编辑器、二维码生成、密码生成器、哈希计算等）均在您的浏览器本地处理数据。</p>
       <ul>
         <li>您输入到工具中的内容<strong>永远不会</strong>发送到我们的服务器</li>
         <li>所有计算、转换、生成都在您的设备上完成</li>
-        <li>我们没有后端数据库，不存储您的任何内容</li>
+        <li>我们不通过工具收集您处理的任何内容数据</li>
       </ul>
 
       <h2>本地存储（localStorage）</h2>
@@ -32,18 +32,37 @@ const updatedEn = 'June 27, 2026';
       </ul>
       <p>您可以随时通过浏览器设置清除这些数据，不会影响网站的正常使用。</p>
 
+      <h2>网站流量分析</h2>
+      <p>我们使用 <strong>Cloudflare Web Analytics</strong> 了解网站的访问量和工具使用情况，以便持续改进服务。该服务是 Cloudflare 提供的<strong>隐私友好型分析</strong>：</p>
+      <ul>
+        <li><strong>不使用 Cookie</strong>：不会在您的浏览器中存储跟踪 Cookie</li>
+        <li><strong>不追踪个人身份信息</strong>：不收集您的姓名、邮箱、地址等</li>
+        <li><strong>不跨站追踪</strong>：不会在其他网站识别您的身份</li>
+        <li><strong>仅聚合统计</strong>：只统计页面浏览量、访问来源、国家/地区等聚合数据</li>
+      </ul>
+      <p>该服务由 Cloudflare 在边缘网络处理，详见 <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare 隐私政策</a>。如您希望完全不被统计，可使用浏览器隐私模式或广告拦截扩展。</p>
+
       <h2>第三方服务</h2>
       <p>本网站使用以下第三方服务，它们有各自独立的隐私政策：</p>
       <ul>
-        <li><strong>Cloudflare</strong>：提供网站托管和 CDN 加速服务。Cloudflare 可能会处理您的 IP 地址用于网络传输，详见 <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare 隐私政策</a>。</li>
+        <li><strong>Cloudflare</strong>：提供网站托管、CDN 加速和 Web Analytics 服务。Cloudflare 可能会处理您的 IP 地址用于网络传输和聚合统计，详见 <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare 隐私政策</a>。</li>
         <li><strong>Google Fonts</strong>：提供网页字体加载服务。Google 可能会收集您的 IP 地址和请求信息，详见 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 隐私政策</a>。</li>
       </ul>
+
+      <h2>关于广告的说明</h2>
+      <p>目前本网站<strong>未接入任何广告服务</strong>，不展示广告内容。未来我们可能考虑接入广告服务（如 Google AdSense）以支持网站的持续运营。如接入广告，我们将：</p>
+      <ul>
+        <li>在本页面明确声明所使用的广告服务</li>
+        <li>仅在非工具操作区域展示广告，不打扰您的正常使用</li>
+        <li>不与工具处理的数据产生任何关联</li>
+      </ul>
+      <p>工具核心功能将<strong>永久免费</strong>，广告仅作为可选的收入来源。</p>
 
       <h2>儿童隐私</h2>
       <p>本网站适合所有年龄段用户使用，不收集任何年龄信息。由于我们不收集任何个人数据，也不涉及儿童隐私的特殊处理。</p>
 
       <h2>数据安全</h2>
-      <p>由于您的数据从未离开您的设备，数据安全完全由您掌控。我们建议您使用现代浏览器并保持系统更新。</p>
+      <p>由于您的工具数据从未离开您的设备，数据安全完全由您掌控。我们建议您使用现代浏览器并保持系统更新。</p>
 
       <h2>政策变更</h2>
       <p>我们可能会不时更新本隐私政策。更新后，我们会在本页面发布新版本并更新"最后更新"日期。我们鼓励您定期查阅本页面以了解任何变更。</p>
@@ -58,12 +77,12 @@ const updatedEn = 'June 27, 2026';
 
       <p>Momo Toolbox ("we") takes your privacy seriously. This Privacy Policy explains how we handle data when you use this website (www.web-tools.top).</p>
 
-      <h2>Core Promise: Zero Data Collection</h2>
-      <p>We <strong>do not collect any personally identifiable information</strong>. All tools on this website (including but not limited to JSON formatter, Markdown editor, QR code generator, password generator, hash calculator, etc.) process data locally in your browser.</p>
+      <h2>Core Promise: Local Tool Processing</h2>
+      <p>All tools on this website (including but not limited to JSON formatter, Markdown editor, QR code generator, password generator, hash calculator, etc.) process data locally in your browser.</p>
       <ul>
         <li>Content you enter into the tools is <strong>never</strong> sent to our servers</li>
         <li>All computation, conversion, and generation happen on your device</li>
-        <li>We have no backend database and do not store any of your content</li>
+        <li>We do not collect any content data you process with the tools</li>
       </ul>
 
       <h2>Local Storage (localStorage)</h2>
@@ -75,18 +94,37 @@ const updatedEn = 'June 27, 2026';
       </ul>
       <p>You can clear this data anytime via your browser settings without affecting normal use of the site.</p>
 
+      <h2>Traffic Analytics</h2>
+      <p>We use <strong>Cloudflare Web Analytics</strong> to understand traffic and tool usage so we can continuously improve the service. This is a <strong>privacy-friendly analytics</strong> service provided by Cloudflare:</p>
+      <ul>
+        <li><strong>No cookies</strong>: no tracking cookies are stored in your browser</li>
+        <li><strong>No personal identification</strong>: we do not collect your name, email, address, etc.</li>
+        <li><strong>No cross-site tracking</strong>: your identity is not recognized on other websites</li>
+        <li><strong>Aggregated only</strong>: only page views, referrers, country/region and other aggregate data are collected</li>
+      </ul>
+      <p>This service is processed at Cloudflare's edge network. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>. To opt out completely, use your browser's private mode or a content blocker extension.</p>
+
       <h2>Third-Party Services</h2>
       <p>This website uses the following third-party services, each with its own privacy policy:</p>
       <ul>
-        <li><strong>Cloudflare</strong>: provides web hosting and CDN acceleration. Cloudflare may process your IP address for network transit. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>.</li>
+        <li><strong>Cloudflare</strong>: provides web hosting, CDN acceleration, and Web Analytics. Cloudflare may process your IP address for network transit and aggregate stats. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>.</li>
         <li><strong>Google Fonts</strong>: provides web font loading. Google may collect your IP address and request information. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</li>
       </ul>
+
+      <h2>About Advertising</h2>
+      <p>Currently this website <strong>does not integrate any advertising service</strong> and displays no ads. In the future we may consider integrating an ad service (such as Google AdSense) to support ongoing operations. If we do, we will:</p>
+      <ul>
+        <li>Clearly declare the ad service used on this page</li>
+        <li>Only display ads outside tool operation areas, without disrupting your normal use</li>
+        <li>Never associate ads with the data you process in tools</li>
+      </ul>
+      <p>Core tool functionality will <strong>remain free forever</strong>; ads are only an optional revenue source.</p>
 
       <h2>Children's Privacy</h2>
       <p>This website is suitable for users of all ages and does not collect any age information. Since we do not collect any personal data, no special handling of children's privacy is involved.</p>
 
       <h2>Data Security</h2>
-      <p>Since your data never leaves your device, data security is entirely under your control. We recommend using a modern browser and keeping your system up to date.</p>
+      <p>Since your tool data never leaves your device, data security is entirely under your control. We recommend using a modern browser and keeping your system up to date.</p>
 
       <h2>Policy Changes</h2>
       <p>We may update this Privacy Policy from time to time. When updated, we will publish the new version on this page and update the "Last updated" date. We encourage you to review this page periodically for any changes.</p>

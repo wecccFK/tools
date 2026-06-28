@@ -50,9 +50,6 @@ const fullCanonical = canonical || new URL(Astro.url.pathname, Astro.site).toStr
       rel="stylesheet"
     />
 
-    <!-- AdSense 占位（审核通过后填入 publisher ID） -->
-    {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> */}
-
     <!-- 初始化语言（SSR 默认中文，客户端挂载后由 LanguageProvider 覆盖） -->
     <script is:inline>
       (function () {

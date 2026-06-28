@@ -51,6 +51,13 @@ function ToolContentInner({ tool }: { tool: Tool }) {
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               {tool.tutorial[isZh ? 'zh' : 'en']}
             </p>
+            <a
+              href={`/tutorial/${tool.id}/`}
+              className="inline-block mt-2 text-xs font-medium transition-opacity hover:opacity-70"
+              style={{ color: 'var(--accent)' }}
+            >
+              {t('tool.viewTutorial')}
+            </a>
           </div>
         </div>
       )}

@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_FAQ } from '../data/toolTutorials';
+
+const title = '常见问题 - Momo工具箱';
+const description = 'Momo工具箱常见问题解答：免费吗？数据安全吗？支持离线吗？浏览器兼容性？在这里找到答案。';
+const canonical = 'https://www.web-tools.top/faq';
+
+// JSON-LD FAQ 结构化数据（利于 SEO）
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: SITE_FAQ.zh.map(item => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+  <article class="legal-page">
+    <div data-lang="zh">
+      <h1>常见问题</h1>
+      <p class="updated">在这里找到 Momo工具箱的常见问题解答</p>
+
+      <p>如果你在这里找不到答案，请通过<a href="mailto:1902243211@qq.com">邮箱</a>联系我们。</p>
+
+      {SITE_FAQ.zh.map((item, i) => (
+        <div style="margin-bottom: 1.75rem;">
+          <h2 style="font-size: 1.05rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--accent);">
+            {i + 1}. {item.q}
+          </h2>
+          <p>{item.a}</p>
+        </div>
+      ))}
+    </div>
+
+    <div data-lang="en">
+      <h1>FAQ</h1>
+      <p class="updated">Find answers to common questions about Momo Toolbox</p>
+
+      <p>If you can't find an answer here, please <a href="mailto:1902243211@qq.com">email us</a>.</p>
+
+      {SITE_FAQ.en.map((item, i) => (
+        <div style="margin-bottom: 1.75rem;">
+          <h2 style="font-size: 1.05rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--accent);">
+            {i + 1}. {item.q}
+          </h2>
+          <p>{item.a}</p>
+        </div>
+      ))}
+    </div>
+
+    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+      <a href="/" style="color: var(--accent); text-decoration: underline;" data-zh="← 返回首页" data-en="← Back to Home">← 返回首页</a>
+    </div>
+  </article>
+</BaseLayout>

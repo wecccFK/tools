@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = '隐私政策 - Momo工具箱';
+const description = 'Momo工具箱隐私政策：我们不收集任何个人数据，所有工具数据均在浏览器本地处理。';
+const updatedZh = '2026年6月27日';
+const updatedEn = 'June 27, 2026';
+---
+
+<BaseLayout title={title} description={description} canonical="https://www.web-tools.top/privacy">
+  <article class="legal-page">
+    <div data-lang="zh">
+      <h1>隐私政策</h1>
+      <p class="updated">最后更新：{updatedZh}</p>
+
+      <p>Momo工具箱（以下简称"我们"）非常重视您的隐私。本隐私政策说明我们在您使用本网站（www.web-tools.top）时如何处理数据。</p>
+
+      <h2>核心承诺：零数据收集</h2>
+      <p>我们<strong>不收集任何个人身份信息</strong>。本网站的所有工具（包括但不限于 JSON 格式化、Markdown 编辑器、二维码生成、密码生成器、哈希计算等）均在您的浏览器本地处理数据。</p>
+      <ul>
+        <li>您输入到工具中的内容<strong>永远不会</strong>发送到我们的服务器</li>
+        <li>所有计算、转换、生成都在您的设备上完成</li>
+        <li>我们没有后端数据库，不存储您的任何内容</li>
+      </ul>
+
+      <h2>本地存储（localStorage）</h2>
+      <p>为了提供更好的体验，我们使用浏览器本地存储保存以下偏好设置，这些数据仅存在于您的设备上：</p>
+      <ul>
+        <li><strong>语言偏好</strong>（<code>momo-lang</code>）：记录您选择的中/英文界面</li>
+        <li><strong>主题偏好</strong>（<code>momo-theme</code>）：记录您选择的明/暗主题</li>
+        <li><strong>收藏工具</strong>（<code>momo-starred</code>）：记录您收藏的工具列表</li>
+      </ul>
+      <p>您可以随时通过浏览器设置清除这些数据，不会影响网站的正常使用。</p>
+
+      <h2>第三方服务</h2>
+      <p>本网站使用以下第三方服务，它们有各自独立的隐私政策：</p>
+      <ul>
+        <li><strong>Cloudflare</strong>：提供网站托管和 CDN 加速服务。Cloudflare 可能会处理您的 IP 地址用于网络传输，详见 <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare 隐私政策</a>。</li>
+        <li><strong>Google Fonts</strong>：提供网页字体加载服务。Google 可能会收集您的 IP 地址和请求信息，详见 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 隐私政策</a>。</li>
+        <li><strong>GitHub</strong>：源代码托管平台。访问我们的 GitHub 仓库时适用 GitHub 的隐私政策。</li>
+      </ul>
+
+      <h2>Cookie</h2>
+      <p>本网站<strong>不使用 Cookie</strong>进行用户跟踪或广告投放。我们仅使用上述 localStorage 存储 UI 偏好。</p>
+
+      <h2>广告服务（未来可能）</h2>
+      <p>如果未来我们接入广告服务（如 Google AdSense），将会在本政策中明确告知，并说明相关数据收集情况。在接入前，您的浏览体验完全无广告、无跟踪。</p>
+
+      <h2>儿童隐私</h2>
+      <p>本网站适合所有年龄段用户使用，不收集任何年龄信息。由于我们不收集任何个人数据，也不涉及儿童隐私的特殊处理。</p>
+
+      <h2>数据安全</h2>
+      <p>由于您的数据从未离开您的设备，数据安全完全由您掌控。我们建议您使用现代浏览器并保持系统更新。</p>
+
+      <h2>政策变更</h2>
+      <p>我们可能会不时更新本隐私政策。更新后，我们会在本页面发布新版本并更新"最后更新"日期。我们鼓励您定期查阅本页面以了解任何变更。</p>
+
+      <h2>联系我们</h2>
+      <p>如果您对本隐私政策有任何疑问，请通过 GitHub 仓库提交 Issue：<a href="https://github.com/wecccFK/tools/issues" target="_blank" rel="noopener">github.com/wecccFK/tools</a>。</p>
+    </div>
+
+    <div data-lang="en">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: {updatedEn}</p>
+
+      <p>Momo Toolbox ("we") takes your privacy seriously. This Privacy Policy explains how we handle data when you use this website (www.web-tools.top).</p>
+
+      <h2>Core Promise: Zero Data Collection</h2>
+      <p>We <strong>do not collect any personally identifiable information</strong>. All tools on this website (including but not limited to JSON formatter, Markdown editor, QR code generator, password generator, hash calculator, etc.) process data locally in your browser.</p>
+      <ul>
+        <li>Content you enter into the tools is <strong>never</strong> sent to our servers</li>
+        <li>All computation, conversion, and generation happen on your device</li>
+        <li>We have no backend database and do not store any of your content</li>
+      </ul>
+
+      <h2>Local Storage (localStorage)</h2>
+      <p>To provide a better experience, we use browser local storage to save the following preferences. This data exists only on your device:</p>
+      <ul>
+        <li><strong>Language preference</strong> (<code>momo-lang</code>): remembers your chosen UI language</li>
+        <li><strong>Theme preference</strong> (<code>momo-theme</code>): remembers your light/dark theme choice</li>
+        <li><strong>Starred tools</strong> (<code>momo-starred</code>): records your favorite tools</li>
+      </ul>
+      <p>You can clear this data anytime via your browser settings without affecting normal use of the site.</p>
+
+      <h2>Third-Party Services</h2>
+      <p>This website uses the following third-party services, each with its own privacy policy:</p>
+      <ul>
+        <li><strong>Cloudflare</strong>: provides web hosting and CDN acceleration. Cloudflare may process your IP address for network transit. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>.</li>
+        <li><strong>Google Fonts</strong>: provides web font loading. Google may collect your IP address and request information. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</li>
+        <li><strong>GitHub</strong>: source code hosting platform. GitHub's privacy policy applies when you visit our repository.</li>
+      </ul>
+
+      <h2>Cookies</h2>
+      <p>This website <strong>does not use cookies</strong> for user tracking or advertising. We only use the localStorage mentioned above for UI preferences.</p>
+
+      <h2>Advertising (Possible Future)</h2>
+      <p>If we integrate an advertising service (such as Google AdSense) in the future, we will clearly disclose it in this policy and explain the relevant data collection. Until then, your browsing experience is completely ad-free and tracking-free.</p>
+
+      <h2>Children's Privacy</h2>
+      <p>This website is suitable for users of all ages and does not collect any age information. Since we do not collect any personal data, no special handling of children's privacy is involved.</p>
+
+      <h2>Data Security</h2>
+      <p>Since your data never leaves your device, data security is entirely under your control. We recommend using a modern browser and keeping your system up to date.</p>
+
+      <h2>Policy Changes</h2>
+      <p>We may update this Privacy Policy from time to time. When updated, we will publish the new version on this page and update the "Last updated" date. We encourage you to review this page periodically for any changes.</p>
+
+      <h2>Contact Us</h2>
+      <p>If you have any questions about this Privacy Policy, please submit an issue on our GitHub repository: <a href="https://github.com/wecccFK/tools/issues" target="_blank" rel="noopener">github.com/wecccFK/tools</a>.</p>
+    </div>
+
+    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+      <a href="/" style="color: var(--accent); text-decoration: underline;" data-zh="← 返回首页" data-en="← Back to Home">← 返回首页</a>
+    </div>
+  </article>
+</BaseLayout>

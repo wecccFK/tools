@@ -1,6 +1,7 @@
 ---
 import '@/styles/globals.css';
 import AppShell from '../components/AppShell.tsx';
+import Footer from '../components/Footer.astro';
 import type { Language } from '../i18n/translations';
 
 export interface Props {
@@ -56,9 +57,11 @@ const fullCanonical = canonical || new URL(Astro.url.pathname, Astro.site).toStr
     <script is:inline>
       (function () {
         try {
-          var saved = localStorage.getItem('momo-lang');
+          var saved = localStorage.getItem('momo-lang') || 'zh';
           if (saved === 'en' || saved === 'zh') {
             document.documentElement.lang = saved;
+            // 提前隐藏非当前语言的静态区块，避免闪烁
+            document.documentElement.setAttribute('data-lang', saved);
           }
         } catch (e) {}
       })();
@@ -81,5 +84,6 @@ const fullCanonical = canonical || new URL(Astro.url.pathname, Astro.site).toStr
     <main>
       <slot />
     </main>
+    <Footer />
   </body>
 </html>

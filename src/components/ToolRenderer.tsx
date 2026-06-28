@@ -15,6 +15,13 @@ const LazyImgCompress = lazy(() => import('./tools/ImageCompressor'));
 const LazyUuidGenerator = lazy(() => import('./tools/UuidGenerator'));
 const LazyColorConverter = lazy(() => import('./tools/ColorConverter'));
 const LazyUnitConverter = lazy(() => import('./tools/UnitConverter'));
+const LazyStatusCodeLookup = lazy(() => import('./tools/StatusCodeLookup'));
+const LazyPomodoroTimer = lazy(() => import('./tools/PomodoroTimer'));
+const LazyImageSplitter = lazy(() => import('./tools/ImageSplitter'));
+const LazyAesTool = lazy(() => import('./tools/AesTool'));
+const LazyScreenRecorder = lazy(() => import('./tools/ScreenRecorder'));
+const LazyClock = lazy(() => import('./tools/Clock'));
+const LazyRandomGroup = lazy(() => import('./tools/RandomGroup'));
 
 // 工具 ID → 组件映射
 const TOOL_COMPONENTS: Record<string, React.LazyExoticComponent<React.ComponentType>> = {
@@ -31,6 +38,13 @@ const TOOL_COMPONENTS: Record<string, React.LazyExoticComponent<React.ComponentT
   'uuid-generator': LazyUuidGenerator,
   'color-converter': LazyColorConverter,
   'unit-converter': LazyUnitConverter,
+  'status-code-lookup': LazyStatusCodeLookup,
+  'pomodoro-timer': LazyPomodoroTimer,
+  'image-splitter': LazyImageSplitter,
+  'aes-tool': LazyAesTool,
+  'screen-recorder': LazyScreenRecorder,
+  'clock': LazyClock,
+  'random-group': LazyRandomGroup,
 };
 
 function LoadingSkeleton() {

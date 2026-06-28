@@ -8,7 +8,7 @@
 
 ## Overview
 
-- [Home](https://www.web-tools.top/): Tool directory with 13+ curated tools (JSON formatter, Markdown editor, QR generator, password generator, Base64, URL encoder, timestamp, hash, JWT decoder, image compressor, UUID/ULID, color converter, unit converter).
+- [Home](https://www.web-tools.top/): Tool directory with 20+ curated tools (JSON formatter, Markdown editor, QR generator, password generator, Base64, URL encoder, timestamp, hash, JWT decoder, image compressor, UUID/ULID, color converter, unit converter, HTTP status code lookup, Pomodoro timer, image splitter, AES encrypt/decrypt, screen recorder, fullscreen clock, random grouping).
 - [About](https://www.web-tools.top/about/): Project philosophy, tech stack, privacy commitment and future plans.
 - [FAQ](https://www.web-tools.top/faq/): Common questions about free use, data safety, offline support and browser compatibility.
 - [Privacy Policy](https://www.web-tools.top/privacy/): All tool data processed locally in the browser; uses Cloudflare Web Analytics (no cookies); no third-party tracking.
@@ -29,6 +29,13 @@
 - [UUID/ULID Generator](https://www.web-tools.top/tool/uuid-generator/): Generate UUID v4/v7 and ULID with crypto-secure randomness.
 - [Color Converter](https://www.web-tools.top/tool/color-converter/): Convert between HEX, RGB, HSL, HSV with picker and sliders.
 - [Unit Converter](https://www.web-tools.top/tool/unit-converter/): Convert length, mass, temperature, data, speed, area, time, angle.
+- [HTTP Status Code Lookup](https://www.web-tools.top/tool/status-code-lookup/): Lookup 60+ HTTP status codes (1xx-5xx) with bilingual descriptions, search and category filter.
+- [Pomodoro Timer](https://www.web-tools.top/tool/pomodoro-timer/): 25/5/15 classic timer with custom durations, browser notifications and daily stats.
+- [Image Splitter](https://www.web-tools.top/tool/image-splitter/): Split an image into 4/9 grids or Instagram triptych. Local Canvas processing, one-click ZIP.
+- [AES Encrypt/Decrypt](https://www.web-tools.top/tool/aes-tool/): AES-256-GCM/CBC local encryption with PBKDF2 password or hex key. Native Web Crypto API.
+- [Screen Recorder](https://www.web-tools.top/tool/screen-recorder/): Record screen with custom bitrate, resolution (720p-1440p), FPS (10-240), video format (WebM/MP4), system/mic audio. Local download.
+- [Fullscreen Clock](https://www.web-tools.top/tool/clock/): Three modes - system time, stopwatch (with laps), countdown (with beep). One-click fullscreen with large digits. Fully local.
+- [Random Grouping](https://www.web-tools.top/tool/random-group/): Shuffle names into groups by group count or per-group size. Web Crypto API secure randomness. Fully local.
 
 ## Tutorials
 
@@ -42,6 +49,16 @@
 - [Hash Generator Tutorial](https://www.web-tools.top/tutorial/hash-generator/): Usage, examples, best practices and FAQ.
 - [JWT Decoder Tutorial](https://www.web-tools.top/tutorial/jwt-decoder/): Usage, examples, best practices and FAQ.
 - [Image Compressor Tutorial](https://www.web-tools.top/tutorial/img-compress/): Usage, examples, best practices and FAQ.
+- [UUID/ULID Generator Tutorial](https://www.web-tools.top/tutorial/uuid-generator/): Usage, examples, best practices and FAQ.
+- [Color Converter Tutorial](https://www.web-tools.top/tutorial/color-converter/): Usage, examples, best practices and FAQ.
+- [Unit Converter Tutorial](https://www.web-tools.top/tutorial/unit-converter/): Usage, examples, best practices and FAQ.
+- [HTTP Status Code Lookup Tutorial](https://www.web-tools.top/tutorial/status-code-lookup/): Usage, examples, best practices and FAQ.
+- [Pomodoro Timer Tutorial](https://www.web-tools.top/tutorial/pomodoro-timer/): Usage, examples, best practices and FAQ.
+- [Image Splitter Tutorial](https://www.web-tools.top/tutorial/image-splitter/): Usage, examples, best practices and FAQ.
+- [AES Encrypt/Decrypt Tutorial](https://www.web-tools.top/tutorial/aes-tool/): Usage, examples, best practices and FAQ.
+- [Screen Recorder Tutorial](https://www.web-tools.top/tutorial/screen-recorder/): Usage, examples, best practices and FAQ.
+- [Fullscreen Clock Tutorial](https://www.web-tools.top/tutorial/clock/): Usage, examples, best practices and FAQ.
+- [Random Grouping Tutorial](https://www.web-tools.top/tutorial/random-group/): Usage, examples, best practices and FAQ.
 
 ## Optional
 

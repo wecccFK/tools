@@ -249,6 +249,139 @@ export const TOOLS: Tool[] = [
       en: 'Pick a category, enter a value, choose source and target units, result updates in real time. Click swap to reverse.',
     },
   },
+  {
+    id: 'status-code-lookup',
+    name: { zh: 'HTTP 状态码查询', en: 'HTTP Status Code Lookup' },
+    description: { zh: '60+ 状态码速查与说明', en: 'Lookup 60+ HTTP status codes' },
+    category: 'Developer',
+    tags: ['http', 'status', 'dev'],
+    seoTitle: {
+      zh: 'HTTP 状态码查询工具 - Momo工具箱',
+      en: 'HTTP Status Code Lookup - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '在线 HTTP 状态码查询工具,涵盖 1xx/2xx/3xx/4xx/5xx 共 60+ 条,支持搜索与分类筛选,中英双语说明。',
+      en: 'Online HTTP status code lookup covering 1xx/2xx/3xx/4xx/5xx, 60+ entries with search and category filter, bilingual descriptions.',
+    },
+    tutorial: {
+      zh: '在搜索框输入状态码、名称或描述关键词,结果实时过滤。点击分类标签可筛选 1xx-5xx。点击任一卡片复制状态码。',
+      en: 'Type a code, name, or description keyword to filter results in real time. Click category chips to filter 1xx-5xx. Click any card to copy the code.',
+    },
+  },
+  {
+    id: 'pomodoro-timer',
+    name: { zh: '番茄钟', en: 'Pomodoro Timer' },
+    description: { zh: '25/5/15 经典计时', en: '25/5/15 classic timer' },
+    category: 'Productivity',
+    tags: ['pomodoro', 'timer', 'productivity'],
+    seoTitle: {
+      zh: '番茄钟计时器 - Momo工具箱',
+      en: 'Pomodoro Timer - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '在线番茄钟计时器,25 分钟专注 + 5/15 分钟休息,支持自定义时长、浏览器通知、今日完成数统计。数据本地存储。',
+      en: 'Online Pomodoro timer with 25 min focus + 5/15 min break, custom durations, browser notifications, and daily stats. Data stored locally.',
+    },
+    tutorial: {
+      zh: '选择专注/短休/长休模式,点击开始。完成时浏览器会自动通知。展开"自定义时长"可调整 1-120 分钟。',
+      en: 'Pick Focus / Short Break / Long Break and click Start. Browser will notify on completion. Expand "Custom durations" to set 1-120 minutes.',
+    },
+  },
+  {
+    id: 'image-splitter',
+    name: { zh: '图片分割', en: 'Image Splitter' },
+    description: { zh: '朋友圈 9 宫格 / 4 宫格切图', en: '4/9 grid for Instagram,朋友圈' },
+    category: 'Image',
+    tags: ['image', 'split', 'grid', 'instagram'],
+    seoTitle: {
+      zh: '图片分割工具 - 朋友圈九宫格切割 - Momo工具箱',
+      en: 'Image Splitter - Instagram Grid Cutter - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '在线图片分割工具,支持 1×3 / 2×2 / 3×3 / 2×3 等多种切割方式,一键打包 ZIP 下载。本地处理,图片不上传。',
+      en: 'Online image splitter supporting 1×3 / 2×2 / 3×3 / 2×3 grids, one-click ZIP download. Processed locally, never uploaded.',
+    },
+    tutorial: {
+      zh: '上传图片,选择切割方式(如 3×3 九宫格),点击"开始切割"。预览后可单击任一切片下载,或点"下载全部 ZIP"一次打包。',
+      en: 'Upload an image, pick a grid (e.g., 3×3), click Split. Click any slice to download individually, or "Download All ZIP" for a one-click bundle.',
+    },
+  },
+  {
+    id: 'aes-tool',
+    name: { zh: 'AES 加解密', en: 'AES Encrypt/Decrypt' },
+    description: { zh: 'AES-256-GCM/CBC 本地加解密', en: 'AES-256-GCM/CBC local encryption' },
+    category: 'Developer',
+    tags: ['aes', 'encrypt', 'crypto', 'security'],
+    seoTitle: {
+      zh: 'AES 加解密工具 - AES-256-GCM/CBC - Momo工具箱',
+      en: 'AES Encrypt/Decrypt - AES-256-GCM/CBC - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '在线 AES 加解密工具,支持 AES-256-GCM(推荐)与 CBC 模式,密码派生(PBKDF2)或直接 hex 密钥,完全本地处理,密钥不上传。',
+      en: 'Online AES tool supporting AES-256-GCM (recommended) and CBC modes, password-derived (PBKDF2) or direct hex key. Fully local, key never uploaded.',
+    },
+    tutorial: {
+      zh: '选择加密/解密、模式(GCM 推荐)、密钥来源(密码或 hex)。加密时输入明文得到 base64 密文,解密时反向,粘贴密文得到明文。',
+      en: 'Pick encrypt/decrypt, mode (GCM recommended), key source (password or hex). For encryption, input plaintext to get base64 ciphertext; reverse for decryption.',
+    },
+  },
+  {
+    id: 'screen-recorder',
+    name: { zh: '屏幕录制', en: 'Screen Recorder' },
+    description: { zh: '可调质量/分辨率/帧率/格式', en: 'Quality/Resolution/FPS/Format adjustable' },
+    category: 'Productivity',
+    tags: ['screen', 'record', 'video', 'media'],
+    seoTitle: {
+      zh: '屏幕录制工具 - 自定义质量/分辨率/帧率/格式 - Momo工具箱',
+      en: 'Screen Recorder - Custom Quality/Resolution/FPS/Format - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '在线屏幕录制工具,支持自定义码率、分辨率(720p/1080p/1440p)、帧率(10-240 FPS)、视频格式(WebM/MP4),可选系统音频/麦克风,完全本地处理。',
+      en: 'Online screen recorder with custom bitrate, resolution (720p/1080p/1440p), frame rate (10-240 FPS), video format (WebM/MP4), optional system audio/mic. Fully local.',
+    },
+    tutorial: {
+      zh: '选择质量(码率)、分辨率、帧率、视频格式、音频来源后点击"开始录制"。浏览器会弹出共享对话框选择屏幕/窗口/标签页。点"停止"后可预览并下载。',
+      en: 'Pick bitrate, resolution, FPS, video format, audio source and click "Start Recording". Browser prompts for screen/window/tab to share. Click "Stop" to preview and download.',
+    },
+  },
+  {
+    id: 'clock',
+    name: { zh: '全屏时钟', en: 'Fullscreen Clock' },
+    description: { zh: '时钟/秒表/倒计时,可全屏', en: 'Clock / Stopwatch / Countdown, fullscreen' },
+    category: 'Productivity',
+    tags: ['clock', 'time', 'stopwatch', 'countdown', 'fullscreen'],
+    seoTitle: {
+      zh: '全屏时钟 - 系统时间/秒表/倒计时 - Momo工具箱',
+      en: 'Fullscreen Clock - Time/Stopwatch/Countdown - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '在线全屏时钟工具,支持系统时间显示、秒表计时、倒计时定时,可一键全屏放大为大字号时钟,适合演示、会议、学习。完全本地运行,无需联网。',
+      en: 'Online fullscreen clock with system time, stopwatch and countdown timer. One-click fullscreen with large digits for presentations, meetings and study. Fully local.',
+    },
+    tutorial: {
+      zh: '选择模式:时钟(显示系统时间)、秒表(计时)、倒计时(定时)。点"全屏"按钮可放大为大字号时钟。秒表支持计次;倒计时到点会响起提示音。',
+      en: 'Pick mode: Clock (system time), Stopwatch (counting up), or Countdown. Click "Fullscreen" for large-digit view. Stopwatch supports laps; Countdown plays a sound at zero.',
+    },
+  },
+  {
+    id: 'random-group',
+    name: { zh: '随机分组', en: 'Random Grouping' },
+    description: { zh: '名单随机分组,Web Crypto 安全', en: 'Shuffle names into groups, Web Crypto' },
+    category: 'Productivity',
+    tags: ['random', 'group', 'shuffle', 'team', 'lottery'],
+    seoTitle: {
+      zh: '随机分组工具 - 名单随机分配 - Momo工具箱',
+      en: 'Random Grouping Tool - Shuffle Names into Groups - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '在线随机分组工具,支持按组数或每组人数分配,使用 Web Crypto API 提供密码学安全随机性,完全本地处理,适合课堂分组、活动抽奖、团队任务分配。',
+      en: 'Online random grouping tool. Split names by group count or per-group size using cryptographically secure Web Crypto API. Fully local, ideal for classroom, raffles and team tasks.',
+    },
+    tutorial: {
+      zh: '选择"按组数分"或"按每组人数",设置组数/人数,在文本框输入名单(每行一项),点"随机分组"即可。结果以彩色卡片显示,可一键复制。',
+      en: 'Pick "By group count" or "By group size", set the number, enter names (one per line) and click "Shuffle & Group". Results show in colored cards; one-click copy.',
+    },
+  },
 ];
 
 export const CATEGORIES: (Tool['category'] | 'All')[] = ['All', 'Text', 'Developer', 'Image', 'Productivity', 'Entertainment'];

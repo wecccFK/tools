@@ -1100,6 +1100,676 @@ export const TOOL_TUTORIALS: Record<string, ToolTutorial> = {
       en: 'Detailed tutorial: How to use Momo Toolbox Unit Converter for 8 categories — length, mass, temperature, data, speed, area, time, and angle — including binary prefixes and non-linear conversion best practices.',
     },
   },
+  'status-code-lookup': {
+    usage: {
+      zh: 'HTTP 状态码查询工具适用于前后端开发、API 调试、运维排障、HTTP 学习等场景。当你在浏览器 DevTools 看到陌生的状态码,或在 curl 输出中需要确认含义时,这个工具能快速给出中英双语解释。',
+      en: 'The HTTP Status Code Lookup is useful for frontend/backend development, API debugging, ops troubleshooting, and HTTP learning. When you see an unfamiliar status code in DevTools or curl output, this tool gives you bilingual explanations instantly.',
+    },
+    features: {
+      zh: [
+        '覆盖全面:1xx/2xx/3xx/4xx/5xx 五大类共 60+ 条标准与扩展状态码',
+        '即时搜索:支持按状态码、名称、描述关键词搜索',
+        '分类筛选:一键筛选 1xx-5xx 任一类别',
+        '中英双语:每条状态码含中英文说明,方便对照学习',
+        '一键复制:点击卡片即可复制状态码到剪贴板',
+      ],
+      en: [
+        'Comprehensive: 60+ standard and extended codes across 1xx/2xx/3xx/4xx/5xx',
+        'Instant search: filter by code, name, or description keyword',
+        'Category filter: one-click filter by 1xx-5xx',
+        'Bilingual: each entry has both Chinese and English explanations',
+        'One-click copy: click any card to copy the code to clipboard',
+      ],
+    },
+    examples: {
+      zh: [
+        '场景一:前端拿到 401,搜索"401"快速确认是未授权,需要引导用户重新登录。',
+        '场景二:运维看到 502/504,搜索确认是网关问题(上游故障或超时),决定重启服务还是联系上游。',
+        '场景三:学习 HTTP 时,点击"4xx"筛选,浏览所有客户端错误码,理解 401/403/404 的差异。',
+      ],
+      en: [
+        'Scenario 1: Frontend gets a 401; search "401" to confirm it means Unauthorized, prompting a re-login.',
+        'Scenario 2: Ops sees a 502/504; search to confirm gateway issue (upstream failure or timeout), deciding whether to restart the service or contact upstream.',
+        'Scenario 3: When learning HTTP, click "4xx" to browse all client errors and understand the difference between 401/403/404.',
+      ],
+    },
+    bestPractices: {
+      zh: [
+        '记住常见码:200(成功)、301(永久重定向)、304(未修改)、404(未找到)、500(服务器错误)、503(服务不可用)',
+        '区分 401 与 403:401 是未认证(需登录),403 是已认证但无权限',
+        '区分 301 与 302:301 永久迁移(SEO 权重转移),302 临时跳转(权重不转移)',
+        '4xx 是客户端问题(检查参数/认证),5xx 是服务端问题(联系后端)',
+      ],
+      en: [
+        'Memorize common codes: 200 (OK), 301 (Moved Permanently), 304 (Not Modified), 404 (Not Found), 500 (Internal Server Error), 503 (Service Unavailable)',
+        'Distinguish 401 vs 403: 401 means unauthenticated (need login), 403 means authenticated but no permission',
+        'Distinguish 301 vs 302: 301 is permanent (SEO juice transferred), 302 is temporary (no transfer)',
+        '4xx is client-side (check params/auth), 5xx is server-side (contact backend)',
+      ],
+    },
+    faq: {
+      zh: [
+        {
+          q: '为什么有些状态码我没见过?',
+          a: '本工具包含 RFC 9110 标准状态码以及 WebDAV、HTTP/2 等扩展状态码(如 207、421、425),实际项目中使用频率较低但完整收录。',
+        },
+        {
+          q: '418 我是个茶壶是什么?',
+          a: 'RFC 2324(HTCPCP)定义的愚人节玩笑状态码,实际不会被使用,但已成为程序员文化梗。',
+        },
+        {
+          q: '如何记忆 1xx-5xx 的分类?',
+          a: '1 信息、2 成功、3 重定向、4 客户端错误、5 服务器错误。',
+        },
+      ],
+      en: [
+        {
+          q: 'Why are some codes unfamiliar to me?',
+          a: 'This tool includes standard RFC 9110 codes plus WebDAV, HTTP/2, etc. extensions (e.g., 207, 421, 425), which are rare in real projects but included for completeness.',
+        },
+        {
+          q: 'What is 418 I\'m a Teapot?',
+          a: 'An April Fools status code defined in RFC 2324 (HTCPCP), never actually used but a programmer culture meme.',
+        },
+        {
+          q: 'How to memorize 1xx-5xx categories?',
+          a: '1 Informational, 2 Success, 3 Redirection, 4 Client Error, 5 Server Error.',
+        },
+      ],
+    },
+    seoTitle: {
+      zh: 'HTTP 状态码查询工具使用教程 - 60+ 状态码速查 - Momo工具箱',
+      en: 'HTTP Status Code Lookup Tutorial - 60+ Codes Quick Reference - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '详细教程:如何使用 Momo工具箱的 HTTP 状态码查询工具,涵盖 1xx-5xx 五大类 60+ 状态码,支持搜索、分类筛选、一键复制,中英双语说明,适合开发者与 HTTP 学习者。',
+      en: 'Detailed tutorial: How to use Momo Toolbox HTTP Status Code Lookup covering 1xx-5xx 60+ codes, with search, category filter, one-click copy, and bilingual descriptions. Suitable for developers and HTTP learners.',
+    },
+  },
+  'pomodoro-timer': {
+    usage: {
+      zh: '番茄钟计时器适用于专注工作、学习备考、写作写作、代码开发等需要深度专注的场景。25 分钟专注 + 5 分钟休息的经典节奏,帮助你保持高效输出同时避免疲劳。',
+      en: 'The Pomodoro Timer is useful for focused work, exam prep, writing, coding, and any scenario requiring deep focus. The classic 25 min focus + 5 min break rhythm helps you maintain high output while avoiding fatigue.',
+    },
+    features: {
+      zh: [
+        '经典节奏:25 分钟专注 + 5 分钟短休 + 15 分钟长休',
+        '自定义时长:可调整 1-120 分钟,适应个人节奏',
+        '浏览器通知:完成时自动弹窗提醒,无需盯着页面',
+        '今日统计:记录完成番茄钟数与累计专注分钟数',
+        '本地存储:数据保存在浏览器,刷新页面不丢失,每日自动重置',
+      ],
+      en: [
+        'Classic rhythm: 25 min focus + 5 min short break + 15 min long break',
+        'Custom durations: adjustable 1-120 minutes to fit your pace',
+        'Browser notifications: auto-alert on completion, no need to watch the page',
+        'Daily stats: tracks pomodoro count and total focus minutes today',
+        'Local storage: data saved in browser, persists across refreshes, resets daily',
+      ],
+    },
+    examples: {
+      zh: [
+        '场景一:写代码 25 分钟,休息 5 分钟看远处,4 个番茄钟后长休 15 分钟。',
+        '场景二:备考时,设置 50 分钟专注 + 10 分钟休息,使用自定义时长。',
+        '场景三:写作时打开番茄钟,完成时收到通知,记录今日累计专注时长。',
+      ],
+      en: [
+        'Scenario 1: Code for 25 min, break 5 min to look far away; after 4 pomodoros, take a 15 min long break.',
+        'Scenario 2: For exam prep, set 50 min focus + 10 min break using custom durations.',
+        'Scenario 3: Turn on the timer while writing, get notified on completion, and track today\'s total focus time.',
+      ],
+    },
+    bestPractices: {
+      zh: [
+        '专注期间关闭手机通知,远离社交媒体',
+        '休息时站起来活动、看远处,不要刷手机',
+        '每完成 4 个番茄钟(约 2 小时)进行一次长休',
+        '不要在专注期间切换任务,一个番茄钟只做一件事',
+      ],
+      en: [
+        'Mute phone notifications during focus; stay away from social media',
+        'Stand up and look far away during breaks; avoid phone scrolling',
+        'Take a long break after every 4 pomodoros (~2 hours)',
+        'Don\'t switch tasks during a focus session — one pomodoro, one task',
+      ],
+    },
+    faq: {
+      zh: [
+        {
+          q: '为什么没有声音提醒?',
+          a: '当前版本仅使用浏览器系统通知。声音提醒需要用户交互后才能播放,且会打扰他人,因此默认关闭。',
+        },
+        {
+          q: '统计会被其他人看到吗?',
+          a: '不会。所有数据仅保存在你的浏览器本地(localStorage),不会上传任何服务器。清除浏览器数据会重置统计。',
+        },
+        {
+          q: '为什么没收到通知?',
+          a: '需要在浏览器中授权通知权限。首次点击"开始"时会自动请求,如果之前拒绝过,需在浏览器地址栏左侧重新允许。',
+        },
+      ],
+      en: [
+        {
+          q: 'Why no sound alerts?',
+          a: 'The current version only uses browser system notifications. Sound requires user interaction first and may disturb others, so it is off by default.',
+        },
+        {
+          q: 'Can others see my stats?',
+          a: 'No. All data is stored locally in your browser (localStorage) and never uploaded. Clearing browser data resets the stats.',
+        },
+        {
+          q: 'Why am I not getting notifications?',
+          a: 'You need to grant notification permission. First click on "Start" will request it. If previously denied, re-grant from the left of the browser address bar.',
+        },
+      ],
+    },
+    seoTitle: {
+      zh: '番茄钟计时器使用教程 - 25 分钟专注工作法 - Momo工具箱',
+      en: 'Pomodoro Timer Tutorial - 25-Minute Focus Technique - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '详细教程:如何使用 Momo工具箱的番茄钟计时器,25 分钟专注 + 5/15 分钟休息的经典节奏,自定义时长、浏览器通知、今日完成统计,数据本地存储。',
+      en: 'Detailed tutorial: How to use Momo Toolbox Pomodoro Timer with 25 min focus + 5/15 min break classic rhythm, custom durations, browser notifications, and daily stats. Data stored locally.',
+    },
+  },
+  'image-splitter': {
+    usage: {
+      zh: '图片分割工具适用于朋友圈九宫格、Instagram 三联图、微博九宫格、Discord/Reddit 拼图等社交媒体发图场景。把一张大图切成等分小图,按顺序发布即可获得拼图效果。',
+      en: 'The Image Splitter is useful for 朋友圈 9-grid, Instagram triptych, Weibo 9-grid, Discord/Reddit collage, and any social media scenario requiring grid publishing. Slice a large image into equal parts and post in order for a grid effect.',
+    },
+    features: {
+      zh: [
+        '多种切割:1×1、2×2(4宫格)、3×3(9宫格)、1×3(Instagram 三联)、3×1、2×3、3×2',
+        '本地处理:所有切割用 Canvas API 在浏览器完成,图片不上传',
+        '预览网格:切割后按行列顺序展示,直观对应发布顺序',
+        '一键 ZIP:打包所有切片为 zip 文件,文件名带序号',
+        '单独下载:点击任一切片即可单独保存为 PNG',
+      ],
+      en: [
+        'Multiple grids: 1×1, 2×2 (4-grid), 3×3 (9-grid), 1×3 (Instagram triptych), 3×1, 2×3, 3×2',
+        'Local processing: all slicing via Canvas API in the browser; image never uploaded',
+        'Preview grid: slices shown in row/col order matching posting sequence',
+        'One-click ZIP: bundle all slices into a zip file with numbered names',
+        'Individual download: click any slice to save as PNG',
+      ],
+    },
+    examples: {
+      zh: [
+        '场景一:朋友圈九宫格 — 上传风景图,选 3×3,切割后按 1-9 顺序发朋友圈。',
+        '场景二:Instagram 三联 — 上传宽图,选 1×3,切割后按顺序发布可拼成完整长图。',
+        '场景三:对比图 — 选 3×1,把三张对比图拼成上下三联展示。',
+      ],
+      en: [
+        'Scenario 1: 朋友圈 9-grid — upload a landscape, choose 3×3, post slices 1-9 in order.',
+        'Scenario 2: Instagram triptych — upload a wide image, choose 1×3, post slices in order to form a complete long image.',
+        'Scenario 3: Comparison collage — choose 3×1, stack three comparison images vertically.',
+      ],
+    },
+    bestPractices: {
+      zh: [
+        '正方形图片选 3×3,效果最佳(朋友圈)',
+        '宽图选 1×3,适合 Instagram 横向三联',
+        '高图选 3×1,适合抖音/小红书纵向三联',
+        '切割前先把图片裁剪为目标比例,避免切片拉伸',
+      ],
+      en: [
+        'Square images work best with 3×3 (朋友圈)',
+        'Wide images use 1×3 for Instagram horizontal triptych',
+        'Tall images use 3×1 for TikTok/Xiaohongshu vertical triptych',
+        'Crop the image to the target aspect ratio before splitting to avoid stretching',
+      ],
+    },
+    faq: {
+      zh: [
+        {
+          q: '为什么切片间有缝隙?',
+          a: '如果原图宽高不能被行列数整除,会有 1 像素以内的余量被丢弃,人眼通常不可见。',
+        },
+        {
+          q: '支持透明背景 PNG 吗?',
+          a: '支持。切片保留原始透明度,输出为 PNG 格式。',
+        },
+        {
+          q: '切割大图会卡顿吗?',
+          a: '5000×5000 以下图片浏览器可流畅处理。更大的图建议先用图片压缩工具缩小后再切割。',
+        },
+      ],
+      en: [
+        {
+          q: 'Why are there gaps between slices?',
+          a: 'If the original dimensions are not divisible by the grid, up to 1 pixel may be discarded per slice — usually invisible.',
+        },
+        {
+          q: 'Does it support transparent PNG?',
+          a: 'Yes. Transparency is preserved; output is PNG format.',
+        },
+        {
+          q: 'Will large images lag?',
+          a: 'Images up to 5000×5000 are smooth in browsers. For larger ones, compress first with the Image Compressor.',
+        },
+      ],
+    },
+    seoTitle: {
+      zh: '图片分割工具使用教程 - 朋友圈九宫格切图 - Momo工具箱',
+      en: 'Image Splitter Tutorial - Instagram Grid Cutting - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '详细教程:如何使用 Momo工具箱的图片分割工具,3×3 九宫格、1×3 三联、2×2 四宫格等多种切割方式,本地 Canvas 处理,支持单独下载与 ZIP 打包。',
+      en: 'Detailed tutorial: How to use Momo Toolbox Image Splitter for 3×3 grid, 1×3 triptych, 2×2 quad, and more. Local Canvas processing with individual download and ZIP bundle.',
+    },
+  },
+  'aes-tool': {
+    usage: {
+      zh: 'AES 加解密工具适用于敏感数据传输、配置文件加密、API 密钥保护、数据库字段加密等场景。当你需要在不安全的信道传输文本数据,或本地保存敏感信息时,AES-256 是行业标准的对称加密算法。',
+      en: 'The AES tool is useful for sensitive data transmission, config file encryption, API key protection, database field encryption, etc. When you need to transmit text over an insecure channel or store sensitive information locally, AES-256 is the industry-standard symmetric encryption algorithm.',
+    },
+    features: {
+      zh: [
+        'AES-256-GCM:推荐模式,带认证标签,可检测密文篡改',
+        'AES-256-CBC:兼容传统系统,无认证',
+        '密码派生:用 PBKDF2 算法(10 万次迭代 + SHA-256)从密码派生 256 位密钥',
+        'Hex 密钥:支持直接输入 64 位 hex 密钥,适合专业用户',
+        'Web Crypto API:使用浏览器原生加密,密钥永不离开浏览器',
+        'UTF-8 安全:正确处理中文等非 ASCII 字符',
+      ],
+      en: [
+        'AES-256-GCM: recommended mode with authentication tag, tamper-detecting',
+        'AES-256-CBC: legacy compatibility, no authentication',
+        'Password-derived: 256-bit key derived via PBKDF2 (100,000 iterations + SHA-256)',
+        'Hex key: accept direct 64-char hex input for advanced users',
+        'Web Crypto API: native browser encryption, key never leaves the browser',
+        'UTF-8 safe: correctly handles non-ASCII characters like Chinese',
+      ],
+    },
+    examples: {
+      zh: [
+        '场景一:加密 API 密钥保存到笔记 — 输入密钥、设置密码、选 GCM、点加密,把 base64 密文存到笔记,需要时再粘贴回来解密。',
+        '场景二:发送私密消息给同事 — 用约定好的密码加密消息,通过微信/邮件发送密文,对方用同样密码解密。',
+        '场景三:兼容旧系统 — 对方系统只支持 CBC,选 CBC 模式加密,把 hex 密钥通过其他安全渠道告知对方。',
+      ],
+      en: [
+        'Scenario 1: Encrypt an API key for note storage — input the key, set a password, choose GCM, click Encrypt, save the base64 ciphertext; decrypt later when needed.',
+        'Scenario 2: Send a private message to a colleague — encrypt with a shared password, send the ciphertext via chat/email, the recipient decrypts with the same password.',
+        'Scenario 3: Legacy system compat — the other system only supports CBC; choose CBC mode, share the hex key via another secure channel.',
+      ],
+    },
+    bestPractices: {
+      zh: [
+        '优先使用 GCM 模式,带认证可防篡改',
+        '密码至少 12 位,包含大小写字母、数字、符号',
+        'PBKDF2 迭代次数越高越安全(本工具为 10 万次)',
+        '密文传输时配合 HTTPS,防止中间人攻击',
+        'hex 密钥需通过安全渠道(如线下、密码管理器)分享,不要明文传输',
+      ],
+      en: [
+        'Prefer GCM mode — authenticated, tamper-resistant',
+        'Password at least 12 chars with mixed case, digits, symbols',
+        'Higher PBKDF2 iterations = more secure (this tool uses 100,000)',
+        'Always pair ciphertext with HTTPS to prevent MITM attacks',
+        'Share hex keys only via secure channels (offline, password manager) — never in plaintext',
+      ],
+    },
+    faq: {
+      zh: [
+        {
+          q: '我的密码会被上传吗?',
+          a: '不会。所有加解密都在你的浏览器本地完成,密码和密钥永不离开你的设备。',
+        },
+        {
+          q: 'GCM 和 CBC 怎么选?',
+          a: 'GCM 是推荐模式,带认证标签,可检测密文是否被篡改。CBC 仅用于兼容旧系统,无认证,更容易被攻击。',
+        },
+        {
+          q: '密文格式是什么?',
+          a: '密码模式:base64(salt[16 字节] + iv + ciphertext)。Hex 模式:base64(iv + ciphertext)。',
+        },
+        {
+          q: '解密失败怎么办?',
+          a: '检查:1) 密码/密钥是否正确 2) 模式是否与加密时一致 3) 密文是否完整复制 4) 是否选错密钥来源(密码/hex)。',
+        },
+      ],
+      en: [
+        {
+          q: 'Will my password be uploaded?',
+          a: 'No. All encryption/decryption is done locally in your browser; password and key never leave your device.',
+        },
+        {
+          q: 'How to choose between GCM and CBC?',
+          a: 'GCM is recommended — it has an authentication tag to detect tampering. CBC is only for legacy systems; no authentication, more vulnerable.',
+        },
+        {
+          q: 'What is the ciphertext format?',
+          a: 'Password mode: base64(salt[16 bytes] + iv + ciphertext). Hex mode: base64(iv + ciphertext).',
+        },
+        {
+          q: 'What if decryption fails?',
+          a: 'Check: 1) correct password/key 2) mode matches encryption 3) full ciphertext copied 4) correct key source (password/hex) selected.',
+        },
+      ],
+    },
+    seoTitle: {
+      zh: 'AES 加解密工具使用教程 - AES-256-GCM/CBC 本地加密 - Momo工具箱',
+      en: 'AES Encrypt/Decrypt Tutorial - AES-256-GCM/CBC Local - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '详细教程:如何使用 Momo工具箱的 AES 加解密工具,AES-256-GCM/CBC 模式,PBKDF2 密码派生或 hex 密钥,Web Crypto API 本地处理,中英双语说明。',
+      en: 'Detailed tutorial: How to use Momo Toolbox AES tool with AES-256-GCM/CBC modes, PBKDF2 password derivation or hex key, native Web Crypto API. Bilingual descriptions.',
+    },
+  },
+  'screen-recorder': {
+    usage: {
+      zh: '屏幕录制工具适用于制作软件教程、Bug 重现视频、在线会议录制、游戏精彩瞬间、网页演示等场景。当需要在浏览器中快速录制屏幕,不想安装 OBS、Bandicam 等重量级软件时,这个工具能立即上手。',
+      en: 'The Screen Recorder is useful for software tutorials, bug reproduction videos, online meeting recording, gaming highlights, web demos, etc. When you need to record your screen in the browser without installing OBS or Bandicam, this tool gets you started instantly.',
+    },
+    features: {
+      zh: [
+        '自定义码率:1 Mbps(流畅)到 5 Mbps(高清)预设,或自定义 0.1-50 Mbps',
+        '自定义分辨率:720p / 1080p / 1440p / 原生(跟随屏幕)',
+        '自定义帧率:10-240 FPS 滑块调节(实际受显示器与录制源限制)',
+        '视频格式:WebM (VP9/VP8) 或 MP4 (H.264),运行时自动过滤不可用项',
+        '音频来源:无 / 系统音频 / 麦克风 / 系统+麦克风',
+        '实时状态:录制时长、当前文件大小、暂停/继续',
+        '本地处理:所有数据保存在浏览器,录制结束直接下载',
+      ],
+      en: [
+        'Custom bitrate: 1 Mbps (smooth) to 5 Mbps (HD) presets, or custom 0.1-50 Mbps',
+        'Custom resolution: 720p / 1080p / 1440p / Native',
+        'Custom frame rate: 10-240 FPS slider (actual FPS limited by display and capture source)',
+        'Video format: WebM (VP9/VP8) or MP4 (H.264), unavailable options auto-filtered',
+        'Audio source: None / System / Microphone / System + Mic',
+        'Live stats: duration, file size, pause/resume',
+        'Local processing: all data stays in browser; download directly when done',
+      ],
+    },
+    examples: {
+      zh: [
+        '场景一:录制软件教程 — 选 1080p + 30 FPS + MP4 + 麦克风,边操作边讲解,完成后下载分享给同事。',
+        '场景二:Bug 重现 — 选 720p + 15 FPS + WebM + 系统音频,文件小,适合提交到工单系统。',
+        '场景三:游戏录制 — 选 1080p + 60 FPS + WebM(VP9)+ 系统音频,高帧率捕捉精彩瞬间。',
+      ],
+      en: [
+        'Scenario 1: Software tutorial — 1080p + 30 FPS + MP4 + Mic, narrate while operating, download and share with colleagues.',
+        'Scenario 2: Bug repro — 720p + 15 FPS + WebM + System Audio, small file size for ticket systems.',
+        'Scenario 3: Gaming — 1080p + 60 FPS + WebM (VP9) + System Audio, capture highlights at high frame rate.',
+      ],
+    },
+    bestPractices: {
+      zh: [
+        '一般教程用 1080p + 30 FPS + 2.5 Mbps,平衡清晰度与文件大小',
+        '录制前关闭无关程序,避免系统资源占用导致掉帧',
+        '录制系统音频需 Chrome/Edge 且选"整个屏幕"(不支持 macOS)',
+        '长时间录制建议每 30 分钟停止保存一次,避免浏览器内存压力',
+        'WebM 文件可在 Chrome/Firefox/Edge 直接播放,如需 MP4 可直接在格式中选择或用 ffmpeg 转码',
+        '帧率超过显示器刷新率(通常 60/120/144 Hz)无意义,会浪费带宽',
+      ],
+      en: [
+        'For tutorials use 1080p + 30 FPS + 2.5 Mbps for balanced quality and size',
+        'Close unrelated apps before recording to reduce frame drops',
+        'System audio requires Chrome/Edge with "Entire Screen" (not supported on macOS)',
+        'For long recordings, stop and save every 30 minutes to avoid browser memory pressure',
+        'WebM plays natively in Chrome/Firefox/Edge; pick MP4 in format selector or convert via ffmpeg',
+        'FPS higher than display refresh rate (typically 60/120/144 Hz) is wasteful — no benefit',
+      ],
+    },
+    faq: {
+      zh: [
+        {
+          q: '为什么 macOS 录不到系统音频?',
+          a: 'macOS 的 CoreAudio 不向浏览器开放系统音频捕获,这是系统限制。建议用麦克风录制,或使用 OBS 等原生工具。',
+        },
+        {
+          q: '录制的视频是 MP4 还是 WebM?',
+          a: '可在"视频格式"下拉框中选择。Chrome/Edge 通常都支持,Safari 主要支持 MP4。WebM 体积更小质量更高,MP4 兼容性更广。',
+        },
+        {
+          q: '可以录制指定窗口吗?',
+          a: '可以。点击"开始录制"后浏览器会弹出选择对话框,可选整个屏幕、应用窗口或浏览器标签页。',
+        },
+        {
+          q: '录制时长有限制吗?',
+          a: '理论上无限制,但浏览器内存会随录制时长增长,建议单次不超过 1 小时。',
+        },
+        {
+          q: '为什么我选不到 240 FPS?',
+          a: '实际可用帧率受显示器刷新率(常见 60/120/144 Hz)与录制源共同限制。即使滑块设到 240,实际输出仍可能只有 30/60。建议根据显示器选 60 或 120 即可。',
+        },
+      ],
+      en: [
+        {
+          q: 'Why can\'t macOS capture system audio?',
+          a: 'macOS CoreAudio does not expose system audio capture to browsers — a system limitation. Use a microphone or native tools like OBS.',
+        },
+        {
+          q: 'Is the output MP4 or WebM?',
+          a: 'You can choose in the "Video Format" dropdown. Chrome/Edge usually support both; Safari mainly supports MP4. WebM is smaller and higher quality; MP4 has wider compatibility.',
+        },
+        {
+          q: 'Can I record a specific window?',
+          a: 'Yes. After clicking "Start Recording", the browser prompts you to choose entire screen, application window, or browser tab.',
+        },
+        {
+          q: 'Is there a recording length limit?',
+          a: 'Theoretically no, but browser memory grows with duration; recommend keeping single sessions under 1 hour.',
+        },
+        {
+          q: 'Why can\'t I get 240 FPS?',
+          a: 'Actual FPS is limited by display refresh rate (typically 60/120/144 Hz) and capture source. Even if the slider is set to 240, output may only be 30/60. Stick to 60 or 120 based on your display.',
+        },
+      ],
+    },
+    seoTitle: {
+      zh: '屏幕录制工具使用教程 - 自定义码率/分辨率/帧率/格式 - Momo工具箱',
+      en: 'Screen Recorder Tutorial - Custom Bitrate/Resolution/FPS/Format - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '详细教程:如何使用 Momo工具箱的屏幕录制工具,自定义码率、分辨率(720p/1080p/1440p)、帧率(10-240 FPS)、视频格式(WebM/MP4),支持系统音频与麦克风,完全本地处理,中英双语说明。',
+      en: 'Detailed tutorial: How to use Momo Toolbox Screen Recorder with custom bitrate, resolution (720p/1080p/1440p), frame rate (10-240 FPS), video format (WebM/MP4), system audio and mic. Fully local. Bilingual.',
+    },
+  },
+  'clock': {
+    usage: {
+      zh: '全屏时钟适用于演示倒计时、会议室时间管理、教室限时考试、番茄工作法、直播背景时钟、运动训练计时等场景。无需安装应用,浏览器即开即用,一键全屏放大。',
+      en: 'The fullscreen clock is ideal for countdowns in presentations, meeting time management, classroom exams, Pomodoro, live-stream backgrounds, and sports training. No app install needed — runs in the browser with one-click fullscreen.',
+    },
+    features: {
+      zh: [
+        '三种模式:系统时间(实时时钟)/ 秒表(计时)/ 倒计时(定时)',
+        '一键全屏:大字号显示,适合投影与远处观看',
+        '时钟模式:可选 12/24 小时制、显示秒、显示日期(含星期)',
+        '秒表模式:厘秒精度、计次功能、计次列表(显示总时与分次时)',
+        '倒计时模式:时/分/秒输入、进度条、到点蜂鸣提示(三声)',
+        '暂停/继续:秒表与倒计时均支持暂停后继续',
+        '本地运行:无需联网,完全在浏览器中工作',
+      ],
+      en: [
+        'Three modes: System time (live clock) / Stopwatch / Countdown',
+        'One-click fullscreen: large digits for projection and viewing from a distance',
+        'Clock mode: 12/24-hour toggle, optional seconds, optional date with weekday',
+        'Stopwatch: centisecond precision, lap timing, lap list (total + split)',
+        'Countdown: hours/minutes/seconds input, progress bar, triple beep at zero',
+        'Pause/Resume: supported for both stopwatch and countdown',
+        'Local: no network needed, runs entirely in the browser',
+      ],
+    },
+    examples: {
+      zh: [
+        '场景一:会议倒计时 — 切到倒计时,设 15:00,点全屏投影到屏幕,到点蜂鸣提示散会。',
+        '场景二:教室限时考试 — 切到时钟模式,显示 24 小时制 + 秒 + 日期,全屏投影让学生随时掌握进度。',
+        '场景三:运动训练 — 切到秒表,计次记录每圈用时,适合跑步、HIIT 训练。',
+        '场景四:番茄工作法 — 切到倒计时,设 25:00 专注 / 5:00 休息,循环使用。',
+      ],
+      en: [
+        'Scenario 1: Meeting countdown — switch to Countdown, set 15:00, fullscreen to projector; beeps at zero to end.',
+        'Scenario 2: Exam timing — switch to Clock mode with 24-hour + seconds + date, fullscreen for students to track progress.',
+        'Scenario 3: Sports training — switch to Stopwatch, lap each circuit for running or HIIT.',
+        'Scenario 4: Pomodoro — switch to Countdown, 25:00 focus / 5:00 break, repeat.',
+      ],
+    },
+    bestPractices: {
+      zh: [
+        '投影前先按 F11 退出浏览器全屏,再用本工具的全屏按钮,避免双重全屏冲突',
+        '倒计时建议设置在 1 小时内,长时间建议用专门的番茄钟',
+        '蜂鸣音由 Web Audio API 生成,需浏览器允许音频播放;静音标签页将听不到',
+        'ESC 键可退出全屏,与浏览器原生行为一致',
+      ],
+      en: [
+        'Before projecting, exit browser fullscreen (F11) first, then use this tool\'s fullscreen button to avoid conflicts',
+        'Keep countdowns under 1 hour; for longer sessions use a dedicated Pomodoro tool',
+        'Beeps use Web Audio API; needs audio permission — muted tabs will be silent',
+        'Press ESC to exit fullscreen (same as browser native behavior)',
+      ],
+    },
+    faq: {
+      zh: [
+        {
+          q: '全屏后怎么退出?',
+          a: '按 ESC 键或再次点击"退出全屏"按钮。全屏状态由浏览器管理,行为与原生全屏一致。',
+        },
+        {
+          q: '倒计时到点有声音吗?',
+          a: '有,会播放三声 880 Hz 蜂鸣提示音。注意浏览器若处于静音状态将听不到;首次播放可能需要用户与页面交互过(浏览器自动播放策略)。',
+        },
+        {
+          q: '秒表精度多少?',
+          a: '厘秒(1/100 秒)精度,刷新频率 20 Hz。足以满足绝大多数计时场景,但不适合专业赛事级计时。',
+        },
+        {
+          q: '关闭浏览器后计时还在吗?',
+          a: '不在。计时状态保存在内存中,刷新或关闭页面会丢失。如需长时间记录建议使用专门的番茄钟工具。',
+        },
+      ],
+      en: [
+        {
+          q: 'How do I exit fullscreen?',
+          a: 'Press ESC or click "Exit Fullscreen". Fullscreen is managed by the browser, behaves like native fullscreen.',
+        },
+        {
+          q: 'Does countdown beep at zero?',
+          a: 'Yes, three 880 Hz beeps. Note: muted browser tabs will be silent; first playback may require prior user interaction (browser autoplay policy).',
+        },
+        {
+          q: 'What\'s the stopwatch precision?',
+          a: 'Centisecond (1/100 s), refreshed at 20 Hz. Sufficient for most timing scenarios but not professional race timing.',
+        },
+        {
+          q: 'Does the timer persist after closing the browser?',
+          a: 'No. State is in memory; refresh or close the page and it\'s lost. For long-term tracking use the dedicated Pomodoro tool.',
+        },
+      ],
+    },
+    seoTitle: {
+      zh: '全屏时钟使用教程 - 系统时间/秒表/倒计时 - Momo工具箱',
+      en: 'Fullscreen Clock Tutorial - Time/Stopwatch/Countdown - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '详细教程:如何使用 Momo工具箱的全屏时钟,支持系统时间、秒表(计次)、倒计时(蜂鸣提示),一键全屏大字号显示,适合会议、教室、训练。中英双语说明。',
+      en: 'Detailed tutorial: How to use Momo Toolbox Fullscreen Clock with system time, stopwatch (laps), and countdown (beeps). One-click fullscreen with large digits for meetings, classrooms and training. Bilingual.',
+    },
+  },
+  'random-group': {
+    usage: {
+      zh: '随机分组工具适用于课堂小组活动、团队任务分配、活动抽奖、座位安排、值班排班、桌游分组等场景。无需安装 App,完全在浏览器中运行,名单不上传,隐私安全。',
+      en: 'The Random Grouping tool is ideal for classroom group activities, team task allocation, raffles, seating arrangements, shift scheduling, board game grouping, etc. No install needed — runs in the browser; names never uploaded.',
+    },
+    features: {
+      zh: [
+        '两种模式:按组数分(指定分几组)/ 按每组人数(指定每组几人)',
+        '密码学安全:使用 Web Crypto API 的 getRandomValues,远比 Math.random 公平',
+        'Fisher-Yates 洗牌算法:确保每个排列概率均等',
+        '余数智能分配:余下的人从前到后依次补到各组',
+        '彩色分组卡片:每组一种颜色,序号编号清晰',
+        '实时预览:输入名单时显示总人数与预估分组分布',
+        '一键复制:复制完整分组结果到剪贴板',
+        '本地处理:名单与结果完全在浏览器中,不联网',
+      ],
+      en: [
+        'Two modes: By group count / By per-group size',
+        'Cryptographically secure: uses Web Crypto API getRandomValues, far fairer than Math.random',
+        'Fisher-Yates shuffle: ensures every permutation has equal probability',
+        'Smart remainder: extra members are distributed front-to-back',
+        'Color-coded cards: each group gets a distinct color with numbered members',
+        'Live preview: shows total count and projected group sizes as you type',
+        'One-click copy: full result copied to clipboard',
+        'Local processing: names and results stay in the browser; no network calls',
+      ],
+    },
+    examples: {
+      zh: [
+        '场景一:课堂分组 — 30 名学生分 6 组,选"按组数分"= 6,粘贴名单,一键生成 5 人 × 6 组。',
+        '场景二:年会抽奖 — 100 人抽 3 组(一等奖/二等奖/三等奖),选"按组数分"= 3,自动按 34/33/33 分布。',
+        '场景三:桌游分组 — 8 人玩狼人杀,选"按组数分"= 2,得到 4 vs 4 阵营。',
+        '场景四:值班排班 — 12 人分 4 组轮班,选"按组数分"= 4,公平分配 3 人 × 4 组。',
+      ],
+      en: [
+        'Scenario 1: Classroom — 30 students into 6 groups; pick "By group count" = 6, paste names, get 5 × 6.',
+        'Scenario 2: Year-end raffle — 100 people into 3 prize tiers; pick "By group count" = 3; auto-distributes 34/33/33.',
+        'Scenario 3: Board game — 8 players for Werewolf; pick "By group count" = 2; get 4 vs 4 factions.',
+        'Scenario 4: Shift scheduling — 12 staff into 4 shifts; pick "By group count" = 4; fair 3 × 4 distribution.',
+      ],
+    },
+    bestPractices: {
+      zh: [
+        '从 Excel/CSV 复制名单时,选"按列粘贴"或先用记事本清理为每行一项',
+        '同一人名多次出现不会被去重,如需去重请先在外部处理',
+        '需要可重现的结果时,记录分组后截图保存(每次分组都是新的随机)',
+        '名单超过 1000 项仍可处理,但建议拆分批次以保持响应速度',
+        'Web Crypto API 在 HTTPS 与 localhost 下可用,部署到生产环境会自动启用',
+      ],
+      en: [
+        'When pasting from Excel/CSV, use "paste as column" or clean in Notepad first (one name per line)',
+        'Duplicate names are not deduplicated; dedupe externally if needed',
+        'For reproducible results, screenshot the result (each click is a new random)',
+        'Lists over 1000 items still work but consider splitting for responsiveness',
+        'Web Crypto API works on HTTPS and localhost; auto-enabled in production',
+      ],
+    },
+    faq: {
+      zh: [
+        {
+          q: '为什么比 Math.random 更公平?',
+          a: 'Math.random 基于伪随机数生成器(PRNG),理论上有可预测性。Web Crypto API 的 getRandomValues 使用操作系统熵池(硬件噪声),密码学安全,无法预测,分组结果更公平。',
+        },
+        {
+          q: '余数怎么处理?例如 30 人分 4 组。',
+          a: '30 ÷ 4 = 7 余 2,系统会生成 8+8+7+7 的分布(余数从前到后分配),确保人数差不超过 1。',
+        },
+        {
+          q: '名单会被上传到服务器吗?',
+          a: '不会。所有处理在浏览器本地完成,断网也能用。F12 打开开发者工具的 Network 面板可以验证没有任何网络请求。',
+        },
+        {
+          q: '可以保存分组结果吗?',
+          a: '可点"复制结果"按钮复制到剪贴板,然后粘贴到 Excel/Notion 等。本工具不持久化结果,刷新页面会清空。',
+        },
+      ],
+      en: [
+        {
+          q: 'Why is it fairer than Math.random?',
+          a: 'Math.random is a pseudo-random number generator (PRNG) with theoretical predictability. Web Crypto API\'s getRandomValues uses the OS entropy pool (hardware noise), cryptographically secure and unpredictable — fairer grouping.',
+        },
+        {
+          q: 'How are remainders handled? E.g. 30 people into 4 groups.',
+          a: '30 ÷ 4 = 7 remainder 2; the tool produces 8+8+7+7 (remainder distributed front-to-back), keeping group sizes within 1 of each other.',
+        },
+        {
+          q: 'Are names uploaded to a server?',
+          a: 'No. All processing is local in the browser; works offline. Open DevTools → Network to verify zero network requests.',
+        },
+        {
+          q: 'Can I save the result?',
+          a: 'Click "Copy Result" to copy to clipboard, then paste into Excel/Notion. The tool does not persist results; refresh clears them.',
+        },
+      ],
+    },
+    seoTitle: {
+      zh: '随机分组工具使用教程 - 名单随机分配 - Momo工具箱',
+      en: 'Random Grouping Tutorial - Shuffle Names into Groups - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '详细教程:如何使用 Momo工具箱的随机分组工具,按组数或人数分配名单,Web Crypto API 安全随机,Fisher-Yates 洗牌,彩色卡片显示,适合课堂、抽奖、排班。中英双语说明。',
+      en: 'Detailed tutorial: How to use Momo Toolbox Random Grouping. Split names by group count or per-group size with Web Crypto API secure randomness and Fisher-Yates shuffle. Color-coded cards for classroom, raffles, scheduling. Bilingual.',
+    },
+  },
 };
 
 // FAQ 页面常见问题（独立于工具教程）

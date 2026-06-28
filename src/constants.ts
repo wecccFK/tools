@@ -192,6 +192,63 @@ export const TOOLS: Tool[] = [
       en: 'Upload an image (drag-drop or click), adjust quality slider, preview the result, click download to save.',
     },
   },
+  {
+    id: 'uuid-generator',
+    name: { zh: 'UUID 生成器', en: 'UUID Generator' },
+    description: { zh: '生成 UUID v4/v7、ULID', en: 'Generate UUID v4/v7 and ULID' },
+    category: 'Developer',
+    tags: ['uuid', 'ulid', 'id', 'dev'],
+    seoTitle: {
+      zh: 'UUID/ULID 生成器 - Momo工具箱',
+      en: 'UUID/ULID Generator - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '在线 UUID v4/v7、ULID 生成工具，支持批量、大小写、连字符控制。基于 crypto 安全随机数，本地生成。',
+      en: 'Online UUID v4/v7 and ULID generator with batch, case, and hyphen controls. Uses crypto-secure randomness, fully local.',
+    },
+    tutorial: {
+      zh: '选择 UUID 版本（v4 纯随机 / v7 时间排序 / ULID 字典序友好），调整数量和格式选项，点击生成。',
+      en: 'Choose UUID version (v4 random / v7 time-ordered / ULID lexicographically sortable), adjust count and format options, click generate.',
+    },
+  },
+  {
+    id: 'color-converter',
+    name: { zh: '颜色格式转换', en: 'Color Converter' },
+    description: { zh: 'HEX/RGB/HSL/HSV 互转', en: 'Convert HEX/RGB/HSL/HSV' },
+    category: 'Developer',
+    tags: ['color', 'design', 'dev'],
+    seoTitle: {
+      zh: '颜色格式转换工具 - Momo工具箱',
+      en: 'Color Converter - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '在线颜色格式转换工具，支持 HEX、RGB、HSL、HSV 互转，带取色器与滑块。所有转换在浏览器本地完成。',
+      en: 'Online color format converter supporting HEX, RGB, HSL, and HSV with picker and sliders. All conversions run locally.',
+    },
+    tutorial: {
+      zh: '点击色块使用浏览器取色器，或拖动 RGB/HSL 滑块调整，点击任一格式卡片复制对应值。',
+      en: 'Click the swatch to use the browser color picker, or drag RGB/HSL sliders to adjust. Click any format card to copy its value.',
+    },
+  },
+  {
+    id: 'unit-converter',
+    name: { zh: '单位换算器', en: 'Unit Converter' },
+    description: { zh: '长度/重量/温度等换算', en: 'Length, mass, temperature, and more' },
+    category: 'Productivity',
+    tags: ['unit', 'convert', 'productivity'],
+    seoTitle: {
+      zh: '单位换算器 - Momo工具箱',
+      en: 'Unit Converter - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '在线单位换算工具，支持长度、重量、温度、数据存储、速度、面积、时间、角度等 8 大类。本地计算。',
+      en: 'Online unit converter supporting 8 categories: length, mass, temperature, data, speed, area, time, and angle. Local calculation.',
+    },
+    tutorial: {
+      zh: '选择类别，输入数值，选择源单位和目标单位，结果实时显示。点击交换按钮可反向换算。',
+      en: 'Pick a category, enter a value, choose source and target units, result updates in real time. Click swap to reverse.',
+    },
+  },
 ];
 
 export const CATEGORIES: (Tool['category'] | 'All')[] = ['All', 'Text', 'Developer', 'Image', 'Productivity', 'Entertainment'];

@@ -887,6 +887,219 @@ export const TOOL_TUTORIALS: Record<string, ToolTutorial> = {
       en: 'Detailed tutorial: How to use Momo Toolbox Image Compressor to compress JPG, PNG, WebP images. Includes quality adjustment, format conversion, and batch processing.',
     },
   },
+
+  'uuid-generator': {
+    usage: {
+      zh: 'UUID/ULID 生成器适用于数据库主键生成、分布式系统 ID 分配、测试数据填充、会话 Token 生成等场景。当你需要在没有中心化 ID 分配服务的情况下生成全局唯一标识符，或者需要按时间排序的 ID 用于日志、事件流时，这个工具能快速帮你完成。',
+      en: 'The UUID/ULID generator is useful for database primary keys, distributed system IDs, test data seeding, and session tokens. Use it when you need globally unique identifiers without a centralized ID service, or time-ordered IDs for logs and event streams.',
+    },
+    features: {
+      zh: [
+        '三种格式：UUID v4（纯随机）、UUID v7（时间排序）、ULID（26 字符字典序友好）',
+        '批量生成：一次最多生成 50 个 ID',
+        '格式控制：可切换大小写、是否带连字符',
+        '密码学安全：使用 crypto.getRandomValues 真随机源',
+        '完全本地生成：不上传服务器，可用于生产环境',
+      ],
+      en: [
+        'Three formats: UUID v4 (random), UUID v7 (time-ordered), ULID (26-char lexicographically sortable)',
+        'Batch generation: up to 50 IDs at once',
+        'Format control: toggle uppercase and hyphens',
+        'Cryptographically secure: uses crypto.getRandomValues true random source',
+        'Fully local: never uploaded, safe for production use',
+      ],
+    },
+    examples: {
+      zh: [
+        '场景一：为数据库插入测试数据时需要 100 个主键，将数量滑到 50，连续点击两次生成，复制全部到 SQL 文件中。',
+        '场景二：调试分布式系统需要可排序的事件 ID，选择 UUID v7，生成后按字符串排序即为时间顺序。',
+        '场景三：前端生成临时会话 ID，选择 ULID（更短、URL 友好），关闭连字符选项，得到 26 字符纯字符串。',
+      ],
+      en: [
+        'Scenario 1: Need 100 primary keys for database test data? Slide count to 50, click Generate twice, copy all to your SQL file.',
+        'Scenario 2: Debugging a distributed system needs sortable event IDs — pick UUID v7; sorting the strings gives time order.',
+        'Scenario 3: Frontend needs a temporary session ID — pick ULID (shorter, URL-safe), disable hyphens to get a 26-char string.',
+      ],
+    },
+    bestPractices: {
+      zh: [
+        '生产环境优先用 UUID v7 或 ULID，便于按时间排序与索引',
+        '需要 URL 友好时选 ULID（无连字符、26 字符、大小写不敏感）',
+        '不要用 UUID v4 作为数据库主键（无序导致 B-tree 索引碎片化）',
+        '涉及安全场景（如 Token）务必用本工具的 crypto.getRandomValues，不要用 Math.random',
+      ],
+      en: [
+        'Prefer UUID v7 or ULID in production for time-ordered, index-friendly keys',
+        'Use ULID for URL-friendly IDs (no hyphens, 26 chars, case-insensitive)',
+        'Avoid UUID v4 as a database primary key (random order causes B-tree fragmentation)',
+        'For security-sensitive tokens, use this tool\'s crypto.getRandomValues, never Math.random',
+      ],
+    },
+    faq: {
+      zh: [
+        { q: 'UUID v4 和 v7 有什么区别？', a: 'v4 是纯随机的，无任何顺序信息；v7 前 48 位是毫秒时间戳，因此按字符串排序就是按生成时间排序，适合数据库索引。' },
+        { q: 'ULID 比 UUID 好在哪里？', a: 'ULID 是 26 字符的 Crockford Base32 编码，比 UUID（36 字符）短 10 个字符；大小写不敏感；字典序排序即为时间序；URL 友好无特殊字符。' },
+        { q: '生成的 ID 真的安全吗？', a: '是。本工具使用 Web Crypto API 的 crypto.getRandomValues，是浏览器提供的密码学安全随机数源，与 crypto.randomUUID 同源。' },
+        { q: '可以一次生成多个 ID 吗？', a: '可以。拖动"生成数量"滑块，最多一次生成 50 个。生成后可点击"复制全部"一次性复制到剪贴板。' },
+      ],
+      en: [
+        { q: 'What is the difference between UUID v4 and v7?', a: 'v4 is fully random with no ordering. v7 embeds a 48-bit millisecond timestamp in the first bits, so string sorting equals time sorting — ideal for database indexes.' },
+        { q: 'Why is ULID better than UUID?', a: 'ULID is 26 chars of Crockford Base32 — 10 chars shorter than UUID (36 chars), case-insensitive, lexicographically sortable by time, and URL-safe with no special characters.' },
+        { q: 'Are the generated IDs cryptographically secure?', a: 'Yes. This tool uses the Web Crypto API\'s crypto.getRandomValues, the same cryptographically secure source behind crypto.randomUUID.' },
+        { q: 'Can I generate multiple IDs at once?', a: 'Yes. Drag the Count slider up to 50. After generation, click "Copy All" to copy them all to the clipboard.' },
+      ],
+    },
+    seoTitle: {
+      zh: 'UUID/ULID 生成器使用教程 - v4/v7/ULID 选型与最佳实践 - Momo工具箱',
+      en: 'UUID/ULID Generator Tutorial - v4/v7/ULID Selection and Best Practices - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '详细教程：如何使用 Momo工具箱的 UUID 生成器，对比 UUID v4/v7 与 ULID 的选型、批量生成、格式控制，包含数据库主键与安全 Token 最佳实践。',
+      en: 'Detailed tutorial: How to use Momo Toolbox UUID generator. Compare UUID v4/v7 and ULID selection, batch generation, format control, with best practices for database keys and security tokens.',
+    },
+  },
+
+  'color-converter': {
+    usage: {
+      zh: '颜色格式转换器适用于前端开发调色、设计稿还原、CSS 变量编写、品牌色管理、调色板生成等场景。当你拿到一个 HEX 颜色需要转成 RGB 写进 canvas，或从设计稿取色后需要 HSL 来派生明暗变体时，这个工具能快速完成转换。',
+      en: 'The color converter is useful for frontend color tuning, design restoration, CSS variable authoring, brand color management, and palette generation. Use it to turn a HEX color into RGB for canvas, or to derive HSL light/dark variants after picking a color from a design.',
+    },
+    features: {
+      zh: [
+        '四种格式互转：HEX、RGB、HSL、HSV',
+        '浏览器原生取色器：点击色块即可从屏幕取色',
+        'RGB 滑块：独立调节 R/G/B 通道，带数字输入',
+        'HSL 滑块：独立调节色相/饱和度/亮度，便于派生变体',
+        '一键复制：点击任一格式卡片即可复制对应值',
+      ],
+      en: [
+        'Four-format conversion: HEX, RGB, HSL, HSV',
+        'Native color picker: click the swatch to pick from screen',
+        'RGB sliders: independent R/G/B channels with numeric input',
+        'HSL sliders: independent hue/saturation/lightness for variant derivation',
+        'One-click copy: click any format card to copy its value',
+      ],
+    },
+    examples: {
+      zh: [
+        '场景一：设计师给的品牌色是 #D97706，前端要写 tailwind 配置，粘贴 HEX 后点击 RGB 卡片复制得到 rgb(217, 119, 6)。',
+        '场景二：需要为主色生成 hover/active 变体，拖动 HSL 的 L 滑块到 60% 得到浅色版本，到 40% 得到深色版本。',
+        '场景三：从设计稿截图取色后想转成 HSV 用于 PS 调整，点击色块取色，查看 HSV 卡片值。',
+      ],
+      en: [
+        'Scenario 1: Designer hands you #D97706; paste it in HEX, click the RGB card to copy rgb(217, 119, 6) for tailwind config.',
+        'Scenario 2: Need hover/active variants? Drag the HSL L slider to 60% for a lighter shade, 40% for a darker one.',
+        'Scenario 3: Picked a color from a design screenshot and need HSV for Photoshop — click the swatch, read the HSV card.',
+      ],
+    },
+    bestPractices: {
+      zh: [
+        'CSS 优先用 HSL：派生明暗变体只需改 L，派生互补色只需改 H ± 180',
+        '设计系统用 HEX 作为权威值，RGB/HSL 作为派生值',
+        '避免 HSV 用于 CSS（浏览器不直接支持），它主要用于图像编辑软件',
+        '注意取色器受显示器色彩空间影响，对色彩精度要求高的场景应用专业校色',
+      ],
+      en: [
+        'Prefer HSL in CSS: derive light/dark variants by changing L; complementary colors by ±180 on H',
+        'Use HEX as the source of truth in design systems, RGB/HSL as derived values',
+        'Avoid HSV in CSS (browsers don\'t support it directly) — it is mainly for image editors',
+        'Note: the picker is affected by display color space; use professional calibration for color-critical work',
+      ],
+    },
+    faq: {
+      zh: [
+        { q: 'HSL 和 HSV 有什么区别？', a: 'HSL 的 L=100% 是纯白；HSV 的 V=100% 是纯色（最饱和）。HSL 更适合 CSS 设计变体，HSV 更贴近图像编辑软件的调色逻辑。' },
+        { q: '为什么输入 HEX 后 RGB 没更新？', a: '请确认 HEX 格式正确：3 位（#FFF）或 6 位（#FFFFFF），仅含 0-9 与 A-F。本工具会容错解析，无效时保留上一个有效值。' },
+        { q: '可以取屏幕上任意像素的颜色吗？', a: '可以。点击色块会弹出浏览器原生取色器，部分浏览器支持从屏幕任意位置取色（如 Chrome 桌面端）。' },
+        { q: 'HSL 怎么派生互补色？', a: '互补色在色相环上相差 180°。读取当前 H 值，加或减 180（结果对 360 取模），保持 S/L 不变即可。' },
+      ],
+      en: [
+        { q: 'What is the difference between HSL and HSV?', a: 'In HSL, L=100% is pure white; in HSV, V=100% is the pure color (most saturated). HSL suits CSS variant design; HSV mirrors how image editors mix colors.' },
+        { q: 'Why doesn\'t RGB update after I type HEX?', a: 'Ensure HEX is valid: 3 chars (#FFF) or 6 chars (#FFFFFF), digits 0-9 and A-F only. The tool parses tolerantly and keeps the last valid value on invalid input.' },
+        { q: 'Can I pick any pixel on screen?', a: 'Yes. Click the swatch to open the native browser picker; some browsers (e.g. desktop Chrome) support picking any pixel on screen.' },
+        { q: 'How do I derive a complementary color from HSL?', a: 'Complementary colors are 180° apart on the hue wheel. Take the current H, add or subtract 180 (mod 360), keep S and L unchanged.' },
+      ],
+    },
+    seoTitle: {
+      zh: '颜色格式转换使用教程 - HEX/RGB/HSL/HSV 互转与派生 - Momo工具箱',
+      en: 'Color Converter Tutorial - HEX/RGB/HSL/HSV Conversion and Derivation - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '详细教程：如何使用 Momo工具箱的颜色格式转换工具，HEX、RGB、HSL、HSV 互转，使用取色器与滑块调色，包含派生互补色与明暗变体的最佳实践。',
+      en: 'Detailed tutorial: How to use Momo Toolbox Color Converter. Convert between HEX, RGB, HSL, HSV with picker and sliders, including best practices for complementary colors and light/dark variants.',
+    },
+  },
+
+  'unit-converter': {
+    usage: {
+      zh: '单位换算器适用于跨地区工作协作、海外购物价格对比、工程计算、教学演示、日常生活换算等场景。当你需要把英里换算成公里看跑步距离，把磅换算成千克理解海外体重数据，或把 MB 换算成 GB 估算存储空间时，这个工具能快速完成。',
+      en: 'The unit converter is useful for cross-region collaboration, overseas shopping price comparison, engineering calculations, teaching demos, and everyday conversions. Use it to convert miles to kilometers for running, pounds to kilograms for international weight, or MB to GB for storage estimates.',
+    },
+    features: {
+      zh: [
+        '8 大类：长度、重量、温度、数据存储、速度、面积、时间、角度',
+        '双向换算：输入任一框自动反算另一框',
+        '一键交换：点击中间按钮快速互换源与目标单位',
+        '公式提示：实时显示 1 源单位 = 多少目标单位',
+        '智能精度：大数自动科学计数法，避免显示一长串零',
+      ],
+      en: [
+        '8 categories: length, mass, temperature, data, speed, area, time, angle',
+        'Bidirectional: typing in either box auto-computes the other',
+        'One-click swap: reverse source and target instantly',
+        'Formula hint: shows "1 source = X target" in real time',
+        'Smart precision: large numbers auto-switch to scientific notation',
+      ],
+    },
+    examples: {
+      zh: [
+        '场景一：跑步 App 显示今天跑了 6.2 英里，想知道是多少公里。选长度类别，输入 6.2，源单位英里，目标单位千米，得到 9.98 公里。',
+        '场景二：海外购物网站显示商品重 2.5 磅，选重量类别，输入 2.5，源单位磅，目标单位千克，得到 1.13 千克。',
+        '场景三：服务器规格书显示内存 16384 MB，选数据存储类别，输入 16384，源单位兆字节，目标单位吉字节，得到 16 GB。',
+      ],
+      en: [
+        'Scenario 1: Your running app shows 6.2 miles today. Pick Length, enter 6.2, source Mile, target Kilometer — you get 9.98 km.',
+        'Scenario 2: An overseas shop lists an item at 2.5 lb. Pick Mass, enter 2.5, source Pound, target Kilogram — you get 1.13 kg.',
+        'Scenario 3: A server spec lists 16384 MB RAM. Pick Data, enter 16384, source Megabyte, target Gigabyte — you get 16 GB.',
+      ],
+    },
+    bestPractices: {
+      zh: [
+        '注意数据存储用 1024 进制（KB=1024B），与硬盘厂商标注的 1000 进制不同',
+        '温度换算非线性，本工具已特殊处理摄氏/华氏/开尔文互转',
+        '亩是中国市制单位，国际场合建议换算为平方米或公顷',
+        '马赫数受介质温度影响（这里按标准空气 343 m/s 近似），高精度需求慎用',
+      ],
+      en: [
+        'Note: data storage uses 1024-based units (KB=1024B), unlike hard drive vendors who use 1000',
+        'Temperature is non-linear; this tool handles Celsius/Fahrenheit/Kelvin conversion specially',
+        'Mu (亩) is a Chinese customary unit; convert to square meters or hectares for international contexts',
+        'Mach depends on medium temperature (we approximate at 343 m/s standard air); avoid for high-precision needs',
+      ],
+    },
+    faq: {
+      zh: [
+        { q: '为什么 1 GB 在这里等于 1024 MB？', a: '本工具采用计算机科学惯例的二进制前缀（1 KB = 1024 B）。硬盘厂商常用十进制（1 KB = 1000 B）会显示略小，这是行业惯例差异。' },
+        { q: '温度换算为什么不能用线性比例？', a: '摄氏度与华氏度零点不同且刻度间隔不同（每摄氏度等于 1.8 华氏度），开尔文则是绝对温度。本工具已特殊处理三者的非线性转换。' },
+        { q: '为什么海里不等于英里？', a: '海里是基于地球周长定义的（1 海里 = 1 角分纬度 ≈ 1852 米），用于航海航空；英里是英制单位（≈ 1609 米）。两者用途与定义都不同。' },
+        { q: '可以添加货币换算吗？', a: '货币汇率实时波动，需要联网获取最新汇率，与本站"完全本地、不联网"的隐私理念相悖。如未来添加会明确告知联网场景。' },
+      ],
+      en: [
+        { q: 'Why is 1 GB equal to 1024 MB here?', a: 'This tool uses the binary prefix convention (1 KB = 1024 B) common in computer science. Hard drive vendors often use decimal (1 KB = 1000 B) which yields a slightly smaller number — an industry convention difference.' },
+        { q: 'Why isn\'t temperature a linear ratio?', a: 'Celsius and Fahrenheit have different zero points and scale intervals (1°C = 1.8°F); Kelvin is absolute. This tool handles the non-linear conversion between all three specially.' },
+        { q: 'Why is a nautical mile not the same as a mile?', a: 'A nautical mile is based on Earth\'s circumference (1 NM = 1 arcminute of latitude ≈ 1852 m) for navigation; a mile is an imperial unit (≈ 1609 m). Their definitions and use cases differ.' },
+        { q: 'Can you add currency conversion?', a: 'Currency rates fluctuate in real time and require fetching live rates online, which conflicts with our "fully local, no network" privacy stance. If added in the future, the network usage will be clearly disclosed.' },
+      ],
+    },
+    seoTitle: {
+      zh: '单位换算器使用教程 - 8 大类单位互转与精度控制 - Momo工具箱',
+      en: 'Unit Converter Tutorial - 8 Categories with Precision Control - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '详细教程：如何使用 Momo工具箱的单位换算器，长度、重量、温度、数据存储、速度、面积、时间、角度等 8 大类单位互转，包含二进制前缀与非线性换算的最佳实践。',
+      en: 'Detailed tutorial: How to use Momo Toolbox Unit Converter for 8 categories — length, mass, temperature, data, speed, area, time, and angle — including binary prefixes and non-linear conversion best practices.',
+    },
+  },
 };
 
 // FAQ 页面常见问题（独立于工具教程）

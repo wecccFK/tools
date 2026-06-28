@@ -12,6 +12,9 @@ const LazyTimestamp = lazy(() => import('./tools/TimestampConverter'));
 const LazyHashGenerator = lazy(() => import('./tools/HashGenerator'));
 const LazyJwtDecoder = lazy(() => import('./tools/JwtDecoder'));
 const LazyImgCompress = lazy(() => import('./tools/ImageCompressor'));
+const LazyUuidGenerator = lazy(() => import('./tools/UuidGenerator'));
+const LazyColorConverter = lazy(() => import('./tools/ColorConverter'));
+const LazyUnitConverter = lazy(() => import('./tools/UnitConverter'));
 
 // 工具 ID → 组件映射
 const TOOL_COMPONENTS: Record<string, React.LazyExoticComponent<React.ComponentType>> = {
@@ -25,6 +28,9 @@ const TOOL_COMPONENTS: Record<string, React.LazyExoticComponent<React.ComponentT
   'hash-generator': LazyHashGenerator,
   'jwt-decoder': LazyJwtDecoder,
   'img-compress': LazyImgCompress,
+  'uuid-generator': LazyUuidGenerator,
+  'color-converter': LazyColorConverter,
+  'unit-converter': LazyUnitConverter,
 };
 
 function LoadingSkeleton() {

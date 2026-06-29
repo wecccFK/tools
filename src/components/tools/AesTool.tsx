@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { useLanguage } from '../../i18n/LanguageContext';
+import {
+  sm4EcbEncrypt, sm4EcbDecrypt,
+  sm4CbcEncrypt, sm4CbcDecrypt,
+  hexToBytes as sm4HexToBytes, bytesToHex as sm4BytesToHex,
+  strToBytes as sm4StrToBytes, bytesToStr as sm4BytesToStr,
+  bytesToBase64 as sm4BytesToBase64, base64ToBytes as sm4Base64ToBytes,
+} from '../../utils/sm-crypto';
 
-type Mode = 'GCM' | 'CBC';
+type Mode = 'GCM' | 'CBC' | 'SM4-ECB' | 'SM4-CBC';
 type KeySource = 'password' | 'hex';
 type Action = 'encrypt' | 'decrypt';
 
@@ -61,6 +68,97 @@ export default function AesTool() {
         setError(isZh ? '请输入文本' : 'Please enter text');
         return;
       }
+
+      // SM4 分支(纯 JS 实现,不走 Web Crypto)
+      if (mode === 'SM4-ECB' || mode === 'SM4-CBC') {
+        // SM4 密钥固定 16 字节(128 位)
+        let sm4Key: Uint8Array;
+        if (keySource === 'password') {
+          if (!password) {
+            setError(isZh ? '请输入密码' : 'Please enter password');
+            return;
+          }
+          // 用 SM3 派生密钥:sm3(password + salt)[0..15]
+          // 这里简化:用 SM3 哈希密码取前 16 字节作为 SM4 密钥
+          // 注:更安全的做法是用 PBKDF2 派生再取前 16 字节,这里为保持纯本地实现用 SM3
+          const { sm3, strToBytes } = await import('../../utils/sm-crypto');
+          const salt = crypto.getRandomValues(new Uint8Array(16));
+          const derivedInput = new Uint8Array(strToBytes(password).length + salt.length);
+          derivedInput.set(strToBytes(password), 0);
+          derivedInput.set(salt, strToBytes(password).length);
+          const fullHash = sm3(derivedInput);
+          sm4Key = fullHash.slice(0, 16);
+          if (action === 'encrypt') {
+            // 密文格式:base64(salt[16] + [iv[16] + ]ciphertext)
+            const iv = mode === 'SM4-CBC' ? crypto.getRandomValues(new Uint8Array(16)) : new Uint8Array(0);
+            const pt = sm4StrToBytes(input);
+            const ct = mode === 'SM4-CBC'
+              ? sm4CbcEncrypt(pt, sm4Key, iv)
+              : sm4EcbEncrypt(pt, sm4Key);
+            const combined = new Uint8Array(salt.length + iv.length + ct.length);
+            combined.set(salt, 0);
+            if (iv.length > 0) combined.set(iv, salt.length);
+            combined.set(ct, salt.length + iv.length);
+            setOutput(sm4BytesToBase64(combined));
+          } else {
+            // 解密:解析 salt + iv + ciphertext
+            const combined = sm4Base64ToBytes(input);
+            const ivLen = mode === 'SM4-CBC' ? 16 : 0;
+            if (combined.length < 16 + ivLen) {
+              setError(isZh ? '输入格式无效' : 'Invalid input format');
+              return;
+            }
+            const salt2 = combined.slice(0, 16);
+            const iv2 = combined.slice(16, 16 + ivLen);
+            const ct2 = combined.slice(16 + ivLen);
+            // 重新派生密钥
+            const { sm3, strToBytes } = await import('../../utils/sm-crypto');
+            const derivedInput = new Uint8Array(strToBytes(password).length + salt2.length);
+            derivedInput.set(strToBytes(password), 0);
+            derivedInput.set(salt2, strToBytes(password).length);
+            const fullHash = sm3(derivedInput);
+            const sm4Key2 = fullHash.slice(0, 16);
+            const pt = mode === 'SM4-CBC'
+              ? sm4CbcDecrypt(ct2, sm4Key2, iv2)
+              : sm4EcbDecrypt(ct2, sm4Key2);
+            setOutput(sm4BytesToStr(pt));
+          }
+        } else {
+          // hex 密钥:SM4 必须 16 字节(32 hex 字符)
+          if (!/^[0-9a-fA-F]{32}$/.test(hexKey.replace(/\s+/g, ''))) {
+            setError(isZh ? 'SM4 密钥需为 32 位 hex(16 字节)' : 'SM4 key must be 32 hex chars (16 bytes)');
+            return;
+          }
+          sm4Key = sm4HexToBytes(hexKey);
+          if (action === 'encrypt') {
+            const iv = mode === 'SM4-CBC' ? crypto.getRandomValues(new Uint8Array(16)) : new Uint8Array(0);
+            const pt = sm4StrToBytes(input);
+            const ct = mode === 'SM4-CBC'
+              ? sm4CbcEncrypt(pt, sm4Key, iv)
+              : sm4EcbEncrypt(pt, sm4Key);
+            const combined = new Uint8Array(iv.length + ct.length);
+            if (iv.length > 0) combined.set(iv, 0);
+            combined.set(ct, iv.length);
+            setOutput(sm4BytesToBase64(combined));
+          } else {
+            const combined = sm4Base64ToBytes(input);
+            const ivLen = mode === 'SM4-CBC' ? 16 : 0;
+            if (combined.length < ivLen) {
+              setError(isZh ? '输入格式无效' : 'Invalid input format');
+              return;
+            }
+            const iv2 = combined.slice(0, ivLen);
+            const ct2 = combined.slice(ivLen);
+            const pt = mode === 'SM4-CBC'
+              ? sm4CbcDecrypt(ct2, sm4Key, iv2)
+              : sm4EcbDecrypt(ct2, sm4Key);
+            setOutput(sm4BytesToStr(pt));
+          }
+        }
+        return;
+      }
+
+      // AES 分支(Web Crypto API)
       // 派生或导入密钥
       let key: CryptoKey;
       if (keySource === 'password') {
@@ -217,6 +315,8 @@ export default function AesTool() {
           >
             <option value="GCM">AES-256-GCM {isZh ? '(推荐,带认证)' : '(recommended, authenticated)'}</option>
             <option value="CBC">AES-256-CBC {isZh ? '(兼容传统)' : '(legacy compatibility)'}</option>
+            <option value="SM4-ECB">SM4-ECB {isZh ? '(国密,128 位)' : '(Chinese standard, 128-bit)'}</option>
+            <option value="SM4-CBC">SM4-CBC {isZh ? '(国密,带 IV)' : '(Chinese standard, with IV)'}</option>
           </select>
         </label>
         <label className="flex flex-col gap-1">
@@ -227,11 +327,18 @@ export default function AesTool() {
             className="px-3 py-2 rounded-lg text-sm outline-none"
             style={cardStyle}
           >
-            <option value="password">{isZh ? '密码派生(PBKDF2)' : 'Password-derived (PBKDF2)'}</option>
-            <option value="hex">{isZh ? '直接 hex 密钥(32 字节)' : 'Direct hex key (32 bytes)'}</option>
+            <option value="password">{isZh ? '密码派生' : 'Password-derived'}</option>
+            <option value="hex">{isZh ? '直接 hex 密钥' : 'Direct hex key'}</option>
           </select>
         </label>
       </div>
+
+      {/* SM4 密钥来源说明 */}
+      <p className="text-[10px] -mt-2" style={labelStyle}>
+        {mode === 'SM4-ECB' || mode === 'SM4-CBC'
+          ? (isZh ? 'SM4 密钥固定 16 字节(128 位)。密码派生用 SM3 哈希 + 随机 salt;hex 模式需 32 位 hex 字符。' : 'SM4 key is fixed 16 bytes (128-bit). Password mode derives via SM3 hash + random salt; hex mode needs 32 hex chars.')
+          : (isZh ? 'AES 密钥 32 字节(256 位)。密码派生用 PBKDF2(10 万次)+ 随机 salt;hex 模式需 64 位 hex 字符。' : 'AES key is 32 bytes (256-bit). Password mode derives via PBKDF2 (100k iterations) + random salt; hex mode needs 64 hex chars.')}
+      </p>
 
       {/* 密钥输入 */}
       {keySource === 'password' ? (
@@ -254,18 +361,24 @@ export default function AesTool() {
       ) : (
         <div>
           <label className="text-xs font-medium mb-1.5 block" style={labelStyle}>
-            {isZh ? 'Hex 密钥(64 字符)' : 'Hex Key (64 chars)'}
+            {mode === 'SM4-ECB' || mode === 'SM4-CBC'
+              ? (isZh ? 'Hex 密钥(32 字符,16 字节)' : 'Hex Key (32 chars, 16 bytes)')
+              : (isZh ? 'Hex 密钥(64 字符,32 字节)' : 'Hex Key (64 chars, 32 bytes)')}
           </label>
           <input
             type="text"
             value={hexKey}
             onChange={e => setHexKey(e.target.value)}
-            placeholder="e.g. 603deb1015ca71be2b73aef0857d77811f352c073b6108d72d9810a30914dff4"
+            placeholder={mode === 'SM4-ECB' || mode === 'SM4-CBC'
+              ? 'e.g. 0123456789abcdeffedcba9876543210'
+              : 'e.g. 603deb1015ca71be2b73aef0857d77811f352c073b6108d72d9810a30914dff4'}
             className="w-full px-3 py-2 rounded-lg text-sm font-mono outline-none"
             style={cardStyle}
           />
           <p className="text-[10px] mt-1" style={labelStyle}>
-            {isZh ? '直接提供 32 字节(256 位)AES 密钥的十六进制表示。' : 'Provide a 32-byte (256-bit) AES key in hexadecimal.'}
+            {mode === 'SM4-ECB' || mode === 'SM4-CBC'
+              ? (isZh ? '直接提供 16 字节(128 位)SM4 密钥的十六进制表示。' : 'Provide a 16-byte (128-bit) SM4 key in hexadecimal.')
+              : (isZh ? '直接提供 32 字节(256 位)AES 密钥的十六进制表示。' : 'Provide a 32-byte (256-bit) AES key in hexadecimal.')}
           </p>
         </div>
       )}

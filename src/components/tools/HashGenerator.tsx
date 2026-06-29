@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import MD5 from 'crypto-js/md5';
 import SHA224 from 'crypto-js/sha224';
 import { useLanguage } from '../../i18n/LanguageContext';
+import { sm3Hex, strToBytes } from '../../utils/sm-crypto';
 
-type Algo = 'MD5' | 'SHA1' | 'SHA256' | 'SHA512' | 'SHA224' | 'SHA384';
+type Algo = 'MD5' | 'SHA1' | 'SHA256' | 'SHA512' | 'SHA224' | 'SHA384' | 'SM3';
 
-const ALGOS: Algo[] = ['MD5', 'SHA1', 'SHA224', 'SHA256', 'SHA384', 'SHA512'];
+const ALGOS: Algo[] = ['MD5', 'SHA1', 'SHA224', 'SHA256', 'SHA384', 'SHA512', 'SM3'];
 
 // SHA 算法到 Web Crypto 算法名的映射(SHA-224 不被 SubtleCrypto 支持)
 const SHA_ALGO_MAP: Partial<Record<Algo, 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'>> = {
@@ -25,13 +26,16 @@ function bufToHex(buf: ArrayBuffer): string {
   return hex;
 }
 
-// 统一的哈希函数(SHA 用 Web Crypto 异步;MD5/SHA224 用 crypto-js 同步)
+// 统一的哈希函数(SHA 用 Web Crypto 异步;MD5/SHA224 用 crypto-js 同步;SM3 用本地实现)
 async function hash(algo: Algo, text: string): Promise<string> {
   if (algo === 'MD5') {
     return MD5(text).toString();
   }
   if (algo === 'SHA224') {
     return SHA224(text).toString().toLowerCase();
+  }
+  if (algo === 'SM3') {
+    return sm3Hex(strToBytes(text));
   }
   const subtleAlgo = SHA_ALGO_MAP[algo];
   if (!subtleAlgo) throw new Error(`Unsupported algo: ${algo}`);

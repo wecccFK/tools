@@ -1770,6 +1770,122 @@ export const TOOL_TUTORIALS: Record<string, ToolTutorial> = {
       en: 'Detailed tutorial: How to use Momo Toolbox Random Grouping. Split names by group count or per-group size with Web Crypto API secure randomness and Fisher-Yates shuffle. Color-coded cards for classroom, raffles, scheduling. Bilingual.',
     },
   },
+  'image-matting': {
+    usage: {
+      zh: 'AI 抠图工具基于 ISNet 神经网络,完全在浏览器中运行推理。适用于电商商品图、人像证件照、社交媒体素材、动物/物体主体抠图等场景。无需上传图片,隐私安全。',
+      en: 'AI Background Removal is powered by ISNet neural network running entirely in the browser. Ideal for e-commerce product photos, portrait IDs, social media assets, animal/object subjects. No uploads — privacy safe.',
+    },
+    features: {
+      zh: [
+        'ISNet 神经网络:业界领先的人像/商品抠图模型,效果接近商业级',
+        '双模型选择:快速(isnet_fp16,~40MB)/ 标准(isnet_quint8,~80MB)',
+        '输出格式:PNG(无损透明)/ WebP(体积更小,透明)',
+        '批量处理:支持多张同时处理,网格视图显示进度',
+        'ZIP 打包:批量结果一键打包下载',
+        '拖拽上传:支持拖拽图片到上传区',
+        '进度提示:模型下载与推理进度实时显示',
+        '本地推理:图片不上传服务器,完全在浏览器处理',
+        'IndexedDB 缓存:模型首次下载后缓存,二次使用秒载',
+      ],
+      en: [
+        'ISNet neural network: industry-leading model for portraits/products, near-commercial quality',
+        'Dual models: Fast (isnet_fp16, ~40MB) / Standard (isnet_quint8, ~80MB)',
+        'Output formats: PNG (lossless transparent) / WebP (smaller, transparent)',
+        'Batch processing: multiple images processed sequentially with grid progress view',
+        'ZIP packaging: batch results downloaded as a single ZIP',
+        'Drag-drop upload: drop images directly onto the upload area',
+        'Progress indicators: real-time model download and inference progress',
+        'Local inference: images never uploaded; processed in-browser',
+        'IndexedDB cache: model cached after first download, instant reuse',
+      ],
+    },
+    examples: {
+      zh: [
+        '场景一:电商商品 — 上传商品照片,AI 自动移除背景,输出透明 PNG 用于商品主图',
+        '场景二:人像证件照 — 上传人像照,移除杂乱背景,得到透明人像用于证件照合成',
+        '场景三:批量处理 — 一次上传 10 张产品图,顺序处理后打包 ZIP 下载',
+        '场景四:动物主体 — 上传宠物照片,AI 识别毛发边缘并精准抠图',
+      ],
+      en: [
+        'Scenario 1: E-commerce — upload product photo, AI removes background, export transparent PNG for main listing',
+        'Scenario 2: Portrait ID — upload portrait, remove cluttered background, get transparent subject for ID composition',
+        'Scenario 3: Batch — upload 10 product images, process sequentially, download all as ZIP',
+        'Scenario 4: Animal subjects — upload pet photo, AI detects fur edges precisely',
+      ],
+    },
+    bestPractices: {
+      zh: [
+        '首次使用建议选"快速"模型预览效果,满意后再切"标准"模型输出最终结果',
+        '建议使用 Chrome 90+ / Edge 90+ / Firefox 88+(需支持 WebAssembly SIMD)',
+        '图片分辨率过大(>4000px)时建议先用"图片压缩"工具缩小后再抠图,可加速 50%',
+        '批量处理顺序执行以避免内存溢出,每张约 3-10 秒(取决于图片大小与硬件)',
+        '模型缓存后可断网使用,适合离线场景',
+        '复杂背景(头发、透明物体)建议用"标准"模型获得更好边缘',
+      ],
+      en: [
+        'Use "Fast" model to preview first, then switch to "Standard" for final output',
+        'Requires Chrome 90+ / Edge 90+ / Firefox 88+ (WebAssembly SIMD support)',
+        'For images larger than 4000px, compress first to speed up by ~50%',
+        'Batch runs sequentially to avoid OOM; ~3-10s per image depending on size and hardware',
+        'Cached model works offline — great for disconnected scenarios',
+        'For complex backgrounds (hair, transparent objects), use "Standard" model for better edges',
+      ],
+    },
+    faq: {
+      zh: [
+        {
+          q: '为什么首次加载这么慢?',
+          a: '首次使用需要下载 AI 模型(快速 ~40MB / 标准 ~80MB)。模型从 CDN 加载并缓存到浏览器 IndexedDB,后续使用秒载,且可离线使用。',
+        },
+        {
+          q: '图片会上传到服务器吗?',
+          a: '不会。AI 模型与图片都在浏览器本地处理,F12 打开 Network 面板可验证无图片上传请求。完全符合隐私优先理念。',
+        },
+        {
+          q: '快速和标准模型有什么区别?',
+          a: '快速模型(isnet_fp16)使用半精度浮点,体积小、速度快,适合预览;标准模型(isnet_quint8)使用 8 位量化,精度更高,适合复杂边缘(如头发)的最终输出。',
+        },
+        {
+          q: '为什么批量处理是顺序执行而不是并发?',
+          a: 'AI 推理需要大量内存(WebAssembly + ONNX Runtime),并发处理多张图片会导致浏览器内存溢出崩溃。顺序执行确保稳定性。',
+        },
+        {
+          q: '支持哪些浏览器?',
+          a: '需要支持 WebAssembly SIMD 的现代浏览器:Chrome 90+、Edge 90+、Firefox 88+、Safari 14.1+。IE 与旧版浏览器不支持。',
+        },
+      ],
+      en: [
+        {
+          q: 'Why is the first load so slow?',
+          a: 'First use downloads the AI model (Fast ~40MB / Standard ~80MB) from CDN and caches it in IndexedDB. Subsequent uses load instantly and work offline.',
+        },
+        {
+          q: 'Are images uploaded to a server?',
+          a: 'No. Both model and images are processed in-browser. Open DevTools → Network to verify zero image upload requests. Fully privacy-first.',
+        },
+        {
+          q: 'What is the difference between Fast and Standard models?',
+          a: 'Fast (isnet_fp16) uses half-precision floats — smaller and faster, good for previews. Standard (isnet_quint8) uses 8-bit quantization — higher accuracy, better for complex edges (e.g. hair) in final output.',
+        },
+        {
+          q: 'Why does batch run sequentially instead of concurrently?',
+          a: 'AI inference consumes significant memory (WebAssembly + ONNX Runtime). Concurrent processing would OOM the browser. Sequential execution ensures stability.',
+        },
+        {
+          q: 'Which browsers are supported?',
+          a: 'Requires a modern browser with WebAssembly SIMD: Chrome 90+, Edge 90+, Firefox 88+, Safari 14.1+. IE and older browsers are not supported.',
+        },
+      ],
+    },
+    seoTitle: {
+      zh: 'AI 抠图工具使用教程 - ISNet 神经网络背景移除 - Momo工具箱',
+      en: 'AI Background Removal Tutorial - ISNet Neural Network - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '详细教程:如何使用 Momo工具箱的 AI 抠图工具,基于 ISNet 神经网络完全本地推理,支持快速/标准双模型、PNG/WebP 输出、批量处理与 ZIP 下载。适合电商商品、人像证件照、社交媒体素材。中英双语说明。',
+      en: 'Detailed tutorial: How to use Momo Toolbox AI Background Removal powered by ISNet neural network. Fully local inference, Fast/Standard models, PNG/WebP output, batch with ZIP. Ideal for e-commerce, portraits and social media. Bilingual.',
+    },
+  },
 };
 
 // FAQ 页面常见问题（独立于工具教程）

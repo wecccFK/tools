@@ -8,7 +8,7 @@
 
 ## Overview
 
-- [Home](https://www.web-tools.top/): Tool directory with 20+ curated tools (JSON formatter, Markdown editor, QR generator, password generator, Base64, URL encoder, timestamp, hash, JWT decoder, image compressor, UUID/ULID, color converter, unit converter, HTTP status code lookup, Pomodoro timer, image splitter, AES encrypt/decrypt, screen recorder, fullscreen clock, random grouping).
+- [Home](https://www.web-tools.top/): Tool directory with 21+ curated tools (JSON formatter, Markdown editor, QR generator, password generator, Base64, URL encoder, timestamp, hash, JWT decoder, image compressor, UUID/ULID, color converter, unit converter, HTTP status code lookup, Pomodoro timer, image splitter, AES encrypt/decrypt, screen recorder, fullscreen clock, random grouping, AI background removal).
 - [About](https://www.web-tools.top/about/): Project philosophy, tech stack, privacy commitment and future plans.
 - [FAQ](https://www.web-tools.top/faq/): Common questions about free use, data safety, offline support and browser compatibility.
 - [Privacy Policy](https://www.web-tools.top/privacy/): All tool data processed locally in the browser; uses Cloudflare Web Analytics (no cookies); no third-party tracking.
@@ -36,6 +36,7 @@
 - [Screen Recorder](https://www.web-tools.top/tool/screen-recorder/): Record screen with custom bitrate, resolution (720p-1440p), FPS (10-240), video format (WebM/MP4), system/mic audio. Local download.
 - [Fullscreen Clock](https://www.web-tools.top/tool/clock/): Three modes - system time, stopwatch (with laps), countdown (with beep). One-click fullscreen with large digits. Fully local.
 - [Random Grouping](https://www.web-tools.top/tool/random-group/): Shuffle names into groups by group count or per-group size. Web Crypto API secure randomness. Fully local.
+- [AI Background Removal](https://www.web-tools.top/tool/image-matting/): ISNet neural network background removal. Fast/Standard models, PNG/WebP output, batch processing with ZIP. Local inference, no uploads.
 
 ## Tutorials
 
@@ -59,6 +60,7 @@
 - [Screen Recorder Tutorial](https://www.web-tools.top/tutorial/screen-recorder/): Usage, examples, best practices and FAQ.
 - [Fullscreen Clock Tutorial](https://www.web-tools.top/tutorial/clock/): Usage, examples, best practices and FAQ.
 - [Random Grouping Tutorial](https://www.web-tools.top/tutorial/random-group/): Usage, examples, best practices and FAQ.
+- [AI Background Removal Tutorial](https://www.web-tools.top/tutorial/image-matting/): Usage, examples, best practices and FAQ.
 
 ## Optional
 

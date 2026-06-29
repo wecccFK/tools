@@ -22,6 +22,7 @@ const LazyAesTool = lazy(() => import('./tools/AesTool'));
 const LazyScreenRecorder = lazy(() => import('./tools/ScreenRecorder'));
 const LazyClock = lazy(() => import('./tools/Clock'));
 const LazyRandomGroup = lazy(() => import('./tools/RandomGroup'));
+const LazyImageMatting = lazy(() => import('./tools/ImageMatting'));
 
 // 工具 ID → 组件映射
 const TOOL_COMPONENTS: Record<string, React.LazyExoticComponent<React.ComponentType>> = {
@@ -45,6 +46,7 @@ const TOOL_COMPONENTS: Record<string, React.LazyExoticComponent<React.ComponentT
   'screen-recorder': LazyScreenRecorder,
   'clock': LazyClock,
   'random-group': LazyRandomGroup,
+  'image-matting': LazyImageMatting,
 };
 
 function LoadingSkeleton() {

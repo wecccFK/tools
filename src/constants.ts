@@ -382,6 +382,25 @@ export const TOOLS: Tool[] = [
       en: 'Pick "By group count" or "By group size", set the number, enter names (one per line) and click "Shuffle & Group". Results show in colored cards; one-click copy.',
     },
   },
+  {
+    id: 'image-matting',
+    name: { zh: 'AI 抠图', en: 'AI Background Removal' },
+    description: { zh: 'ISNet 神经网络抠图,支持批量', en: 'ISNet neural network matting, batch supported' },
+    category: 'Image',
+    tags: ['ai', 'matting', 'background-removal', 'isnet', 'image'],
+    seoTitle: {
+      zh: 'AI 抠图工具 - ISNet 神经网络背景移除 - Momo工具箱',
+      en: 'AI Background Removal - ISNet Neural Network - Momo Toolbox',
+    },
+    seoDescription: {
+      zh: '在线 AI 抠图工具,基于 ISNet 神经网络,完全在浏览器中运行,不上传图片。支持快速/标准两种模型、PNG/WebP 输出、批量处理、ZIP 打包下载。首次加载约 40-80MB 模型,缓存后离线可用。',
+      en: 'Online AI background removal tool powered by ISNet neural network. Runs entirely in the browser, no uploads. Fast/Standard models, PNG/WebP output, batch processing with ZIP download. ~40-80MB model cached for offline reuse.',
+    },
+    tutorial: {
+      zh: '选择 AI 模型(快速/标准)和输出格式(PNG/WebP),拖拽或点击上传图片。AI 自动识别主体并移除背景,结果可预览对比并下载。批量模式支持多张同时处理并打包 ZIP。',
+      en: 'Pick AI model (Fast/Standard) and output format (PNG/WebP), drop or click to upload. AI detects subject and removes background automatically. Batch mode processes multiple images and downloads as ZIP.',
+    },
+  },
 ];
 
 export const CATEGORIES: (Tool['category'] | 'All')[] = ['All', 'Text', 'Developer', 'Image', 'Productivity', 'Entertainment'];

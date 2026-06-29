@@ -3,6 +3,11 @@ import { useLanguage } from '../../i18n/LanguageContext';
 
 type ModelQuality = 'fast' | 'standard';
 type OutputFormat = 'png' | 'webp';
+// 库的 output.format 需要完整 MIME 类型
+const OUTPUT_MIME: Record<OutputFormat, string> = {
+  png: 'image/png',
+  webp: 'image/webp',
+};
 type ProgressPhase = 'idle' | 'loading-model' | 'processing' | 'done' | 'error';
 
 interface BatchItem {
@@ -75,7 +80,7 @@ export default function ImageMatting() {
     const mod = await loadBgRemoval();
     const config: any = {
       model: model === 'fast' ? 'isnet_fp16' : 'isnet_quint8',
-      output: { format: outputFormat, quality: 0.8 },
+      output: { format: OUTPUT_MIME[outputFormat], quality: 0.8 },
       progress: (key: string, current: number, total: number) => {
         const pct = total > 0 ? current / total : 0;
         setProgress(pct);

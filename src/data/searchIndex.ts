@@ -40,7 +40,7 @@ const PINYIN_MAP: Record<string, { full: string; initials: string; aliases: stri
   'status-code-lookup':   { full: 'zhuangtaimachaxun', initials: 'ztmcx', aliases: ['http', 'status', 'code', 'response', 'error'] },
   'pomodoro-timer':       { full: 'fanqiezhong', initials: 'fqz',     aliases: ['pomodoro', 'timer', 'focus', 'tomato', '25minutes'] },
   'image-splitter':       { full: 'fenge',       initials: 'fg',     aliases: ['split', 'grid', 'slice', 'crop', 'instagram'] },
-  'aes-tool':             { full: 'jiami',       initials: 'jm',     aliases: ['aes', 'encrypt', 'decrypt', 'cipher', 'crypto'] },
+  'aes-tool':             { full: 'jiami',       initials: 'jm',     aliases: ['aes', 'sm4', 'encrypt', 'decrypt', 'cipher', 'crypto', 'guomi', '国密', '对称', 'symmetric'] },
   'screen-recorder':      { full: 'luping',      initials: 'lp',      aliases: ['screen', 'record', 'capture', 'screencast', 'video'] },
   'clock':                { full: 'shizhong',    initials: 'sz',      aliases: ['clock', 'time', 'stopwatch', 'countdown', 'timer'] },
   'random-group':         { full: 'suijifenzu',  initials: 'sjfz',   aliases: ['group', 'random', 'shuffle', 'team', 'lottery'] },

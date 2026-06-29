@@ -32,7 +32,7 @@
 - [HTTP Status Code Lookup](https://www.web-tools.top/tool/status-code-lookup/): Lookup 60+ HTTP status codes (1xx-5xx) with bilingual descriptions, search and category filter.
 - [Pomodoro Timer](https://www.web-tools.top/tool/pomodoro-timer/): 25/5/15 classic timer with custom durations, browser notifications and daily stats.
 - [Image Splitter](https://www.web-tools.top/tool/image-splitter/): Split an image into 4/9 grids or Instagram triptych. Local Canvas processing, one-click ZIP.
-- [AES Encrypt/Decrypt](https://www.web-tools.top/tool/aes-tool/): AES-256-GCM/CBC local encryption with PBKDF2 password or hex key. Native Web Crypto API.
+- [Symmetric Encryption (AES / SM4)](https://www.web-tools.top/tool/aes-tool/): AES-256-GCM/CBC and Chinese-standard SM4-ECB/CBC local encryption. PBKDF2 or SM3 password derivation, hex key. Native Web Crypto + pure JS SM4.
 - [Screen Recorder](https://www.web-tools.top/tool/screen-recorder/): Record screen with custom bitrate, resolution (720p-1440p), FPS (10-240), video format (WebM/MP4), system/mic audio. Local download.
 - [Fullscreen Clock](https://www.web-tools.top/tool/clock/): Three modes - system time, stopwatch (with laps), countdown (with beep). One-click fullscreen with large digits. Fully local.
 - [Random Grouping](https://www.web-tools.top/tool/random-group/): Shuffle names into groups by group count or per-group size. Web Crypto API secure randomness. Fully local.

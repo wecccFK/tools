@@ -308,21 +308,21 @@ export const TOOLS: Tool[] = [
   },
   {
     id: 'aes-tool',
-    name: { zh: 'AES 加解密', en: 'AES Encrypt/Decrypt' },
-    description: { zh: 'AES-256-GCM/CBC 本地加解密', en: 'AES-256-GCM/CBC local encryption' },
+    name: { zh: '对称加密工具', en: 'Symmetric Encryption' },
+    description: { zh: 'AES-256-GCM/CBC 与国密 SM4 本地加解密', en: 'AES-256-GCM/CBC & SM4 local encryption' },
     category: 'Developer',
-    tags: ['aes', 'encrypt', 'crypto', 'security'],
+    tags: ['aes', 'sm4', 'encrypt', 'crypto', 'security', '国密'],
     seoTitle: {
-      zh: 'AES 加解密工具 - AES-256-GCM/CBC - Momo工具箱',
-      en: 'AES Encrypt/Decrypt - AES-256-GCM/CBC - Momo Toolbox',
+      zh: '对称加密工具 - AES-256 / SM4 - Momo工具箱',
+      en: 'Symmetric Encryption - AES-256 / SM4 - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线 AES 加解密工具,支持 AES-256-GCM(推荐)与 CBC 模式,密码派生(PBKDF2)或直接 hex 密钥,完全本地处理,密钥不上传。',
-      en: 'Online AES tool supporting AES-256-GCM (recommended) and CBC modes, password-derived (PBKDF2) or direct hex key. Fully local, key never uploaded.',
+      zh: '在线对称加密工具,支持 AES-256-GCM(推荐)、CBC 与国密 SM4-ECB/CBC 模式,密码派生或直接 hex 密钥,完全本地处理,密钥不上传。',
+      en: 'Online symmetric encryption tool supporting AES-256-GCM (recommended), CBC, and Chinese standard SM4-ECB/CBC modes. Password-derived or direct hex key. Fully local, key never uploaded.',
     },
     tutorial: {
-      zh: '选择加密/解密、模式(GCM 推荐)、密钥来源(密码或 hex)。加密时输入明文得到 base64 密文,解密时反向,粘贴密文得到明文。',
-      en: 'Pick encrypt/decrypt, mode (GCM recommended), key source (password or hex). For encryption, input plaintext to get base64 ciphertext; reverse for decryption.',
+      zh: '选择加密/解密、算法(AES-GCM 推荐 / SM4-CBC 国密)、密钥来源(密码或 hex)。加密时输入明文得到 base64 密文,解密时反向,粘贴密文得到明文。',
+      en: 'Pick encrypt/decrypt, algorithm (AES-GCM recommended / SM4-CBC Chinese standard), key source (password or hex). For encryption, input plaintext to get base64 ciphertext; reverse for decryption.',
     },
   },
   {

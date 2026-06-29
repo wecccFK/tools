@@ -1360,49 +1360,53 @@ export const TOOL_TUTORIALS: Record<string, ToolTutorial> = {
   },
   'aes-tool': {
     usage: {
-      zh: 'AES 加解密工具适用于敏感数据传输、配置文件加密、API 密钥保护、数据库字段加密等场景。当你需要在不安全的信道传输文本数据,或本地保存敏感信息时,AES-256 是行业标准的对称加密算法。',
-      en: 'The AES tool is useful for sensitive data transmission, config file encryption, API key protection, database field encryption, etc. When you need to transmit text over an insecure channel or store sensitive information locally, AES-256 is the industry-standard symmetric encryption algorithm.',
+      zh: '对称加密工具适用于敏感数据传输、配置文件加密、API 密钥保护、数据库字段加密等场景。支持国际算法 AES-256 与国密 SM4:国际业务用 AES,符合国密合规要求用 SM4,两者都在浏览器本地完成,密钥永不离开设备。',
+      en: 'The symmetric encryption tool is useful for sensitive data transmission, config file encryption, API key protection, database field encryption, etc. Supports both international AES-256 and Chinese standard SM4: AES for global use, SM4 for compliance with Chinese cryptographic regulations. Both run locally in the browser; keys never leave the device.',
     },
     features: {
       zh: [
         'AES-256-GCM:推荐模式,带认证标签,可检测密文篡改',
         'AES-256-CBC:兼容传统系统,无认证',
-        '密码派生:用 PBKDF2 算法(10 万次迭代 + SHA-256)从密码派生 256 位密钥',
-        'Hex 密钥:支持直接输入 64 位 hex 密钥,适合专业用户',
-        'Web Crypto API:使用浏览器原生加密,密钥永不离开浏览器',
+        'SM4-ECB/SM4-CBC:国密对称加密(GB/T 32907-2016),128 位密钥',
+        '密码派生:AES 用 PBKDF2(10 万次 + SHA-256);SM4 用 SM3 + salt',
+        'Hex 密钥:AES 64 hex / SM4 32 hex,适合专业用户',
+        '完全本地:Web Crypto API + 纯 JS SM4,密钥永不离开浏览器',
         'UTF-8 安全:正确处理中文等非 ASCII 字符',
       ],
       en: [
         'AES-256-GCM: recommended mode with authentication tag, tamper-detecting',
         'AES-256-CBC: legacy compatibility, no authentication',
-        'Password-derived: 256-bit key derived via PBKDF2 (100,000 iterations + SHA-256)',
-        'Hex key: accept direct 64-char hex input for advanced users',
-        'Web Crypto API: native browser encryption, key never leaves the browser',
+        'SM4-ECB/SM4-CBC: Chinese standard symmetric cipher (GB/T 32907-2016), 128-bit key',
+        'Password-derived: AES uses PBKDF2 (100k iter + SHA-256); SM4 uses SM3 + salt',
+        'Hex key: AES 64 hex / SM4 32 hex for advanced users',
+        'Fully local: Web Crypto API + pure JS SM4, key never leaves the browser',
         'UTF-8 safe: correctly handles non-ASCII characters like Chinese',
       ],
     },
     examples: {
       zh: [
-        '场景一:加密 API 密钥保存到笔记 — 输入密钥、设置密码、选 GCM、点加密,把 base64 密文存到笔记,需要时再粘贴回来解密。',
+        '场景一:加密 API 密钥保存到笔记 — 输入密钥、设置密码、选 AES-GCM、点加密,把 base64 密文存到笔记,需要时再粘贴回来解密。',
         '场景二:发送私密消息给同事 — 用约定好的密码加密消息,通过微信/邮件发送密文,对方用同样密码解密。',
-        '场景三:兼容旧系统 — 对方系统只支持 CBC,选 CBC 模式加密,把 hex 密钥通过其他安全渠道告知对方。',
+        '场景三:国密合规 — 金融/政务系统要求数据加密符合国密标准,选 SM4-CBC 模式,密钥通过安全渠道告知对方。',
       ],
       en: [
-        'Scenario 1: Encrypt an API key for note storage — input the key, set a password, choose GCM, click Encrypt, save the base64 ciphertext; decrypt later when needed.',
+        'Scenario 1: Encrypt an API key for note storage — input the key, set a password, choose AES-GCM, click Encrypt, save the base64 ciphertext; decrypt later when needed.',
         'Scenario 2: Send a private message to a colleague — encrypt with a shared password, send the ciphertext via chat/email, the recipient decrypts with the same password.',
-        'Scenario 3: Legacy system compat — the other system only supports CBC; choose CBC mode, share the hex key via another secure channel.',
+        'Scenario 3: Chinese compliance — financial/government systems requiring SM4; choose SM4-CBC mode, share the key via a secure channel.',
       ],
     },
     bestPractices: {
       zh: [
         '优先使用 GCM 模式,带认证可防篡改',
+        '国密合规场景选 SM4-CBC(带 IV 比 ECB 更安全)',
         '密码至少 12 位,包含大小写字母、数字、符号',
         'PBKDF2 迭代次数越高越安全(本工具为 10 万次)',
         '密文传输时配合 HTTPS,防止中间人攻击',
         'hex 密钥需通过安全渠道(如线下、密码管理器)分享,不要明文传输',
       ],
       en: [
-        'Prefer GCM mode — authenticated, tamper-resistant',
+        'Prefer AES-GCM mode — authenticated, tamper-resistant',
+        'For Chinese compliance, choose SM4-CBC (with IV, safer than ECB)',
         'Password at least 12 chars with mixed case, digits, symbols',
         'Higher PBKDF2 iterations = more secure (this tool uses 100,000)',
         'Always pair ciphertext with HTTPS to prevent MITM attacks',
@@ -1416,16 +1420,20 @@ export const TOOL_TUTORIALS: Record<string, ToolTutorial> = {
           a: '不会。所有加解密都在你的浏览器本地完成,密码和密钥永不离开你的设备。',
         },
         {
+          q: 'AES 和 SM4 怎么选?',
+          a: '国际业务或无合规要求时选 AES-256-GCM(更安全,带认证);国密合规场景(金融/政务/等保)选 SM4。两者密钥长度不同:AES 256 位,SM4 128 位。',
+        },
+        {
           q: 'GCM 和 CBC 怎么选?',
           a: 'GCM 是推荐模式,带认证标签,可检测密文是否被篡改。CBC 仅用于兼容旧系统,无认证,更容易被攻击。',
         },
         {
           q: '密文格式是什么?',
-          a: '密码模式:base64(salt[16 字节] + iv + ciphertext)。Hex 模式:base64(iv + ciphertext)。',
+          a: 'AES 密码模式:base64(salt[16] + iv + ciphertext);Hex 模式:base64(iv + ciphertext)。SM4-CBC 密码模式:base64(salt[16] + iv[16] + ciphertext);SM4-ECB 无 IV。',
         },
         {
           q: '解密失败怎么办?',
-          a: '检查:1) 密码/密钥是否正确 2) 模式是否与加密时一致 3) 密文是否完整复制 4) 是否选错密钥来源(密码/hex)。',
+          a: '检查:1) 密码/密钥是否正确 2) 算法模式是否与加密时一致 3) 密文是否完整复制 4) 是否选错密钥来源(密码/hex)。',
         },
       ],
       en: [
@@ -1434,26 +1442,30 @@ export const TOOL_TUTORIALS: Record<string, ToolTutorial> = {
           a: 'No. All encryption/decryption is done locally in your browser; password and key never leave your device.',
         },
         {
+          q: 'How to choose between AES and SM4?',
+          a: 'Use AES-256-GCM for international use or when no compliance is required (more secure, authenticated). Use SM4 for Chinese compliance (finance/government/MLPS). Different key lengths: AES 256-bit, SM4 128-bit.',
+        },
+        {
           q: 'How to choose between GCM and CBC?',
           a: 'GCM is recommended — it has an authentication tag to detect tampering. CBC is only for legacy systems; no authentication, more vulnerable.',
         },
         {
           q: 'What is the ciphertext format?',
-          a: 'Password mode: base64(salt[16 bytes] + iv + ciphertext). Hex mode: base64(iv + ciphertext).',
+          a: 'AES password mode: base64(salt[16] + iv + ciphertext); Hex mode: base64(iv + ciphertext). SM4-CBC password mode: base64(salt[16] + iv[16] + ciphertext); SM4-ECB has no IV.',
         },
         {
           q: 'What if decryption fails?',
-          a: 'Check: 1) correct password/key 2) mode matches encryption 3) full ciphertext copied 4) correct key source (password/hex) selected.',
+          a: 'Check: 1) correct password/key 2) algorithm mode matches encryption 3) full ciphertext copied 4) correct key source (password/hex) selected.',
         },
       ],
     },
     seoTitle: {
-      zh: 'AES 加解密工具使用教程 - AES-256-GCM/CBC 本地加密 - Momo工具箱',
-      en: 'AES Encrypt/Decrypt Tutorial - AES-256-GCM/CBC Local - Momo Toolbox',
+      zh: '对称加密工具使用教程 - AES-256 / SM4 国密 - Momo工具箱',
+      en: 'Symmetric Encryption Tutorial - AES-256 / SM4 - Momo Toolbox',
     },
     seoDescription: {
-      zh: '详细教程:如何使用 Momo工具箱的 AES 加解密工具,AES-256-GCM/CBC 模式,PBKDF2 密码派生或 hex 密钥,Web Crypto API 本地处理,中英双语说明。',
-      en: 'Detailed tutorial: How to use Momo Toolbox AES tool with AES-256-GCM/CBC modes, PBKDF2 password derivation or hex key, native Web Crypto API. Bilingual descriptions.',
+      zh: '详细教程:如何使用 Momo工具箱的对称加密工具,支持 AES-256-GCM/CBC 与国密 SM4-ECB/CBC,PBKDF2 或 SM3 密码派生,Web Crypto API + 纯 JS 本地处理,中英双语说明。',
+      en: 'Detailed tutorial: How to use Momo Toolbox symmetric encryption tool with AES-256-GCM/CBC and Chinese-standard SM4-ECB/CBC modes, PBKDF2 or SM3 password derivation, hex key. Web Crypto API + pure JS SM4. Bilingual descriptions.',
     },
   },
   'screen-recorder': {

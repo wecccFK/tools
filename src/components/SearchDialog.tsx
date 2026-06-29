@@ -143,6 +143,18 @@ export default function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
 
   const hasQuery = query.trim().length > 0;
   const categories: FilterCategory[] = ['All', 'Text', 'Developer', 'Image', 'Productivity', 'Entertainment'];
+  const categoryLabel = (c: FilterCategory) => {
+    if (!isZh) return c === 'All' ? 'All' : c;
+    const map: Record<FilterCategory, string> = {
+      'All': '全部',
+      'Text': '文本',
+      'Developer': '开发者',
+      'Image': '图片',
+      'Productivity': '效率',
+      'Entertainment': '娱乐',
+    };
+    return map[c];
+  };
 
   return (
     <div
@@ -191,7 +203,7 @@ export default function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                 color: category === c ? '#fff' : 'var(--text-muted)',
               }}
             >
-              {c === 'All' ? (isZh ? '全部' : 'All') : c}
+              {categoryLabel(c)}
             </button>
           ))}
         </div>

@@ -44,7 +44,7 @@ const PINYIN_MAP: Record<string, { full: string; initials: string; aliases: stri
   'screen-recorder':      { full: 'luping',      initials: 'lp',      aliases: ['screen', 'record', 'capture', 'screencast', 'video'] },
   'clock':                { full: 'shizhong',    initials: 'sz',      aliases: ['clock', 'time', 'stopwatch', 'countdown', 'timer'] },
   'random-group':         { full: 'suijifenzu',  initials: 'sjfz',   aliases: ['group', 'random', 'shuffle', 'team', 'lottery'] },
-  'image-matting':        { full: 'koutu',       initials: 'kt',      aliases: ['matting', 'background', 'remove', 'cutout', 'alpha', 'isnet'] },
+  'image-matting':        { full: 'koutu',       initials: 'kt',      aliases: ['matting', 'background', 'remove', 'cutout', 'alpha', 'isnet', 'image', 'photo', 'picture', '图片', '照片', '背景', '去背'] },
 };
 
 // 教程关键词(从 toolTutorials.ts 提取,只保留核心动词/名词,去停用词)

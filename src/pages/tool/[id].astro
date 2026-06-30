@@ -18,6 +18,12 @@ const title = tool.seoTitle?.zh || `${tool.name.zh} - Momo工具箱`;
 const description = tool.seoDescription?.zh || tool.description.zh;
 const canonical = new URL(`/tool/${tool.id}/`, Astro.site).toString();
 
+// 相关工具:同分类的其他工具(最多 5 个),用于内部链接传递权重
+// 如果同类不足 5 个,补充其他类别的工具凑齐
+const sameCategory = TOOLS.filter(t => t.category === tool.category && t.id !== tool.id);
+const others = TOOLS.filter(t => t.category !== tool.category && t.id !== tool.id);
+const relatedTools = [...sameCategory, ...others].slice(0, 5);
+
 // JSON-LD 结构化数据（SoftwareApplication schema）
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -42,4 +48,28 @@ const jsonLd = {
     <span data-zh={tool.seoTitle?.zh || `${tool.name.zh} - Momo工具箱`} data-en={tool.seoTitle?.en || `${tool.name.en} - Momo Toolbox`}>{tool.seoTitle?.zh || `${tool.name.zh} - Momo工具箱`}</span>
   </h1>
   <ToolContent tool={tool} client:load />
+
+  {/* 相关工具:内部链接传递权重,帮助 Googlebot 发现更多工具页 */}
+  <section class="related-tools" style="max-width: 56rem; margin: 2rem auto; padding: 1.5rem; border-top: 1px solid var(--border);">
+    <h2 class="related-title" style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: var(--text);">
+      <span data-zh="相关工具" data-en="Related Tools">相关工具</span>
+    </h2>
+    <div class="related-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem;">
+      {relatedTools.map(t => (
+        <a
+          href={`/tool/${t.id}/`}
+          style="display: block; padding: 0.75rem 1rem; border-radius: 0.5rem; background: var(--bg-3); border: 1px solid var(--border); color: var(--text); text-decoration: none; transition: all 0.2s;"
+          onmouseover="this.style.borderColor='var(--accent)'"
+          onmouseout="this.style.borderColor='var(--border)'"
+        >
+          <div style="font-weight: 500; font-size: 0.875rem;">
+            <span data-zh={t.name.zh} data-en={t.name.en}>{t.name.zh}</span>
+          </div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">
+            <span data-zh={t.description.zh} data-en={t.description.en}>{t.description.zh}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
 </BaseLayout>

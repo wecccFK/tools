@@ -1,12 +1,14 @@
 # Momo工具箱 · Momo Toolbox
 
 <p align="center">
-  <img src="public/preview.png" alt="Momo Toolbox Preview" width="800">
+  <a href="https://www.web-tools.top">
+    <img src="public/preview.png" alt="Momo Toolbox Preview" width="800">
+  </a>
 </p>
 
 > 极速、专业的在线工具集合 · 所有数据浏览器本地处理 · 即开即用 · 保护隐私
 
-**站点**: https://www.web-tools.top
+**站点**: <a href="https://www.web-tools.top">https://www.web-tools.top</a>
 
 ## 特性
 
@@ -23,14 +25,14 @@
 - **样式**: Tailwind CSS v4 (原子化 CSS，零运行时开销)
 - **部署**: Cloudflare Pages (全球 CDN 加速)
 
-## 工具列表 (13 个)
+## 工具列表 (21 个)
 
 | 类别 | 工具 |
 |------|------|
-| 开发者 | JSON 格式化、Base64、URL 编解码、时间戳、哈希、JWT 解码、UUID/ULID |
-| 文本 | Markdown 编辑器 |
-| 图像 | 图片压缩 |
-| 生产力 | 二维码生成、密码生成器、颜色转换、单位换算 |
+| 开发者 (11) | <a href="https://www.web-tools.top/tool/json-formatter/">JSON 格式化</a> · <a href="https://www.web-tools.top/tool/base64/">Base64</a> · <a href="https://www.web-tools.top/tool/url-encoder/">URL 编解码</a> · <a href="https://www.web-tools.top/tool/timestamp/">时间戳转换</a> · <a href="https://www.web-tools.top/tool/hash-generator/">哈希生成器</a> · <a href="https://www.web-tools.top/tool/jwt-decoder/">JWT 解码</a> · <a href="https://www.web-tools.top/tool/uuid-generator/">UUID 生成器</a> · <a href="https://www.web-tools.top/tool/color-converter/">颜色转换器</a> · <a href="https://www.web-tools.top/tool/unit-converter/">单位换算</a> · <a href="https://www.web-tools.top/tool/status-code-lookup/">HTTP 状态码查询</a> · <a href="https://www.web-tools.top/tool/aes-tool/">对称加密 (AES/SM4)</a> |
+| 文本 (1) | <a href="https://www.web-tools.top/tool/markdown-editor/">Markdown 编辑器</a> |
+| 图像 (3) | <a href="https://www.web-tools.top/tool/img-compress/">图片压缩</a> · <a href="https://www.web-tools.top/tool/image-splitter/">图片分割</a> · <a href="https://www.web-tools.top/tool/image-matting/">AI 抠图</a> |
+| 生产力 (6) | <a href="https://www.web-tools.top/tool/qr-generator/">二维码生成</a> · <a href="https://www.web-tools.top/tool/password-generator/">密码生成器</a> · <a href="https://www.web-tools.top/tool/pomodoro-timer/">番茄钟</a> · <a href="https://www.web-tools.top/tool/screen-recorder/">屏幕录制</a> · <a href="https://www.web-tools.top/tool/clock/">全屏时钟</a> · <a href="https://www.web-tools.top/tool/random-group/">随机分组</a> |
 
 ## 本地开发
 

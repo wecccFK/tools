@@ -1,17 +1,50 @@
 {
-  "name": "Momo工具箱",
+  "id": "/?source=pwa",
+  "name": "Momo工具箱 - 在线工具集合",
   "short_name": "Momo工具箱",
-  "description": "极速、专业的在线工具集合",
-  "start_url": "/",
+  "description": "极速、专业的在线工具集合:JSON/Markdown/二维码/密码/加密/哈希/AI 抠图/屏幕录制等 21 个工具,完全本地处理,保护隐私。",
+  "start_url": "/?source=pwa",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "orientation": "any",
   "background_color": "#fbfaf7",
   "theme_color": "#d97706",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "categories": ["productivity", "developer", "utilities"],
   "icons": [
     {
       "src": "/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "JSON 格式化",
+      "short_name": "JSON",
+      "url": "/tool/json-formatter/?source=pwa",
+      "icons": [{ "src": "/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "对称加密 (AES/SM4)",
+      "short_name": "加密",
+      "url": "/tool/aes-tool/?source=pwa",
+      "icons": [{ "src": "/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "AI 抠图",
+      "short_name": "抠图",
+      "url": "/tool/image-matting/?source=pwa",
+      "icons": [{ "src": "/icon.svg", "sizes": "any" }]
     }
   ]
 }

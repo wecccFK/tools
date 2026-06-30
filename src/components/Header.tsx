@@ -3,6 +3,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
 import SearchDialog from './SearchDialog';
+import InstallPWA from './InstallPWA';
 
 export default function Header() {
   const { t } = useLanguage();
@@ -69,6 +70,7 @@ export default function Header() {
             </button>
             <LanguageSwitcher />
             <ThemeToggle />
+            <InstallPWA />
           </div>
         </div>
       </header>

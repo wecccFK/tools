@@ -19,7 +19,7 @@ if (!tutorial) {
 
 const title = tutorial.seoTitle.zh;
 const description = tutorial.seoDescription.zh;
-const canonical = new URL(`/tutorial/${tool.id}`, Astro.site).toString();
+const canonical = new URL(`/tutorial/${tool.id}/`, Astro.site).toString();
 
 // JSON-LD 结构化数据（HowTo schema）
 const jsonLd = {

@@ -16,7 +16,7 @@ const { tool } = Astro.props;
 // SEO 元数据
 const title = tool.seoTitle?.zh || `${tool.name.zh} - Momo工具箱`;
 const description = tool.seoDescription?.zh || tool.description.zh;
-const canonical = new URL(`/tool/${tool.id}`, Astro.site).toString();
+const canonical = new URL(`/tool/${tool.id}/`, Astro.site).toString();
 
 // JSON-LD 结构化数据（SoftwareApplication schema）
 const jsonLd = {

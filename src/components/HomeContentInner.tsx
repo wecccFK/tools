@@ -238,7 +238,7 @@ export default function HomeContentInner() {
                       <StarIcon filled={isStarred(tool.id)} size={16} />
                     </button>
 
-                    <a href={`/tool/${tool.id}`} className="block">
+                    <a href={`/tool/${tool.id}/`} className="block">
                       <div
                         className="tool-icon-wrap w-12 h-12 flex items-center justify-center mb-4"
                         style={{ color: 'var(--accent)' }}

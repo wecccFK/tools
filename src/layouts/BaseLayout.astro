@@ -118,6 +118,18 @@ const altLang = lang === 'zh' ? 'en' : 'zh';
         } catch (e) {}
       })();
     </script>
+
+    <!-- 注册 Service Worker (PWA 离线 + 可安装到桌面) -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js', { scope: '/' })
+            .catch(function (err) {
+              console.warn('[PWA] Service Worker 注册失败:', err);
+            });
+        });
+      }
+    </script>
   </head>
   <body>
     <AppShell client:load />

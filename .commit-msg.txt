@@ -1,0 +1,13 @@
+feat: PWA 桌面安装 + 统一尾斜杠 URL 消除 308 重定向
+
+PWA:
+- 新增 manifest.json 完善字段(id/scope/shortcuts/lang/categories)
+- 新增 sw.js Service Worker(HTML Network First,静态资源 Cache First)
+- 新增 InstallPWA.tsx(桌面/Android 安装按钮 + iOS 引导横幅)
+- BaseLayout.astro 注册 SW,Header.tsx 加安装入口
+
+SEO 修复:
+- astro.config.mjs 加 trailingSlash: 'always'
+- 修复 HomeContentInner/SearchDialog/Footer/about 中所有内部链接加尾斜杠
+- 修复 tool/[id] 和 tutorial/[id] 的 canonical URL 加尾斜杠
+- 消除 Googlebot 抓取时的 308 重定向,提升收录效率

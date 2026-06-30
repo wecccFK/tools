@@ -5,6 +5,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://www.web-tools.top',
+  // 统一使用尾斜杠 URL(/tool/aes-tool/),避免 308 重定向
+  // 让内部链接、sitemap、构建产物都用同一个规范 URL,Googlebot 不会看到重定向
+  trailingSlash: 'always',
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],

@@ -1,13 +1,19 @@
-feat: PWA 桌面安装 + 统一尾斜杠 URL 消除 308 重定向
+feat: AdSense 审核 - 加 meta 标签 + 工具页/首页内容增强
 
-PWA:
-- 新增 manifest.json 完善字段(id/scope/shortcuts/lang/categories)
-- 新增 sw.js Service Worker(HTML Network First,静态资源 Cache First)
-- 新增 InstallPWA.tsx(桌面/Android 安装按钮 + iOS 引导横幅)
-- BaseLayout.astro 注册 SW,Header.tsx 加安装入口
+AdSense 审核:
+- BaseLayout.astro 加 google-adsense-account meta 标签
 
-SEO 修复:
-- astro.config.mjs 加 trailingSlash: 'always'
-- 修复 HomeContentInner/SearchDialog/Footer/about 中所有内部链接加尾斜杠
-- 修复 tool/[id] 和 tutorial/[id] 的 canonical URL 加尾斜杠
-- 消除 Googlebot 抓取时的 308 重定向,提升收录效率
+解决"低价值内容"问题:
+- tool/[id].astro 在工具 UI 下方加"使用场景/功能特点/常见问题"文字内容
+- 从 toolTutorials.ts 拉取 usage/features/faq 数据,SSR 渲染
+- 加 FAQPage JSON-LD 结构化数据,有助于 Google rich result
+- 加"查看完整教程"内链,引导用户/Googlebot 到教程页
+
+解决首页"导航页"问题:
+- index.astro 在 HomeContent 后加"关于 Momo 工具箱"介绍段落
+- 加"工具分类介绍"卡片,4 个分类详细说明
+- 首页不再只是工具卡片列表,有实质文字内容
+
+工具页内链增强:
+- tool/[id].astro 末尾加"相关工具"区块(同分类 5 个工具)
+- 每个工具页都有 5 个外链到其他工具页,形成内部链接网

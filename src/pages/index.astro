@@ -35,6 +35,63 @@ const websiteSchema = {
 
   <HomeContent client:load />
 
+  {/* 首页介绍文字:AdSense 要求首页不能只是导航页,需要有实质内容 */}
+  <section style="max-width: 56rem; margin: 3rem auto; padding: 1.5rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--text);">
+      <span data-zh="关于 Momo 工具箱" data-en="About Momo Toolbox">关于 Momo 工具箱</span>
+    </h2>
+    <p style="color: var(--text); line-height: 1.8; margin-bottom: 1rem;">
+      <span data-zh="Momo 工具箱是一个免费的在线工具集合,致力于为开发者、设计师、内容创作者和日常办公用户提供极速、安全、即开即用的实用工具。所有工具均在浏览器本地处理数据,不上传服务器,从根源上保护你的隐私。" data-en="Momo Toolbox is a free collection of online tools dedicated to providing fast, secure, and ready-to-use utilities for developers, designers, content creators, and everyday office users. All tools process data locally in the browser without uploading to servers, protecting your privacy at the root.">Momo 工具箱是一个免费的在线工具集合,致力于为开发者、设计师、内容创作者和日常办公用户提供极速、安全、即开即用的实用工具。所有工具均在浏览器本地处理数据,不上传服务器,从根源上保护你的隐私。</span>
+    </p>
+    <p style="color: var(--text); line-height: 1.8; margin-bottom: 1rem;">
+      <span data-zh="目前共提供 21 个工具,覆盖开发者工具(JSON 格式化、Base64 编解码、URL 编解码、时间戳转换、哈希生成、JWT 解码、UUID 生成、HTTP 状态码查询、对称加密 AES/SM4)、文本工具(Markdown 编辑器)、图像工具(图片压缩、图片分割、AI 抠图)、生产力工具(二维码生成、密码生成器、单位换算、番茄钟、屏幕录制、全屏时钟、随机分组)四大类别。" data-en="Currently offers 21 tools covering four categories: Developer tools (JSON formatter, Base64, URL encoder, timestamp converter, hash generator, JWT decoder, UUID generator, HTTP status codes, AES/SM4 encryption), Text tools (Markdown editor), Image tools (image compression, image splitter, AI matting), and Productivity tools (QR code generator, password generator, unit converter, pomodoro timer, screen recorder, fullscreen clock, random group).">目前共提供 21 个工具,覆盖开发者工具(JSON 格式化、Base64 编解码、URL 编解码、时间戳转换、哈希生成、JWT 解码、UUID 生成、HTTP 状态码查询、对称加密 AES/SM4)、文本工具(Markdown 编辑器)、图像工具(图片压缩、图片分割、AI 抠图)、生产力工具(二维码生成、密码生成器、单位换算、番茄钟、屏幕录制、全屏时钟、随机分组)四大类别。</span>
+    </p>
+    <p style="color: var(--text); line-height: 1.8;">
+      <span data-zh="技术架构基于 Astro + React + TypeScript,部署在 Cloudflare Pages 全球 CDN,加载速度极快。支持中英双语界面切换、暗黑模式、PWA 桌面安装。每个工具都配有详细的使用教程,涵盖使用场景、功能特点、使用示例、最佳实践和常见问题解答。" data-en="The technical architecture is based on Astro + React + TypeScript, deployed on Cloudflare Pages global CDN for extremely fast loading. Supports Chinese-English bilingual interface switching, dark mode, and PWA desktop installation. Each tool comes with a detailed tutorial covering use cases, features, examples, best practices, and FAQ.">技术架构基于 Astro + React + TypeScript,部署在 Cloudflare Pages 全球 CDN,加载速度极快。支持中英双语界面切换、暗黑模式、PWA 桌面安装。每个工具都配有详细的使用教程,涵盖使用场景、功能特点、使用示例、最佳实践和常见问题解答。</span>
+    </p>
+  </section>
+
+  {/* 工具分类介绍 */}
+  <section style="max-width: 56rem; margin: 2rem auto; padding: 1.5rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text);">
+      <span data-zh="工具分类介绍" data-en="Tool Categories">工具分类介绍</span>
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+      <div style="padding: 1.25rem; background: var(--bg-3); border-radius: 0.75rem; border: 1px solid var(--border);">
+        <h3 style="font-weight: 600; margin-bottom: 0.5rem; color: var(--accent);">
+          <span data-zh="开发者工具 (11)" data-en="Developer Tools (11)">开发者工具 (11)</span>
+        </h3>
+        <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">
+          <span data-zh="为前端后端开发、API 调试、配置文件编辑场景设计。包括 JSON 格式化与校验、Base64/URL 编解码、Unix 时间戳转换、MD5/SHA/SM3 哈希计算、JWT 令牌解析、UUID 生成、HTTP 状态码速查、AES-256 与国密 SM4 对称加密等。" data-en="Designed for frontend/backend development, API debugging, and config file editing. Includes JSON formatter, Base64/URL encoder, Unix timestamp converter, MD5/SHA/SM3 hash, JWT parser, UUID generator, HTTP status codes, AES-256 and SM4 encryption.">为前端后端开发、API 调试、配置文件编辑场景设计。包括 JSON 格式化与校验、Base64/URL 编解码、Unix 时间戳转换、MD5/SHA/SM3 哈希计算、JWT 令牌解析、UUID 生成、HTTP 状态码速查、AES-256 与国密 SM4 对称加密等。</span>
+        </p>
+      </div>
+      <div style="padding: 1.25rem; background: var(--bg-3); border-radius: 0.75rem; border: 1px solid var(--border);">
+        <h3 style="font-weight: 600; margin-bottom: 0.5rem; color: var(--accent);">
+          <span data-zh="图像工具 (3)" data-en="Image Tools (3)">图像工具 (3)</span>
+        </h3>
+        <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">
+          <span data-zh="图片压缩支持质量调节与格式转换;图片分割支持九宫格、自定义行列切图;AI 抠图基于 ISNet 神经网络,支持快速与标准两种模型,可批量处理并导出 PNG/WebP 透明背景图。" data-en="Image compression with quality adjustment and format conversion; image splitter for 3x3 grid or custom rows/columns; AI matting based on ISNet neural network with fast/standard models, batch processing and PNG/WebP transparent background export.">图片压缩支持质量调节与格式转换;图片分割支持九宫格、自定义行列切图;AI 抠图基于 ISNet 神经网络,支持快速与标准两种模型,可批量处理并导出 PNG/WebP 透明背景图。</span>
+        </p>
+      </div>
+      <div style="padding: 1.25rem; background: var(--bg-3); border-radius: 0.75rem; border: 1px solid var(--border);">
+        <h3 style="font-weight: 600; margin-bottom: 0.5rem; color: var(--accent);">
+          <span data-zh="生产力工具 (6)" data-en="Productivity Tools (6)">生产力工具 (6)</span>
+        </h3>
+        <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">
+          <span data-zh="二维码生成支持自定义颜色、Logo 嵌入与容错等级;密码生成器使用加密级随机源;番茄钟与全屏时钟支持专注场景;屏幕录制支持 120FPS;随机分组适合课堂与活动抽奖。" data-en="QR code generator with custom colors, logo embedding, and error correction; password generator with cryptographic random source; pomodoro timer and fullscreen clock for focus; screen recorder up to 120FPS; random group for classrooms and events.">二维码生成支持自定义颜色、Logo 嵌入与容错等级;密码生成器使用加密级随机源;番茄钟与全屏时钟支持专注场景;屏幕录制支持 120FPS;随机分组适合课堂与活动抽奖。</span>
+        </p>
+      </div>
+      <div style="padding: 1.25rem; background: var(--bg-3); border-radius: 0.75rem; border: 1px solid var(--border);">
+        <h3 style="font-weight: 600; margin-bottom: 0.5rem; color: var(--accent);">
+          <span data-zh="文本工具 (1)" data-en="Text Tools (1)">文本工具 (1)</span>
+        </h3>
+        <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">
+          <span data-zh="Markdown 编辑器支持实时预览、GFM 扩展语法(表格、任务列表、代码块高亮)、一键导出 HTML,内容自动保存到浏览器,刷新不丢失。" data-en="Markdown editor with live preview, GFM syntax (tables, task lists, code highlighting), one-click HTML export, and auto-save to browser.">Markdown 编辑器支持实时预览、GFM 扩展语法(表格、任务列表、代码块高亮)、一键导出 HTML,内容自动保存到浏览器,刷新不丢失。</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- WebSite JSON-LD：站点品牌 + 入口声明，利于 Google 品牌识别 -->
   <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 </BaseLayout>

@@ -2,6 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeContent from '../components/HomeContent.tsx';
 
+// 首页 SEO 关键词:覆盖全站工具的中英核心词(中英合并,最大化搜索引擎匹配)
+const homeKeywords = [
+  // 中文核心词
+  '在线工具', '工具箱', '在线工具集合', 'JSON 格式化', 'Markdown 编辑器', '二维码生成', '密码生成器',
+  'Base64 编解码', 'URL 编解码', '时间戳转换', '哈希生成器', 'JWT 解码', 'UUID 生成',
+  '颜色转换', '单位换算', '图片压缩', 'AI 抠图', '屏幕录制', '番茄钟',
+  // 英文核心词
+  'online tools', 'toolbox', 'web tools', 'json formatter', 'markdown editor', 'qr code generator',
+  'password generator', 'base64 encoder', 'url encoder', 'timestamp converter', 'hash generator',
+  'jwt decoder', 'uuid generator', 'color converter', 'unit converter', 'image compressor',
+  'ai background removal', 'screen recorder', 'pomodoro timer',
+];
+
 // WebSite 结构化数据：帮助搜索引擎识别站点品牌与入口
 const websiteSchema = {
   '@context': 'https://schema.org',
@@ -27,6 +40,7 @@ const websiteSchema = {
 <BaseLayout
   title="Momo工具箱 - 极速、专业的在线工具集合"
   description="Momo工具箱是免费的一站式在线工具平台，提供 JSON 格式化、Markdown 编辑器、二维码生成、密码生成器等数十种高效实用工具，所有数据浏览器本地处理，即开即用保护隐私。"
+  keywords={homeKeywords}
 >
   {/* 静态 SEO 主标题：双语切换，保证页面有且仅有一个 h1 */}
   <h1 class="sr-only">

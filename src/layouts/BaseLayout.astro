@@ -10,6 +10,8 @@ export interface Props {
   lang?: Language;
   canonical?: string;
   ogImage?: string;
+  // SEO 关键词:传入则输出 <meta name="keywords">,中英双语页面按需传入对应语言
+  keywords?: string[];
   // 文章类页面（教程/博客/法律页）专用 meta，普通工具页不传
   articleMeta?: {
     author?: string;
@@ -26,6 +28,7 @@ const {
   lang = 'zh',
   canonical,
   ogImage = '/og-image.svg',
+  keywords,
   articleMeta,
 } = Astro.props;
 
@@ -41,6 +44,7 @@ const altLang = lang === 'zh' ? 'en' : 'zh';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {keywords && keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
     <link rel="canonical" href={fullCanonical} />
 
     <!-- hreflang: 声明中英双语版本 -->
@@ -56,6 +60,13 @@ const altLang = lang === 'zh' ? 'en' : 'zh';
 
     {/* Google AdSense:声明发布商账号 */}
     <meta name="google-adsense-account" content="ca-pub-1315335444091074" />
+
+    {/* Google AdSense:加载广告库(全站共享,只加载一次) */}
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1315335444091074"
+      crossorigin="anonymous"
+    ></script>
 
     {/* Open Graph：文章类页面用 article，其余用 website（og:type 只能出现一次） */}
     <meta property="og:type" content={articleMeta ? 'article' : 'website'} />
@@ -139,7 +150,77 @@ const altLang = lang === 'zh' ? 'en' : 'zh';
     <main>
       <slot />
     </main>
+    {/* 移动端 AdSense 信息流广告:< 1280px 显示,桌面端用两侧 fixed 广告避免重复 */}
+    <aside class="mobile-in-feed-ad" aria-hidden="true">
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-format="fluid"
+        data-ad-layout-key="-hi+e-a-53+a7"
+        data-ad-client="ca-pub-1315335444091074"
+        data-ad-slot="8459866523"></ins>
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </aside>
+
     <Footer />
+
+    {/* 两侧 AdSense 广告位:桌面端(≥1280px)固定显示在主内容两侧空白处,
+        移动端隐藏避免遮挡主内容(AdSense 政策要求) */}
+    <aside class="side-ad side-ad-left" aria-hidden="true">
+      <ins
+        class="adsbygoogle"
+        style="display:block;width:160px;height:600px"
+        data-ad-client="ca-pub-1315335444091074"
+        data-ad-slot="5253294852"></ins>
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </aside>
+    <aside class="side-ad side-ad-right" aria-hidden="true">
+      <ins
+        class="adsbygoogle"
+        style="display:block;width:160px;height:600px"
+        data-ad-client="ca-pub-1315335444091074"
+        data-ad-slot="5253294852"></ins>
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </aside>
+
+    <style>
+      /* 移动端信息流广告:占满主内容宽度,显示在 Footer 之前的内容流末尾 */
+      .mobile-in-feed-ad {
+        display: none;
+        max-width: 56rem;
+        margin: 1.5rem auto;
+        padding: 0 1.5rem;
+      }
+      /* 仅在 < 1280px 时显示(桌面端用两侧 fixed 广告,避免重复投放) */
+      @media (max-width: 1279px) {
+        .mobile-in-feed-ad {
+          display: block;
+        }
+      }
+
+      /* 侧边广告位定位:固定在主内容(56rem≈896px)两侧,顶部留 88px 避开 Header */
+      .side-ad {
+        position: fixed;
+        top: 88px;
+        width: 160px;
+        height: 600px;
+        z-index: 5;
+        display: none;
+      }
+      .side-ad-left {
+        left: calc(50% - 624px); /* 448(主内容左半) + 16(间距) + 160(广告宽) = 624 */
+      }
+      .side-ad-right {
+        right: calc(50% - 624px);
+      }
+      /* 仅在视口宽度 ≥1280px 时显示(主内容 896 + 两侧广告 320 + 间距 32 ≈ 1248) */
+      @media (min-width: 1280px) {
+        .side-ad {
+          display: block;
+        }
+      }
+    </style>
+
     <!-- Web Vitals 上报(生产环境自动启用,本地开发不上报) -->
     <script src="/vitals.js" defer></script>
   </body>

@@ -18,6 +18,8 @@ const { tool } = Astro.props;
 const title = tool.seoTitle?.zh || `${tool.name.zh} - Momo工具箱`;
 const description = tool.seoDescription?.zh || tool.description.zh;
 const canonical = new URL(`/tool/${tool.id}/`, Astro.site).toString();
+// SEO 关键词:中英合并,让中英文搜索引擎都能匹配(Google 不看 keywords 但百度仍参考)
+const keywords = [...(tool.keywords?.zh || []), ...(tool.keywords?.en || [])];
 
 // 教程数据:用于在工具页底部展示文字内容(AdSense 高质量内容要求)
 const tutorial = TOOL_TUTORIALS[tool.id];
@@ -51,7 +53,7 @@ const faqLd = faqLdEntries.length > 0 ? {
 } : null;
 ---
 
-<BaseLayout title={title} description={description} canonical={canonical}>
+<BaseLayout title={title} description={description} canonical={canonical} keywords={keywords}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   {faqLd && <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />}
   {/* 静态 SEO 主标题：双语切换，保证页面有且仅有一个 h1（React 岛内显示同名 h2） */}

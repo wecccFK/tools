@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
@@ -8,7 +7,8 @@ export default defineConfig({
   // 统一使用尾斜杠 URL(/tool/aes-tool/),避免 308 重定向
   // 让内部链接、sitemap、构建产物都用同一个规范 URL,Googlebot 不会看到重定向
   trailingSlash: 'always',
-  integrations: [react(), sitemap()],
+  // sitemap 改用 src/pages/sitemap.xml.ts 自定义 endpoint 生成单文件版本
+  integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
     resolve: {

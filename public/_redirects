@@ -1,5 +1,4 @@
 # Cloudflare Pages _redirects
-# 格式: source destination status_code
-# 让 /sitemap.xml 重定向到 Astro 生成的 /sitemap-index.xml
-# 这样 GSC 填 sitemap.xml 或 sitemap-index.xml 都能工作
-/sitemap.xml /sitemap-index.xml 301
+# sitemap.xml 现在由 src/pages/sitemap.xml.ts 直接生成,无需重定向
+# 旧 sitemap-index.xml 和 sitemap-0.xml 不再生成,如需兼容旧提交可取消下行注释
+# /sitemap-index.xml /sitemap.xml 301

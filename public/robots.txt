@@ -18,5 +18,5 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-# Sitemap
-Sitemap: https://www.web-tools.top/sitemap-index.xml
+# Sitemap(单文件版本,直接包含所有 URL)
+Sitemap: https://www.web-tools.top/sitemap.xml

@@ -1,0 +1,4 @@
+# AdSense ads.txt
+# 声明本站的 Google AdSense 发布商账号,AdSense 审核必需
+# 格式: domain, publisher_id, relationship_type, certification_authority_id
+google.com, pub-1315335444091074, DIRECT, f08c47fec0942fa0

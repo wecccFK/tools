@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = '页面未找到 - Momo工具箱';
+const description = '您访问的页面不存在,即将跳转到首页或自动修复 URL。';
+---
+
+<BaseLayout title={title} description={description}>
+  <section style="max-width: 40rem; margin: 4rem auto; padding: 1.5rem; text-align: center;">
+    <h1 style="font-size: 4rem; font-weight: 800; color: var(--accent); margin-bottom: 1rem;">404</h1>
+    <p style="font-size: 1.125rem; color: var(--text); margin-bottom: 0.5rem;">
+      <span data-zh="页面未找到" data-en="Page Not Found">页面未找到</span>
+    </p>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">
+      <span data-zh="您访问的页面不存在,正在尝试自动修复..." data-en="The page you are looking for does not exist, attempting to auto-fix...">您访问的页面不存在,正在尝试自动修复...</span>
+    </p>
+    <a href="/" style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--accent); color: white; border-radius: 0.5rem; text-decoration: none; font-weight: 600;">
+      <span data-zh="返回首页" data-en="Back to Home">返回首页</span>
+    </a>
+  </section>
+
+  <!-- 自动修复无尾斜杠的 URL:/tool/json-formatter → /tool/json-formatter/ -->
+  <script is:inline>
+    (function () {
+      var path = window.location.pathname;
+      // 跳过根路径、已有尾斜杠、静态文件(带扩展名)
+      if (path === '/' || path.endsWith('/') || /\.[a-zA-Z0-9]+$/.test(path)) {
+        return;
+      }
+      // 加尾斜杠重定向(用 replace 避免在历史记录里留下 404)
+      var newPath = path + '/';
+      var search = window.location.search || '';
+      var hash = window.location.hash || '';
+      window.location.replace(newPath + search + hash);
+    })();
+  </script>
+</BaseLayout>

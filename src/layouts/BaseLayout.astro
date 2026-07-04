@@ -34,7 +34,6 @@ const {
 
 const fullCanonical = canonical || new URL(Astro.url.pathname, Astro.site).toString();
 const fullOgImage = new URL(ogImage, Astro.site).toString();
-const altLang = lang === 'zh' ? 'en' : 'zh';
 ---
 
 <!doctype html>
@@ -46,11 +45,6 @@ const altLang = lang === 'zh' ? 'en' : 'zh';
     <meta name="description" content={description} />
     {keywords && keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
     <link rel="canonical" href={fullCanonical} />
-
-    <!-- hreflang: 声明中英双语版本 -->
-    <link rel="alternate" hreflang="zh" href={fullCanonical} />
-    <link rel="alternate" hreflang="en" href={fullCanonical} />
-    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site).toString()} />
 
     <!-- PWA -->
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />

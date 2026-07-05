@@ -13,8 +13,8 @@ export const TOOLS: Tool[] = [
       en: 'JSON Formatter - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线 JSON 格式化工具，支持美化、压缩、校验。所有数据本地处理，不上传服务器。',
-      en: 'Online JSON formatter with beautify, minify and validate. All data processed locally.',
+      zh: '在线 JSON 格式化工具，支持美化、压缩、语法校验、键值排序与转义还原。一键处理大文件，自动定位语法错误位置，所有数据浏览器本地处理不上传服务器。开发者排查 API 返回、调试 JSON 必备利器。',
+      en: 'Online JSON formatter with beautify, minify, syntax validation, key sorting, and escape restoration. Handles large files with one click, automatically locates syntax errors, and all data is processed locally in your browser—nothing uploaded. Essential for developers debugging API responses and JSON data.',
     },
     keywords: {
       zh: ['JSON 格式化', 'JSON 美化', 'JSON 校验', 'JSON 压缩', 'JSON 在线工具', 'JSON 解析', 'JSON 转换', 'JSON 验证器', 'JSON 树形视图', 'JSON 缩进', 'JSON 错误检查', 'JSON 编辑器', 'JSON 排序', 'JSON 转义', 'JSON 在线解析'],
@@ -36,8 +36,8 @@ export const TOOLS: Tool[] = [
       en: 'Markdown Editor - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线 Markdown 编辑器，支持实时预览、导出 HTML、GFM 扩展语法。',
-      en: 'Online Markdown editor with live preview, HTML export, and GFM syntax.',
+      zh: '在线 Markdown 编辑器，支持实时预览、导出 HTML、GFM 扩展语法（表格、代码块、任务列表、删除线）。无需安装，浏览器打开即用，所有内容本地处理不上传服务器，写文档、博客、README 必备工具。',
+      en: 'Online Markdown editor with live preview, HTML export, and GFM extended syntax (tables, code blocks, task lists, strikethrough). No installation needed—works in your browser, all content processed locally and never uploaded. Perfect for writing docs, blogs, and README files.',
     },
     keywords: {
       zh: ['Markdown 编辑器', 'Markdown 预览', 'MD 编辑器', 'Markdown 在线', 'GFM 语法', 'Markdown 转 HTML', 'Markdown 工具', '实时预览', 'Markdown 表格', 'Markdown 代码块', 'Markdown 任务列表', 'Markdown 导出', 'Markdown 排版', 'Markdown 渲染', 'Markdown 写作'],
@@ -59,8 +59,8 @@ export const TOOLS: Tool[] = [
       en: 'QR Code Generator - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线二维码生成工具，支持自定义颜色、Logo、容错等级。生成图片可直接下载。',
-      en: 'Online QR code generator with custom colors, logo, and error correction. Download as image.',
+      zh: '在线二维码生成工具，支持自定义前景色、背景色、Logo 图片、容错等级与尺寸。生成 PNG 图片可直接下载，所有生成浏览器本地完成不上传服务器，制作名片、Wi-Fi 分享、网址跳转、电子菜单必备。',
+      en: 'Online QR code generator with custom foreground/background colors, logo image, error correction level, and size. Download as PNG directly. All generation runs locally in your browser—nothing uploaded. Perfect for business cards, Wi-Fi sharing, URL redirects, and digital menus.',
     },
     keywords: {
       zh: ['二维码生成', '二维码制作', 'QR 码生成', '带 Logo 二维码', '彩色二维码', '二维码下载', '二维码在线', 'QR Code', 'WiFi 二维码', '网址二维码', '二维码高清', '二维码容错', 'vCard 二维码', '二维码图片', '扫码生成'],
@@ -82,8 +82,8 @@ export const TOOLS: Tool[] = [
       en: 'Random Password Generator - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线密码生成器，可自定义长度、字符类型。所有密码本地生成，不上传服务器。',
-      en: 'Online password generator with custom length and character types. Generated locally, never uploaded.',
+      zh: '在线密码生成器，可自定义长度（4-128 位）、字符类型（大小写字母、数字、符号）、排除易混字符。所有密码浏览器本地基于 crypto 安全随机数生成，绝不上传服务器，注册账号、保护邮箱与社交媒体安全必备。',
+      en: 'Online password generator with custom length (4-128 bits), character types (upper/lowercase, digits, symbols), and confusing character exclusion. All passwords are generated locally using crypto-secure randomness and never uploaded. Essential for securing accounts, email, and social media.',
     },
     keywords: {
       zh: ['密码生成器', '随机密码', '强密码生成', '密码制作', '密码强度', '安全密码', '密码在线', '随机字符', '密码长度', '密码管理', '高强度密码', '密码创建', '随机字符串', '密码检查', '不可破解密码'],
@@ -105,8 +105,8 @@ export const TOOLS: Tool[] = [
       en: 'Base64 Encode/Decode - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线 Base64 编码解码工具，支持文本和文件。UTF-8 安全，本地处理。',
-      en: 'Online Base64 encoder and decoder for text and files. UTF-8 safe, processed locally.',
+      zh: '在线 Base64 编码解码工具，支持文本与文件双向转换，UTF-8 安全无乱码，可处理中文、Emoji 与二进制数据。所有编解码浏览器本地完成不上传服务器，开发者调试 API、数据传输、邮件附件必备。',
+      en: 'Online Base64 encoder and decoder for text and files with UTF-8 safe handling of Chinese, emoji, and binary data. All encoding and decoding runs locally in your browser—nothing is uploaded. Essential for developers working with API, data transit, and email attachments.',
     },
     keywords: {
       zh: ['Base64 编码', 'Base64 解码', 'Base64 转换', 'Base64 在线', 'Base64 加密', 'Base64 图片', '文本编码', '解码工具', 'Base64 转文本', '文本转 Base64', 'Base64 字符串', 'Base64 编码器', 'Base64 解码器', 'Base64 转换器', 'Base64 算法'],
@@ -128,8 +128,8 @@ export const TOOLS: Tool[] = [
       en: 'URL Encode/Decode - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线 URL 编码解码工具，支持 encodeURIComponent 和 decodeURIComponent。',
-      en: 'Online URL encoder and decoder, supports encodeURIComponent and decodeURIComponent.',
+      zh: '在线 URL 编码解码工具，支持 encodeURIComponent 与 decodeURIComponent 双向转换，可处理中文、特殊字符、查询参数。所有编解码浏览器本地完成不上传服务器，开发者调试网址参数、构建 API 请求、处理重定向必备。',
+      en: 'Online URL encoder and decoder supporting encodeURIComponent and decodeURIComponent for two-way conversion of Chinese, special characters, and query parameters. All encoding and decoding runs locally in your browser—nothing uploaded. Essential for developers debugging URL params, building API requests, and handling redirects.',
     },
     keywords: {
       zh: ['URL 编码', 'URL 解码', '网址编码', 'URL 转义', '百分号编码', 'URL 在线', 'URL 转换', '编码解码', 'encodeURIComponent', 'decodeURIComponent', 'URL 中文编码', 'URL 特殊字符', 'URL 编码器', 'URL 解码器', 'URI 编码'],
@@ -151,8 +151,8 @@ export const TOOLS: Tool[] = [
       en: 'Unix Timestamp Converter - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线 Unix 时间戳转换工具，支持秒级和毫秒级，互转可读时间。',
-      en: 'Online Unix timestamp converter, supports seconds and milliseconds, converts to readable time.',
+      zh: '在线 Unix 时间戳转换工具，支持秒级与毫秒级互转可读时间，自动识别时区，一键复制结果。所有转换浏览器本地完成，开发者调试 API、数据库时间字段必备，不上传任何数据。',
+      en: 'Online Unix timestamp converter supporting seconds and milliseconds with two-way conversion to readable time, automatic timezone detection, and one-click copy. All conversion runs locally in your browser—no data uploaded. Essential for developers debugging API and database time fields.',
     },
     keywords: {
       zh: ['时间戳转换', 'Unix 时间戳', '时间戳在线', '时间戳工具', 'epoch 转换', '毫秒时间戳', '时间戳日期', '时间转换', '时间戳格式化', '时间戳转日期', '日期转时间戳', 'Unix 时间', '秒级时间戳', '时间戳查询', '时间戳校验'],
@@ -174,8 +174,8 @@ export const TOOLS: Tool[] = [
       en: 'Hash Generator - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线哈希计算工具，支持 MD5、SHA1、SHA256、SHA512 等算法。本地计算，安全可靠。',
-      en: 'Online hash calculator supporting MD5, SHA1, SHA256, SHA512. Calculated locally, safe and reliable.',
+      zh: '在线哈希计算工具，支持 MD5、SHA1、SHA256、SHA512、SHA3 等多种算法，可对文本与文件批量计算。所有运算浏览器本地完成不上传服务器，开发者校验文件完整性、生成数据指纹、验证下载包必备。',
+      en: 'Online hash calculator supporting MD5, SHA1, SHA256, SHA512, SHA3, and more for both text and file batch computation. All hashing runs locally in your browser—nothing uploaded. Essential for developers verifying file integrity, generating data fingerprints, and validating download packages.',
     },
     keywords: {
       zh: ['哈希生成', 'MD5 计算', 'SHA256', 'SHA1', 'SHA512', '散列值', '哈希在线', '加密哈希', '哈希算法', '消息摘要', 'SHA 计算', 'MD5 在线', '哈希校验', '文件哈希', 'SHA-256 计算'],
@@ -197,8 +197,8 @@ export const TOOLS: Tool[] = [
       en: 'JWT Decoder - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线 JWT 解码工具，解析 Header 和 Payload。本地解码，不上传 Token。',
-      en: 'Online JWT decoder, parses Header and Payload. Decoded locally, token never uploaded.',
+      zh: '在线 JWT 解码工具，一键解析 Header 与 Payload，自动 Base64 解码、显示过期时间、识别算法。所有解码浏览器本地完成，Token 不上传服务器，开发者调试 OAuth、API 鉴权、单点登录必备。',
+      en: 'Online JWT decoder that parses Header and Payload with automatic Base64 decoding, expiration time display, and algorithm detection. All decoding runs locally in your browser—your token is never uploaded. Essential for developers debugging OAuth, API authentication, and SSO.',
     },
     keywords: {
       zh: ['JWT 解码', 'JWT 在线', 'Token 解析', 'JWT 查看器', 'JWT Payload', 'JWT 调试', 'JSON Web Token', '令牌解析', 'JWT Header', 'JWT 签名', 'JWT 验证', 'JWT 转 JSON', 'JWT 解密', 'JWT 分析', 'JWT 读取'],
@@ -220,8 +220,8 @@ export const TOOLS: Tool[] = [
       en: 'Image Compressor - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线图片压缩工具，支持 JPG/PNG/WebP，可调质量。所有压缩在浏览器本地完成，不上传图片。',
-      en: 'Online image compressor supporting JPG/PNG/WebP with adjustable quality. All compression done locally in browser.',
+      zh: '在线图片压缩工具，支持 JPG/PNG/WebP 格式互转，可调质量与最大尺寸，批量压缩预览效果。所有压缩浏览器本地完成不上传服务器，博客配图、电商主图、社交媒体上传前减小体积、提升加载速度必备。',
+      en: 'Online image compressor supporting JPG/PNG/WebP format conversion with adjustable quality, max size, and batch preview. All compression runs locally in your browser—no images uploaded. Perfect for reducing blog images, e-commerce product photos, and social media uploads to boost load speed.',
     },
     keywords: {
       zh: ['图片压缩', '图片压缩工具', '在线压缩图片', 'JPG 压缩', 'PNG 压缩', 'WebP 转换', '图片优化', '图片减小', '图片体积压缩', '压缩图片到指定大小', '批量压缩', '图片质量调节', '图片瘦身', '压缩照片', '图片大小减小'],
@@ -243,8 +243,8 @@ export const TOOLS: Tool[] = [
       en: 'UUID/ULID Generator - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线 UUID v4/v7、ULID 生成工具，支持批量、大小写、连字符控制。基于 crypto 安全随机数，本地生成。',
-      en: 'Online UUID v4/v7 and ULID generator with batch, case, and hyphen controls. Uses crypto-secure randomness, fully local.',
+      zh: '在线 UUID v4/v7、ULID 生成工具，支持批量生成、大小写、连字符控制。基于 crypto 安全随机数生成，所有运算浏览器本地完成不上传服务器，开发者生成数据库主键、API 请求 ID、分布式系统唯一标识必备。',
+      en: 'Online UUID v4/v7 and ULID generator with batch generation, case, and hyphen controls. Uses crypto-secure randomness and runs entirely in your browser—nothing uploaded. Essential for developers generating database primary keys, API request IDs, and distributed system unique identifiers.',
     },
     keywords: {
       zh: ['UUID 生成', 'UUID v4', 'UUID v7', 'ULID 生成', '唯一 ID', 'GUID 生成', '随机 UUID', 'UUID 在线', 'UUID 批量生成', 'UUID 格式化', 'UUID 校验', 'UUID 转换', 'UUID 去连字符', 'UUID 大小写', 'UUID 转换器'],
@@ -266,8 +266,8 @@ export const TOOLS: Tool[] = [
       en: 'Color Converter - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线颜色格式转换工具，支持 HEX、RGB、HSL、HSV 互转，带取色器与滑块。所有转换在浏览器本地完成。',
-      en: 'Online color format converter supporting HEX, RGB, HSL, and HSV with picker and sliders. All conversions run locally.',
+      zh: '在线颜色格式转换工具，支持 HEX、RGB、HSL、HSV 互转，带取色器、滑块与配色示例预览。所有转换浏览器本地完成，前端开发调试 CSS、设计师提取品牌色、配色方案对比必备，无需安装即开即用。',
+      en: 'Online color format converter supporting HEX, RGB, HSL, and HSV with color picker, sliders, and palette preview. All conversions run locally in your browser—no installation needed. Essential for frontend developers debugging CSS, designers extracting brand colors, and comparing color schemes.',
     },
     keywords: {
       zh: ['颜色转换', '颜色格式', 'HEX RGB', 'RGB 转换', 'HSL 转换', '颜色码', '取色器', '颜色在线', 'HEX 转 RGB', 'RGB 转 HEX', 'HSV 转换', '颜色选择器', '颜色对照表', '颜色值查询', '颜色拾取'],
@@ -289,8 +289,8 @@ export const TOOLS: Tool[] = [
       en: 'Unit Converter - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线单位换算工具，支持长度、重量、温度、数据存储、速度、面积、时间、角度等 8 大类。本地计算。',
-      en: 'Online unit converter supporting 8 categories: length, mass, temperature, data, speed, area, time, and angle. Local calculation.',
+      zh: '在线单位换算工具，支持长度、重量、温度、数据存储、速度、面积、时间、角度等 8 大类上百种单位互转。所有计算浏览器本地完成即开即用，学生作业、工程计算、跨境购物、菜谱换算、健身追踪必备。',
+      en: 'Online unit converter supporting 8 categories—length, mass, temperature, data storage, speed, area, time, and angle—with hundreds of units. All calculations run locally in your browser, instant and free. Essential for student homework, engineering, cross-border shopping, recipe conversion, and fitness tracking.',
     },
     keywords: {
       zh: ['单位换算', '单位转换', '长度换算', '重量换算', '温度转换', '面积换算', '速度换算', '在线换算', '米转英尺', '公斤转磅', '摄氏转华氏', '数据存储换算', '角度换算', '时间换算', '公制转换'],
@@ -312,8 +312,8 @@ export const TOOLS: Tool[] = [
       en: 'HTTP Status Code Lookup - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线 HTTP 状态码查询工具,涵盖 1xx/2xx/3xx/4xx/5xx 共 60+ 条,支持搜索与分类筛选,中英双语说明。',
-      en: 'Online HTTP status code lookup covering 1xx/2xx/3xx/4xx/5xx, 60+ entries with search and category filter, bilingual descriptions.',
+      zh: '在线 HTTP 状态码查询工具，涵盖 1xx/2xx/3xx/4xx/5xx 共 60+ 条，支持搜索与分类筛选，中英双语说明。所有数据浏览器本地加载，前后端开发调试 API 响应、排查重定向、定位 404/500 错误必备。',
+      en: 'Online HTTP status code lookup covering 1xx/2xx/3xx/4xx/5xx with 60+ entries, search and category filter, and bilingual descriptions. All data loads locally in your browser. Essential for frontend and backend developers debugging API responses, troubleshooting redirects, and diagnosing 404/500 errors.',
     },
     keywords: {
       zh: ['HTTP 状态码', '状态码查询', '404 500', 'HTTP 响应码', '状态码大全', 'HTTP Code', '状态码速查', '错误码', 'HTTP 错误', '1xx 2xx 3xx 4xx 5xx', '状态码含义', '301 302', '403 404', '502 503 504', '状态码列表'],
@@ -335,8 +335,8 @@ export const TOOLS: Tool[] = [
       en: 'Pomodoro Timer - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线番茄钟计时器,25 分钟专注 + 5/15 分钟休息,支持自定义时长、浏览器通知、今日完成数统计。数据本地存储。',
-      en: 'Online Pomodoro timer with 25 min focus + 5/15 min break, custom durations, browser notifications, and daily stats. Data stored locally.',
+      zh: '在线番茄钟计时器，25 分钟专注 + 5/15 分钟休息，支持自定义时长、浏览器通知、今日完成数统计。数据本地存储不上传服务器，学生备考、程序员写代码、自由职业者提升专注力与时间管理必备。',
+      en: 'Online Pomodoro timer with 25-minute focus + 5/15-minute breaks, custom durations, browser notifications, and daily completion stats. Data stored locally—nothing uploaded. Essential for students studying, programmers coding, and freelancers boosting focus and time management.',
     },
     keywords: {
       zh: ['番茄钟', '番茄工作法', '25 分钟计时', '专注计时器', '番茄时钟', '工作计时', '专注力工具', '番茄在线', '25 5 计时器', '短休长休', '专注模式', '时间管理', '番茄倒计时', '学习计时', '工作定时器'],
@@ -358,8 +358,8 @@ export const TOOLS: Tool[] = [
       en: 'Image Splitter - Instagram Grid Cutter - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线图片分割工具,支持 1×3 / 2×2 / 3×3 / 2×3 等多种切割方式,一键打包 ZIP 下载。本地处理,图片不上传。',
-      en: 'Online image splitter supporting 1×3 / 2×2 / 3×3 / 2×3 grids, one-click ZIP download. Processed locally, never uploaded.',
+      zh: '在线图片分割工具，支持 1×3 / 2×2 / 3×3 / 2×3 等多种切割方式，一键打包 ZIP 下载。所有处理浏览器本地完成图片不上传服务器，做 Instagram 九宫格、微博拼图、朋友圈长图、电商主图切片必备。',
+      en: 'Online image splitter supporting 1×3 / 2×2 / 3×3 / 2×3 grids with one-click ZIP download. All processing runs locally in your browser—images never uploaded. Perfect for Instagram 9-grid posts, Weibo collages, long image feeds, and e-commerce product image slicing.',
     },
     keywords: {
       zh: ['图片分割', '九宫格切图', '朋友圈九宫格', '图片切割', '网格切图', 'Instagram 切图', '图片切片', '九宫格', '3x3 切图', '2x2 切图', '图片排版', '批量切片', '图片打格', '社交图片', '朋友圈排版'],
@@ -381,8 +381,8 @@ export const TOOLS: Tool[] = [
       en: 'Symmetric Encryption - AES-256 / SM4 - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线对称加密工具,支持 AES-256-GCM(推荐)、CBC 与国密 SM4-ECB/CBC 模式,密码派生或直接 hex 密钥,完全本地处理,密钥不上传。',
-      en: 'Online symmetric encryption tool supporting AES-256-GCM (recommended), CBC, and Chinese standard SM4-ECB/CBC modes. Password-derived or direct hex key. Fully local, key never uploaded.',
+      zh: '在线对称加密工具，支持 AES-256-GCM（推荐）、CBC 与国密 SM4-ECB/CBC 模式，密码派生或直接 hex 密钥，可加密文本与文件。完全本地处理密钥与明文不上传服务器，开发者加密接口数据、保护配置文件、传输敏感信息必备。',
+      en: 'Online symmetric encryption tool supporting AES-256-GCM (recommended), CBC, and Chinese standard SM4-ECB/CBC modes with password-derived or direct hex keys for text and files. Fully local processing—keys and plaintext never uploaded. Essential for developers encrypting API data, protecting config files, and transmitting sensitive information.',
     },
     keywords: {
       zh: ['AES 加密', 'SM4 加密', '国密加密', '对称加密', 'AES-256', '加密工具', '解密工具', '在线加密', 'AES-GCM', 'AES-CBC', 'SM4-ECB', 'SM4-CBC', '密码加密', '密文转换', '加密解密'],

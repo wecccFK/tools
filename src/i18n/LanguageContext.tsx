@@ -28,16 +28,9 @@ export function LanguageProvider({ children, initialLang }: { children: ReactNod
   });
 
   useEffect(() => {
-    // 客户端挂载时读取 localStorage
-    const saved = localStorage.getItem(LANGUAGE_STORAGE_KEY) as Language | null;
-    if (saved === 'zh' || saved === 'en') {
-      setLangState(saved);
-      // 同步 lang 与 data-lang，确保 CSS 静态双语区块切换正确
-      document.documentElement.lang = saved;
-      document.documentElement.setAttribute('data-lang', saved);
-    }
-
-    // 监听跨 Island 的语言变化（其他 Island 切换语言时触发）
+    // 不读 localStorage 覆盖 lang:URL 决定当前页语言(SSR 已渲染)
+    // localStorage 只用于根路径 / 的跳转决策(BaseLayout 内联脚本处理)
+    // 这里只监听跨 Island 的语言变化事件(其他 Island 切换语言时触发)
     const onLangChange = (e: Event) => {
       const detail = (e as CustomEvent).detail as Language;
       if (detail === 'zh' || detail === 'en') {

@@ -9,6 +9,7 @@ import {
   addSearchHistory,
   clearSearchHistory,
 } from '../data/searchIndex';
+import { localizedPath } from '../i18n/routing';
 
 interface SearchDialogProps {
   isOpen: boolean;
@@ -122,7 +123,7 @@ export default function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     } else if (e.key === 'Enter' && displayItems[selectedIndex]) {
       const toolId = displayItems[selectedIndex].tool.id;
       addSearchHistory(toolId);
-      window.location.href = `/tool/${toolId}/`;
+      window.location.href = localizedPath(`/tool/${toolId}/`, lang);
     } else if (e.key === 'Escape') {
       onClose();
     }
@@ -237,7 +238,7 @@ export default function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
               return (
                 <a
                   key={tool.id}
-                  href={`/tool/${tool.id}/`}
+                  href={localizedPath(`/tool/${tool.id}/`, lang)}
                   data-idx={idx}
                   onClick={() => handleOpen(tool.id)}
                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-colors group"

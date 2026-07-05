@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ToolContent from '../../../components/ToolContent.tsx';
+import { TOOLS, getToolById } from '../../../constants';
+import { TOOL_TUTORIALS } from '../../../data/toolTutorials';
+
+// Generate a static page for each tool
+export function getStaticPaths() {
+  return TOOLS.map(tool => ({
+    params: { id: tool.id },
+    props: { tool },
+  }));
+}
+
+const { tool } = Astro.props;
+
+// SEO metadata (English)
+const title = tool.seoTitle?.en || `${tool.name.en} - Momo Toolbox`;
+const description = tool.seoDescription?.en || tool.description.en;
+// SEO keywords: English only for the English version
+const keywords = tool.keywords?.en || [];
+
+// Tutorial data: used to render text content at the bottom of the tool page (AdSense quality content requirement)
+const tutorial = TOOL_TUTORIALS[tool.id];
+
+// Related tools: other tools in the same category (up to 5), for internal links to pass link juice
+// If fewer than 5 in the same category, fill with tools from other categories
+const sameCategory = TOOLS.filter(t => t.category === tool.category && t.id !== tool.id);
+const others = TOOLS.filter(t => t.category !== tool.category && t.id !== tool.id);
+const relatedTools = [...sameCategory, ...others].slice(0, 5);
+
+// JSON-LD structured data (SoftwareApplication schema + FAQPage schema)
+const faqLdEntries = tutorial?.faq?.en?.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) || [];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: tool.name.en,
+  description: tool.description.en,
+  applicationCategory: 'Utility',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+};
+const faqLd = faqLdEntries.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqLdEntries,
+} : null;
+---
+
+<BaseLayout lang="en" title={title} description={description} keywords={keywords}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  {faqLd && <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />}
+  {/* Static SEO h1: bilingual switching, ensures exactly one h1 on the page (React island renders an h2 with the same text) */}
+  <h1 class="sr-only">
+    <span data-zh={tool.seoTitle?.zh || `${tool.name.zh} - Momo工具箱`} data-en={tool.seoTitle?.en || `${tool.name.en} - Momo Toolbox`}>{tool.seoTitle?.en || `${tool.name.en} - Momo Toolbox`}</span>
+  </h1>
+  <ToolContent tool={tool} client:load initialLang="en" />
+
+  {/* Detailed tool intro: AdSense requires substantive text on tool pages, not just UI */}
+  {tutorial && (
+    <section class="tool-detail-content" style="max-width: 56rem; margin: 2rem auto; padding: 1.5rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--text);">
+        <span data-zh={`${tool.name.zh} - 使用场景`} data-en={`${tool.name.en} - Use Cases`}>{tool.name.en} - Use Cases</span>
+      </h2>
+      <p style="color: var(--text); line-height: 1.7; margin-bottom: 1.5rem;">
+        <span data-zh={tutorial.usage.zh} data-en={tutorial.usage.en}>{tutorial.usage.en}</span>
+      </p>
+
+      <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--text);">
+        <span data-zh="功能特点" data-en="Features">Features</span>
+      </h2>
+      <ul style="color: var(--text); line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem; list-style: disc;">
+        {tutorial.features.en.map(f => (
+          <li><span data-zh={tutorial.features.zh[tutorial.features.en.indexOf(f)] || f} data-en={f}>{f}</span></li>
+        ))}
+      </ul>
+
+      {tutorial.faq.en.length > 0 && (
+        <>
+          <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--text);">
+            <span data-zh="常见问题" data-en="FAQ">FAQ</span>
+          </h2>
+          <div style="color: var(--text); line-height: 1.7;">
+            {tutorial.faq.en.map(f => (
+              <div style="margin-bottom: 1rem;">
+                <h3 style="font-weight: 600; margin-bottom: 0.5rem;">
+                  <span data-zh={(tutorial.faq.zh[tutorial.faq.en.indexOf(f)] || {}).q || f.q} data-en={f.q}>{f.q}</span>
+                </h3>
+                <p style="color: var(--text-muted);">
+                  <span data-zh={(tutorial.faq.zh[tutorial.faq.en.indexOf(f)] || {}).a || f.a} data-en={f.a}>{f.a}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      <p style="margin-top: 1.5rem; padding: 0.75rem 1rem; background: var(--bg-3); border-radius: 0.5rem; color: var(--text-muted); font-size: 0.875rem;">
+        <span data-zh="想了解更多?查看完整 " data-en="Want more details? See the full ">Want more details? See the full </span>
+        <a href={`/en/tutorial/${tool.id}/`} style="color: var(--accent); text-decoration: underline;">
+          <span data-zh={`${tool.name.zh} 使用教程`} data-en={`${tool.name.en} Tutorial`}>{tool.name.en} Tutorial</span>
+        </a>
+      </p>
+    </section>
+  )}
+
+  {/* Related tools: internal links to pass link juice and help Googlebot discover more tool pages */}
+  <section class="related-tools" style="max-width: 56rem; margin: 2rem auto; padding: 1.5rem; border-top: 1px solid var(--border);">
+    <h2 class="related-title" style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: var(--text);">
+      <span data-zh="相关工具" data-en="Related Tools">Related Tools</span>
+    </h2>
+    <div class="related-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem;">
+      {relatedTools.map(t => (
+        <a
+          href={`/en/tool/${t.id}/`}
+          style="display: block; padding: 0.75rem 1rem; border-radius: 0.5rem; background: var(--bg-3); border: 1px solid var(--border); color: var(--text); text-decoration: none; transition: all 0.2s;"
+          onmouseover="this.style.borderColor='var(--accent)'"
+          onmouseout="this.style.borderColor='var(--border)'"
+        >
+          <div style="font-weight: 500; font-size: 0.875rem;">
+            <span data-zh={t.name.zh} data-en={t.name.en}>{t.name.en}</span>
+          </div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">
+            <span data-zh={t.description.zh} data-en={t.description.en}>{t.description.en}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

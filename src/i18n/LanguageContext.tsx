@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import type { Language } from './translations';
 import { translations, type TranslationKey } from './translations';
 import { LANGUAGE_STORAGE_KEY } from './language';
+import { getLangFromUrl } from './routing';
 
 // 跨 Island 同步语言的自定义事件名
 const LANG_CHANGE_EVENT = 'momo-lang-change';
@@ -15,8 +16,16 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Language>('zh');
+export function LanguageProvider({ children, initialLang }: { children: ReactNode; initialLang?: Language }) {
+  // 初始值:优先用 prop 传入的 SSR 语言(Astro 知道当前 URL 语言)
+  // 其次从 URL 推断(客户端),最后 fallback zh
+  const [lang, setLangState] = useState<Language>(() => {
+    if (initialLang) return initialLang;
+    if (typeof window !== 'undefined') {
+      return getLangFromUrl(window.location.pathname);
+    }
+    return 'zh';
+  });
 
   useEffect(() => {
     // 客户端挂载时读取 localStorage

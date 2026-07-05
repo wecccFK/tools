@@ -3,10 +3,12 @@ import '@/styles/globals.css';
 import AppShell from '../components/AppShell.tsx';
 import Footer from '../components/Footer.astro';
 import type { Language } from '../i18n/translations';
+import { getLangFromUrl, localizedPath } from '../i18n/routing';
 
 export interface Props {
   title?: string;
   description?: string;
+  // 显式传入语言,优先级高于 URL 自动推断(默认从 URL 推断)
   lang?: Language;
   canonical?: string;
   ogImage?: string;
@@ -25,19 +27,36 @@ export interface Props {
 const {
   title = 'Momo工具箱 - 极速、专业的在线工具集合',
   description = '所有数据浏览器本地处理，即开即用，保护隐私。',
-  lang = 'zh',
+  lang: langProp,
   canonical,
   ogImage = '/og-image.svg',
   keywords,
   articleMeta,
 } = Astro.props;
 
+// 从 URL 推断语言(/en/* → en,其他 → zh),允许 prop 覆盖
+const urlLang = getLangFromUrl(Astro.url.pathname);
+const lang: Language = langProp || urlLang;
+
+// canonical:如未传入则基于当前 URL 生成
 const fullCanonical = canonical || new URL(Astro.url.pathname, Astro.site).toString();
+
+// 计算 hreflang 配对的"原始路径"(剥离 /en 前缀)
+let rawPath = Astro.url.pathname;
+if (lang === 'en') {
+  rawPath = rawPath.replace(/^\/en/, '');
+  if (rawPath === '' || rawPath === '/en') rawPath = '/';
+}
+// 中文版 canonical URL
+const zhCanonical = new URL(localizedPath(rawPath, 'zh'), Astro.site).toString();
+// 英文版 canonical URL
+const enCanonical = new URL(localizedPath(rawPath, 'en'), Astro.site).toString();
+
 const fullOgImage = new URL(ogImage, Astro.site).toString();
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang === 'zh' ? 'zh-CN' : 'en'} data-lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,6 +64,11 @@ const fullOgImage = new URL(ogImage, Astro.site).toString();
     <meta name="description" content={description} />
     {keywords && keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
     <link rel="canonical" href={fullCanonical} />
+
+    {/* hreflang 双语对应声明:Google 用此判断中英版本配对,避免"备用网页"误判 */}
+    <link rel="alternate" hreflang="zh-CN" href={zhCanonical} />
+    <link rel="alternate" hreflang="en" href={enCanonical} />
+    <link rel="alternate" hreflang="x-default" href={zhCanonical} />
 
     <!-- PWA -->
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
@@ -110,15 +134,50 @@ const fullOgImage = new URL(ogImage, Astro.site).toString();
       rel="stylesheet"
     />
 
-    <!-- 初始化语言（SSR 默认中文，客户端挂载后由 LanguageProvider 覆盖） -->
+    {/* 初始化语言(SSR 已根据 URL 决定 lang 属性,这里同步 data-lang 给 CSS) */}
     <script is:inline>
       (function () {
         try {
-          var saved = localStorage.getItem('momo-lang') || 'zh';
-          if (saved === 'en' || saved === 'zh') {
-            document.documentElement.lang = saved;
-            // 提前隐藏非当前语言的静态区块，避免闪烁
-            document.documentElement.setAttribute('data-lang', saved);
+          // 优先级:localStorage 用户偏好 > 当前 URL 推断
+          var saved = localStorage.getItem('momo-lang');
+          // 仅当用户明确选过语言且与当前 URL 一致时使用,避免冲突
+          var urlLang = document.documentElement.getAttribute('data-lang');
+          if (saved === 'zh' || saved === 'en') {
+            // 检查 URL 与偏好是否一致,不一致时以 URL 为准(SSR 已渲染对应语言)
+            // 但保留 saved 作为切换时的参考
+            if (saved !== urlLang) {
+              // URL 是 /en/* 但用户偏好 zh(或反之):以 URL 为准,更新 localStorage
+              localStorage.setItem('momo-lang', urlLang);
+              saved = urlLang;
+            }
+          } else {
+            saved = urlLang;
+            localStorage.setItem('momo-lang', urlLang);
+          }
+          document.documentElement.lang = saved === 'en' ? 'en' : 'zh-CN';
+        } catch (e) {}
+      })();
+    </script>
+
+    {/* 根路径(仅 /)的浏览器语言自动跳转:首次访问且未设偏好的老外跳 /en/
+        - 只在 / 根路径执行,避免每次访问都跳
+        - 只在没有 momo-lang 偏好时执行(用户切换过语言就尊重)
+        - 浏览器语言以 en 开头且不含 zh 时跳转
+        - Googlebot 的 Accept-Language 不影响(爬虫不执行 JS) */}
+    <script is:inline>
+      (function () {
+        try {
+          // 仅在中文版根路径 / 执行(英文版 /en/ 不需要)
+          var path = window.location.pathname;
+          if (path !== '/') return;
+          // 用户已设过偏好,尊重
+          var saved = localStorage.getItem('momo-lang');
+          if (saved) return;
+          // 检测浏览器首选语言
+          var navLang = (navigator.language || navigator.userLanguage || 'zh').toLowerCase();
+          // 英文为主且不含中文 → 跳英文版
+          if (navLang.indexOf('zh') === -1 && navLang.indexOf('en') === 0) {
+            window.location.replace('/en/');
           }
         } catch (e) {}
       })();
@@ -149,7 +208,7 @@ const fullOgImage = new URL(ogImage, Astro.site).toString();
     </script>
   </head>
   <body>
-    <AppShell client:load />
+    <AppShell client:load initialLang={lang} />
     <main>
       <slot />
     </main>

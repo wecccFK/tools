@@ -1,6 +1,8 @@
 import { LanguageProvider, useLanguage } from '../i18n/LanguageContext';
 import type { Tool } from '../types';
+import type { Language } from '../i18n/translations';
 import ToolRenderer from './ToolRenderer';
+import { localizedPath } from '../i18n/routing';
 
 function ToolContentInner({ tool }: { tool: Tool }) {
   const { lang, t } = useLanguage();
@@ -52,7 +54,7 @@ function ToolContentInner({ tool }: { tool: Tool }) {
               {tool.tutorial[isZh ? 'zh' : 'en']}
             </p>
             <a
-              href={`/tutorial/${tool.id}/`}
+              href={localizedPath(`/tutorial/${tool.id}/`, lang)}
               className="inline-block mt-2 text-xs font-medium transition-opacity hover:opacity-70"
               style={{ color: 'var(--accent)' }}
             >
@@ -73,7 +75,7 @@ function ToolContentInner({ tool }: { tool: Tool }) {
       {/* 返回首页 */}
       <div className="mt-8 text-center">
         <a
-          href="/"
+          href={localizedPath('/', lang)}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
           style={{ background: 'var(--bg-3)', color: 'var(--text-muted)' }}
         >
@@ -87,9 +89,9 @@ function ToolContentInner({ tool }: { tool: Tool }) {
   );
 }
 
-export default function ToolContent({ tool }: { tool: Tool }) {
+export default function ToolContent({ tool, initialLang }: { tool: Tool; initialLang?: Language }) {
   return (
-    <LanguageProvider>
+    <LanguageProvider initialLang={initialLang}>
       <ToolContentInner tool={tool} />
     </LanguageProvider>
   );

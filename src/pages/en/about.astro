@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { TOOLS } from '../../constants';
+
+const title = 'About Us - Momo Toolbox';
+const description = 'Momo Toolbox is a privacy-focused online tools collection offering JSON formatter, Markdown editor, QR code generator, password generator, image compressor and dozens of practical tools. All data processed locally in browser, never uploaded. Built on Astro static architecture for blazing fast loading, native bilingual support.';
+const canonical = 'https://www.web-tools.top/en/about';
+const toolCount = TOOLS.length;
+const year = new Date().getFullYear();
+---
+
+<BaseLayout lang="en" title={title} description={description} canonical={canonical}>
+  <article class="legal-page">
+    {/* Static SEO h1: bilingual switching, ensures exactly one h1 on the page */}
+    <h1 data-zh="关于 Momo工具箱" data-en="About Momo Toolbox">About Momo Toolbox</h1>
+    <p class="updated"><span data-zh="让工具更温暖一些" data-en="Tools, but warmer">Tools, but warmer</span></p>
+
+    <div data-lang="en">
+      <p>Momo Toolbox is a <strong>privacy-focused</strong> collection of online tools. We offer {toolCount}+ practical tools covering text processing, developer utilities, image handling, productivity, and more. All data is processed locally in your browser — nothing is uploaded, instant and private.</p>
+
+      <h2>Our Philosophy</h2>
+      <p>Most online tool websites suffer from two issues: <strong>user tracking</strong> for ad targeting, and <strong>poor UX</strong> with popups, slow loads, and clunky flows. We want to change that.</p>
+      <p>Core principles of Momo Toolbox:</p>
+      <ul>
+        <li><strong>Privacy first</strong>: all tool processing happens in your browser. We collect no personally identifiable information</li>
+        <li><strong>Blazing fast</strong>: built on Astro's static-first architecture with on-demand hydration — lightning quick</li>
+        <li><strong>Warm design</strong>: amber accent + soft cream background, a humane alternative to cold tool UIs</li>
+        <li><strong>Core tools free forever</strong>: unlimited use of core tool functionality, no registration, no paywall</li>
+      </ul>
+
+      <h2>Tech Stack</h2>
+      <p>Built with modern web technologies:</p>
+      <ul>
+        <li><strong>Framework</strong>: Astro 5.18 (Islands architecture, static-first)</li>
+        <li><strong>Interactivity</strong>: React 19 (hydrated only where needed)</li>
+        <li><strong>Styling</strong>: Tailwind CSS v4 (atomic CSS, zero runtime cost)</li>
+        <li><strong>Hosting</strong>: Cloudflare Pages (global CDN)</li>
+        <li><strong>Bilingual</strong>: native Chinese and English, synced across components</li>
+      </ul>
+      <p>This architecture delivers <strong>extreme performance</strong>: the initial HTML is just tens of KB, all static assets are served via global CDN, and you get millisecond-level response anywhere in the world.</p>
+
+      <h2>Available Tools</h2>
+      <p>{toolCount} tools are currently available across these categories:</p>
+      <ul>
+        <li><strong>Text tools</strong>: Markdown editor and more</li>
+        <li><strong>Developer tools</strong>: JSON formatter, Base64, URL encoder, timestamp, hash, JWT decoder, UUID and more</li>
+        <li><strong>Image tools</strong>: image compressor and more</li>
+        <li><strong>Productivity</strong>: QR code generator, password generator, color converter, unit converter and more</li>
+      </ul>
+      <p>We are constantly adding new tools — feel free to email us your needs.</p>
+
+      <h2>Privacy Commitment</h2>
+      <p>We take your privacy seriously:</p>
+      <ul>
+        <li>All tool inputs and outputs are processed in your browser and <strong>never sent to a server</strong></li>
+        <li>We do not use cookies to track you</li>
+        <li>We use <strong>Cloudflare Web Analytics</strong> (privacy-friendly, no cookies, no cross-site tracking) for aggregated traffic insights. We do not use tracking-based analytics like Google Analytics</li>
+        <li>We only use localStorage for UI preferences (language, theme, favorites) — data stays on your device</li>
+        <li>Third-party services are limited to Cloudflare (hosting and analytics) and Google Fonts (fonts), each with their own privacy policies</li>
+      </ul>
+      <p>See our <a href="/en/privacy/">Privacy Policy</a> for details.</p>
+
+      <h2>Future Plans</h2>
+      <p>We are continuously expanding the toolset and exploring the following:</p>
+      <ul>
+        <li><strong>More tools</strong>: HTTP status code lookup, AES encryption, Pomodoro timer coming soon</li>
+        <li><strong>Batch processing</strong>: batch image compression, batch JSON formatting, etc.</li>
+        <li><strong>User system</strong>: optional accounts to sync favorites and preferences across devices</li>
+        <li><strong>API service</strong>: tool API access for developers</li>
+      </ul>
+      <p>All newly added <strong>core tools</strong> will <strong>remain free forever</strong>. Some advanced features (such as batch processing, high-frequency API calls) may introduce pricing in the future, but will never affect the free use of core tools.</p>
+
+      <h2>Contact Us</h2>
+      <p>If you have any questions, suggestions, or bug reports, please email us at <a href="mailto:1902243211@qq.com">1902243211@qq.com</a>.</p>
+      <p>We take every feedback seriously and reply as soon as possible.</p>
+    </div>
+
+    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+      <a href="/en/" style="color: var(--accent); text-decoration: underline;" data-zh="← 返回首页" data-en="← Back to Home">← Back to Home</a>
+    </div>
+  </article>
+</BaseLayout>

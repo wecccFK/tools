@@ -4,9 +4,10 @@ import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
 import SearchDialog from './SearchDialog';
 import InstallPWA from './InstallPWA';
+import { localizedPath } from '../i18n/routing';
 
 export default function Header() {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [searchOpen, setSearchOpen] = useState(false);
 
   // ⌘K / Ctrl+K 打开搜索
@@ -29,7 +30,7 @@ export default function Header() {
       >
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2.5">
+          <a href={localizedPath('/', lang)} className="flex items-center gap-2.5">
             <div
               className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold shadow-sm"
               style={{
@@ -41,7 +42,7 @@ export default function Header() {
             </div>
             <div>
               <div className="font-bold text-base leading-tight" style={{ fontFamily: 'Lora, serif' }}>
-                Momo工具箱
+                {lang === 'en' ? 'Momo Toolbox' : 'Momo工具箱'}
               </div>
               <div className="text-[10px]" style={{ color: 'var(--text-muted)' }}>
                 {t('site.tagline')}

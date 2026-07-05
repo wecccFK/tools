@@ -60,7 +60,7 @@ const faqLd = faqLdEntries.length > 0 ? {
   <h1 class="sr-only">
     <span data-zh={tool.seoTitle?.zh || `${tool.name.zh} - Momo工具箱`} data-en={tool.seoTitle?.en || `${tool.name.en} - Momo Toolbox`}>{tool.seoTitle?.zh || `${tool.name.zh} - Momo工具箱`}</span>
   </h1>
-  <ToolContent tool={tool} client:load />
+  <ToolContent tool={tool} client:load initialLang="zh" />
 
   {/* 工具详细介绍:AdSense 要求工具页有实质文字内容,不能只有 UI */}
   {tutorial && (

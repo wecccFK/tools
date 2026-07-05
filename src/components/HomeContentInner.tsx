@@ -4,6 +4,7 @@ import { categoryLabel } from '../i18n/translations';
 import { TOOLS } from '../constants';
 import type { ToolCategory } from '../types';
 import { useStarredTools } from '../hooks/useStarredTools';
+import { localizedPath } from '../i18n/routing';
 
 // 打字切换特效：循环显示一组词，逐字打字 → 停留 → 逐字删除 → 下一个
 function TypingText({ words }: { words: string[] }) {
@@ -238,7 +239,7 @@ export default function HomeContentInner() {
                       <StarIcon filled={isStarred(tool.id)} size={16} />
                     </button>
 
-                    <a href={`/tool/${tool.id}/`} className="block">
+                    <a href={localizedPath(`/tool/${tool.id}/`, lang)} className="block">
                       <div
                         className="tool-icon-wrap w-12 h-12 flex items-center justify-center mb-4"
                         style={{ color: 'var(--accent)' }}

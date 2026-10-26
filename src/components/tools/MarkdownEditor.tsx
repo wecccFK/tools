@@ -1,5 +1,6 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 import { useLanguage } from '../../i18n/LanguageContext';
 
 // 配置 marked：GFM + 换行
@@ -12,13 +13,21 @@ export default function MarkdownEditor() {
     ? '> Markdown 编辑器示例\n\n支持 **GFM** 语法：表格、任务列表、代码块等。\n\n- [x] 实时预览\n- [ ] 导出 HTML\n\n```js\nconsole.log("Hello");\n```\n\n| 工具 | 状态 |\n|------|------|\n| JSON | ✓ |\n| MD  | ✓ |\n'
     : '> Markdown Editor Sample\n\nSupports **GFM** syntax: tables, task lists, code blocks.\n\n- [x] Live preview\n- [ ] Export HTML\n\n```js\nconsole.log("Hello");\n```\n');
 
+  // DOMPurify 依赖 DOM，SSR 阶段先渲染空预览，hydrate 后再净化输出
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const html = useMemo(() => {
+    if (!mounted) return '';
     try {
-      return marked.parse(input) as string;
+      return DOMPurify.sanitize(marked.parse(input) as string, {
+        FORBID_TAGS: ['style', 'form', 'iframe', 'object', 'embed', 'link', 'meta'],
+        FORBID_ATTR: ['style'],
+      });
     } catch {
       return '<p style="color:red">Parse error</p>';
     }
-  }, [input]);
+  }, [input, mounted]);
 
   const exportHtml = () => {
     const full = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Export</title></head><body>${html}</body></html>`;

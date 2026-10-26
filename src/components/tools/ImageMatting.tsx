@@ -23,15 +23,12 @@ interface BatchItem {
 }
 
 // 懒加载 @imgly/background-removal 的 loader
-// 库本身从 jsdelivr CDN 加载,模型从 unpkg CDN 加载并缓存到 IndexedDB
-// 不打包进构建产物,不占用服务器空间
+// 库与推理运行时随本站构建产物一起发布（不再运行时从第三方 CDN 拉取脚本）；
+// 仅模型/wasm 资源从 IMG.LY 的 staticimgly.com 下载并缓存到 IndexedDB。
 let bgRemovalModulePromise: Promise<any> | null = null;
 async function loadBgRemoval() {
   if (!bgRemovalModulePromise) {
-    bgRemovalModulePromise = import(
-      /* @vite-ignore */
-      'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/+esm'
-    ).catch(err => {
+    bgRemovalModulePromise = import('@imgly/background-removal').catch(err => {
       bgRemovalModulePromise = null; // 失败后允许重试
       throw err;
     });
@@ -325,8 +322,8 @@ export default function ImageMatting() {
           </div>
           <p className="text-[10px] mt-1" style={labelStyle}>
             {isZh
-              ? '🔒 AI 模型从 CDN(unpkg)加载,首次约 40-80MB,缓存到浏览器 IndexedDB 后离线可用。模型与图片都不上传服务器。'
-              : '🔒 AI model loaded from CDN (unpkg), ~40-80MB first time, cached in IndexedDB for offline use. Neither model nor images touch the server.'}
+              ? '🔒 AI 模型从 IMG.LY CDN(staticimgly.com)加载,首次约 40-80MB,缓存到浏览器 IndexedDB 后离线可用。图片始终在本地处理,不会上传。'
+              : '🔒 AI model loaded from IMG.LY CDN (staticimgly.com), ~40-80MB first time, cached in IndexedDB for offline use. Images are processed locally and never uploaded.'}
           </p>
         </div>
 

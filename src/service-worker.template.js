@@ -1,7 +1,7 @@
 // Momo工具箱 Service Worker
 // 策略:核心页面 Network First(回退缓存);静态资源 Cache First;跨域请求直接放行
 
-const SW_VERSION = 'momo-toolbox-v1';
+const SW_VERSION = 'momo-toolbox-__BUILD_ID__';
 const CORE_CACHE = `${SW_VERSION}-core`;
 const ASSET_CACHE = `${SW_VERSION}-assets`;
 

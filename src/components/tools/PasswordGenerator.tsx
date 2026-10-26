@@ -40,12 +40,16 @@ export default function PasswordGenerator() {
       setPassword('');
       return;
     }
-    // 使用 crypto.getRandomValues 安全随机
-    const arr = new Uint32Array(length);
-    crypto.getRandomValues(arr);
+    // 使用 crypto.getRandomValues + 拒绝采样，避免取模偏差
+    const poolLen = pool.length;
+    const maxUnbiased = Math.floor(0x100000000 / poolLen) * poolLen;
     let result = '';
-    for (let i = 0; i < length; i++) {
-      result += pool[arr[i] % pool.length];
+    const buf = new Uint32Array(64);
+    while (result.length < length) {
+      crypto.getRandomValues(buf);
+      for (let i = 0; i < buf.length && result.length < length; i++) {
+        if (buf[i] < maxUnbiased) result += pool[buf[i] % poolLen];
+      }
     }
     setPassword(result);
     setCopied(false);

@@ -35,7 +35,7 @@
 
   <!-- 副标语 -->
   <text x="80" y="455" font-family="'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#ffffff" opacity="0.8">数十种实用工具，所有数据在浏览器本地处理，即开即用，不上传服务器。</text>
-  <text x="80" y="485" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#ffffff" opacity="0.75">Dozens of handy tools. All data processed locally in your browser. No upload, no tracking.</text>
+  <text x="80" y="485" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#ffffff" opacity="0.75">Dozens of handy tools. All data processed locally in your browser. No uploads.</text>
 
   <!-- 工具标签条 -->
   <g transform="translate(80, 530)" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="18" fill="#ffffff">

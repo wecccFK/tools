@@ -1,0 +1,92 @@
+---
+import ToolIsland from './ToolIsland.tsx';
+import type { Tool } from '../types';
+import type { Language } from '../i18n/translations';
+import { localizedPath } from '../i18n/routing';
+
+interface Props {
+  tool: Tool;
+  lang: Language;
+}
+
+const { tool, lang } = Astro.props;
+const isZh = lang === 'zh';
+const tutorialHref = localizedPath(`/tutorial/${tool.id}/`, lang);
+const homeHref = localizedPath('/', lang);
+---
+
+<div class="max-w-4xl mx-auto px-6 py-10">
+  {/* 工具头部（静态，仅工具本体是 React 岛） */}
+  <div class="flex items-center gap-4 mb-8">
+    <div
+      class="w-14 h-14 rounded-xl flex items-center justify-center text-white shadow-md"
+      style="background: var(--accent); box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.3);"
+    >
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </svg>
+    </div>
+    <div>
+      <h2 class="text-2xl font-bold mb-1" style="font-family: 'Lora', serif;">
+        <span data-zh={tool.name.zh} data-en={tool.name.en}>{tool.name[lang]}</span>
+      </h2>
+      <p class="text-sm" style="color: var(--text-muted);">
+        <span data-zh={tool.description.zh} data-en={tool.description.en}>{tool.description[lang]}</span>
+      </p>
+    </div>
+  </div>
+
+  {/* 使用说明 */}
+  {tool.tutorial && (
+    <div
+      class="rounded-2xl p-5 mb-6 flex gap-4"
+      style="background: var(--bg-2); border: 1px solid var(--border);"
+    >
+      <div class="shrink-0 mt-0.5" style="color: var(--accent);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 16v-4M12 8h.01" />
+        </svg>
+      </div>
+      <div>
+        <h2 class="font-bold text-sm mb-1">
+          <span data-zh={`${tool.name.zh} 使用说明`} data-en={`${tool.name.en} How to use`}>
+            {isZh ? `${tool.name.zh} 使用说明` : `${tool.name.en} How to use`}
+          </span>
+        </h2>
+        <p class="text-sm leading-relaxed" style="color: var(--text-muted);">
+          <span data-zh={tool.tutorial.zh} data-en={tool.tutorial.en}>{tool.tutorial[lang]}</span>
+        </p>
+        <a
+          href={tutorialHref}
+          class="inline-block mt-2 text-xs font-medium transition-opacity hover:opacity-70"
+          style="color: var(--accent);"
+        >
+          {isZh ? '查看详细教程 →' : 'View full tutorial →'}
+        </a>
+      </div>
+    </div>
+  )}
+
+  {/* 工具主体：只有这里是客户端岛 */}
+  <div
+    class="rounded-2xl p-6"
+    style="background: var(--bg-2); border: 1px solid var(--border); box-shadow: var(--card-shadow);"
+  >
+    <ToolIsland client:load toolId={tool.id} initialLang={lang} />
+  </div>
+
+  <div class="mt-8 text-center">
+    <a
+      href={homeHref}
+      class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+      style="background: var(--bg-3); color: var(--text-muted);"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+      {isZh ? '返回首页' : 'Back to Home'}
+    </a>
+  </div>
+</div>

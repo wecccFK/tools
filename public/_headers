@@ -1,12 +1,15 @@
 /*
   Cache-Control: public, max-age=0, must-revalidate
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
+  # 'unsafe-eval' 仅因 AI 抠图依赖的 ndarray 在运行期用 new Function 生成构造器；
+  # 'wasm-unsafe-eval' + blob: 供 onnxruntime wasm/worker 使用
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: https://pagead2.googlesyndication.com https://*.googlesyndication.com https://tpc.googlesyndication.com https://partner.googleadservices.com https://www.googletagmanager.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google https://www.gstatic.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' blob: https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google https://tpc.googlesyndication.com https://*.gstatic.com https://staticimgly.com https://cloudflareinsights.com https://momo-vitals.wecccfk.workers.dev; frame-src 'self' https://*.doubleclick.net https://*.googlesyndication.com https://*.google.com https://*.adtrafficquality.google https://tpc.googlesyndication.com; worker-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  # microphone=(self) 供屏幕录制的麦克风混音使用；display-capture=(self) 供 getDisplayMedia
+  Permissions-Policy: camera=(), microphone=(self), geolocation=(), payment=(), usb=(), display-capture=(self)
 
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
@@ -16,3 +19,9 @@
 
 /manifest.json
   Cache-Control: public, max-age=0, must-revalidate
+
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/icons/*
+  Cache-Control: public, max-age=31536000, immutable

@@ -1,14 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
-import SearchDialog from './SearchDialog';
 import InstallPWA from './InstallPWA';
 import { localizedPath } from '../i18n/routing';
+
+// 搜索索引与对话框仅在首次打开时加载
+const SearchDialog = lazy(() => import('./SearchDialog'));
 
 export default function Header() {
   const { lang, t } = useLanguage();
   const [searchOpen, setSearchOpen] = useState(false);
+
+  const preloadSearch = () => {
+    import('./SearchDialog').catch(() => {});
+  };
 
   // ⌘K / Ctrl+K 打开搜索
   useEffect(() => {
@@ -54,6 +60,8 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setSearchOpen(true)}
+              onMouseEnter={preloadSearch}
+              onFocus={preloadSearch}
               className="flex items-center gap-2 rounded-xl px-3.5 py-2 text-sm transition-colors hover:opacity-80"
               style={{ background: 'var(--bg-3)', color: 'var(--text-muted)' }}
             >
@@ -75,7 +83,11 @@ export default function Header() {
           </div>
         </div>
       </header>
-      <SearchDialog isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+      {searchOpen && (
+        <Suspense fallback={null}>
+          <SearchDialog isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+        </Suspense>
+      )}
     </>
   );
 }

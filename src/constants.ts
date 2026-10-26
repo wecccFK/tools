@@ -381,12 +381,12 @@ export const TOOLS: Tool[] = [
       en: 'Symmetric Encryption - AES-256 / SM4 - Momo Toolbox',
     },
     seoDescription: {
-      zh: '在线对称加密工具，支持 AES-256-GCM（推荐）、CBC 与国密 SM4-ECB/CBC 模式，密码派生或直接 hex 密钥，可加密文本与文件。完全本地处理密钥与明文不上传服务器，开发者加密接口数据、保护配置文件、传输敏感信息必备。',
-      en: 'Online symmetric encryption tool supporting AES-256-GCM (recommended), CBC, and Chinese standard SM4-ECB/CBC modes with password-derived or direct hex keys for text and files. Fully local processing—keys and plaintext never uploaded. Essential for developers encrypting API data, protecting config files, and transmitting sensitive information.',
+      zh: '在线对称加密工具，支持 AES-256-GCM（推荐）、AES-CBC 与国密 SM4-CBC，密码派生统一 PBKDF2-SHA256（60 万次）并附加 HMAC 完整性校验，也可直接使用 hex 密钥。完全本地处理，密钥与明文不上传服务器，开发者加密接口数据、保护配置文件、传输敏感信息必备。',
+      en: 'Online symmetric encryption tool supporting AES-256-GCM (recommended), AES-CBC, and Chinese-standard SM4-CBC, with PBKDF2-SHA256 (600,000 iterations) password derivation plus HMAC integrity checks, or direct hex keys. Fully local processing—keys and plaintext never uploaded. Essential for developers encrypting API data, protecting config files, and transmitting sensitive information.',
     },
     keywords: {
-      zh: ['AES 加密', 'SM4 加密', '国密加密', '对称加密', 'AES-256', '加密工具', '解密工具', '在线加密', 'AES-GCM', 'AES-CBC', 'SM4-ECB', 'SM4-CBC', '密码加密', '密文转换', '加密解密'],
-      en: ['aes encryption', 'sm4 encryption', 'symmetric encryption', 'aes-256-gcm', 'encrypt online', 'decrypt online', 'crypto tool', 'chinese standard sm4', 'aes-cbc', 'sm4-cbc', 'sm4-ecb', 'encrypt decrypt', 'cipher tool', 'aes decryptor', 'sm4 decryptor'],
+      zh: ['AES 加密', 'SM4 加密', '国密加密', '对称加密', 'AES-256', '加密工具', '解密工具', '在线加密', 'AES-GCM', 'AES-CBC', 'SM4-CBC', 'PBKDF2', 'HMAC 校验', '密码加密', '加密解密'],
+      en: ['aes encryption', 'sm4 encryption', 'symmetric encryption', 'aes-256-gcm', 'encrypt online', 'decrypt online', 'crypto tool', 'chinese standard sm4', 'aes-cbc', 'sm4-cbc', 'pbkdf2', 'hmac integrity', 'encrypt decrypt', 'aes decryptor', 'sm4 decryptor'],
     },
     tutorial: {
       zh: '选择加密/解密、算法(AES-GCM 推荐 / SM4-CBC 国密)、密钥来源(密码或 hex)。加密时输入明文得到 base64 密文,解密时反向,粘贴密文得到明文。',

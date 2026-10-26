@@ -1,7 +1,7 @@
 /**
  * 国密算法纯 JS 实现
  * - SM3: 密码杂凑算法(GB/T 32905-2016),256 位输出
- * - SM4: 分组密码算法(GB/T 32907-2016),128 位分组,ECB/CBC 模式
+ * - SM4: 分组密码算法(GB/T 32907-2016),128 位分组,CBC 模式
  *
  * 完全本地计算,不依赖任何第三方库。
  */
@@ -294,32 +294,6 @@ function xorBlocks(a: Uint8Array, b: Uint8Array, len: number = 16): Uint8Array {
   const out = new Uint8Array(len);
   for (let i = 0; i < len; i++) out[i] = a[i] ^ b[i];
   return out;
-}
-
-// ECB 模式加密
-export function sm4EcbEncrypt(data: Uint8Array, key: Uint8Array): Uint8Array {
-  const rk = sm4KeyExpansion(key);
-  const padded = pkcs7Pad(data);
-  const result = new Uint8Array(padded.length);
-  for (let i = 0; i < padded.length; i += 16) {
-    const block = padded.slice(i, i + 16);
-    const encrypted = sm4EncryptBlock(block, rk);
-    result.set(encrypted, i);
-  }
-  return result;
-}
-
-// ECB 模式解密
-export function sm4EcbDecrypt(data: Uint8Array, key: Uint8Array): Uint8Array {
-  if (data.length % 16 !== 0) throw new Error('SM4 ECB decrypt: data length must be multiple of 16');
-  const rk = sm4KeyExpansion(key);
-  const result = new Uint8Array(data.length);
-  for (let i = 0; i < data.length; i += 16) {
-    const block = data.slice(i, i + 16);
-    const decrypted = sm4DecryptBlock(block, rk);
-    result.set(decrypted, i);
-  }
-  return pkcs7Unpad(result);
 }
 
 // CBC 模式加密

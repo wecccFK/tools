@@ -1366,21 +1366,23 @@ export const TOOL_TUTORIALS: Record<string, ToolTutorial> = {
     features: {
       zh: [
         'AES-256-GCM:推荐模式,带认证标签,可检测密文篡改',
-        'AES-256-CBC:兼容传统系统,无认证',
-        'SM4-ECB/SM4-CBC:国密对称加密(GB/T 32907-2016),128 位密钥',
-        '密码派生:AES 用 PBKDF2(10 万次 + SHA-256);SM4 用 SM3 + salt',
+        'AES-256-CBC + HMAC:兼容传统系统,并附加 HMAC-SHA256 完整性校验',
+        'SM4-CBC + HMAC:国密对称加密(GB/T 32907-2016),128 位密钥,带 IV 与完整性校验',
+        '密码派生:统一使用 PBKDF2-SHA256(60 万次)+ 随机 salt',
         'Hex 密钥:AES 64 hex / SM4 32 hex,适合专业用户',
         '完全本地:Web Crypto API + 纯 JS SM4,密钥永不离开浏览器',
         'UTF-8 安全:正确处理中文等非 ASCII 字符',
+        'v2 密文格式:带 v2: 前缀,元数据与密文绑定校验',
       ],
       en: [
         'AES-256-GCM: recommended mode with authentication tag, tamper-detecting',
-        'AES-256-CBC: legacy compatibility, no authentication',
-        'SM4-ECB/SM4-CBC: Chinese standard symmetric cipher (GB/T 32907-2016), 128-bit key',
-        'Password-derived: AES uses PBKDF2 (100k iter + SHA-256); SM4 uses SM3 + salt',
+        'AES-256-CBC + HMAC: legacy compatibility with an additional HMAC-SHA256 integrity check',
+        'SM4-CBC + HMAC: Chinese standard cipher (GB/T 32907-2016), 128-bit key, IV and integrity check',
+        'Password-derived: PBKDF2-SHA256 (600,000 iterations) + random salt for all modes',
         'Hex key: AES 64 hex / SM4 32 hex for advanced users',
         'Fully local: Web Crypto API + pure JS SM4, key never leaves the browser',
         'UTF-8 safe: correctly handles non-ASCII characters like Chinese',
+        'v2 ciphertext format: v2: prefix with metadata bound to the ciphertext',
       ],
     },
     examples: {
@@ -1398,17 +1400,17 @@ export const TOOL_TUTORIALS: Record<string, ToolTutorial> = {
     bestPractices: {
       zh: [
         '优先使用 GCM 模式,带认证可防篡改',
-        '国密合规场景选 SM4-CBC(带 IV 比 ECB 更安全)',
+        '国密合规场景选 SM4-CBC(带 IV 与 HMAC 完整性校验)',
         '密码至少 12 位,包含大小写字母、数字、符号',
-        'PBKDF2 迭代次数越高越安全(本工具为 10 万次)',
+        'PBKDF2 迭代次数越高越安全(本工具为 60 万次)',
         '密文传输时配合 HTTPS,防止中间人攻击',
         'hex 密钥需通过安全渠道(如线下、密码管理器)分享,不要明文传输',
       ],
       en: [
         'Prefer AES-GCM mode — authenticated, tamper-resistant',
-        'For Chinese compliance, choose SM4-CBC (with IV, safer than ECB)',
+        'For Chinese compliance, choose SM4-CBC (IV plus HMAC integrity check)',
         'Password at least 12 chars with mixed case, digits, symbols',
-        'Higher PBKDF2 iterations = more secure (this tool uses 100,000)',
+        'Higher PBKDF2 iterations = more secure (this tool uses 600,000)',
         'Always pair ciphertext with HTTPS to prevent MITM attacks',
         'Share hex keys only via secure channels (offline, password manager) — never in plaintext',
       ],
@@ -1425,11 +1427,15 @@ export const TOOL_TUTORIALS: Record<string, ToolTutorial> = {
         },
         {
           q: 'GCM 和 CBC 怎么选?',
-          a: 'GCM 是推荐模式,带认证标签,可检测密文是否被篡改。CBC 仅用于兼容旧系统,无认证,更容易被攻击。',
+          a: 'GCM 是推荐模式,带认证标签,可检测密文是否被篡改。CBC 主要用于兼容旧系统;本工具为 CBC 额外加了 HMAC-SHA256 完整性校验,但仍建议新数据优先用 GCM。',
         },
         {
           q: '密文格式是什么?',
-          a: 'AES 密码模式:base64(salt[16] + iv + ciphertext);Hex 模式:base64(iv + ciphertext)。SM4-CBC 密码模式:base64(salt[16] + iv[16] + ciphertext);SM4-ECB 无 IV。',
+          a: '统一为 v2:base64(header + salt? + iv + ciphertext + HMAC?)。header 记录密钥来源与算法;密码模式含 16 字节 salt;GCM 用 AAD 绑定元数据,CBC/SM4-CBC 附加 32 字节 HMAC-SHA256。',
+        },
+        {
+          q: '旧版密文还能解密吗?',
+          a: '不能。v2 之前的旧格式使用较弱的密钥派生且缺少完整性校验,当前版本只接受 v2: 前缀的密文,请用同一密码重新加密。',
         },
         {
           q: '解密失败怎么办?',
@@ -1447,11 +1453,15 @@ export const TOOL_TUTORIALS: Record<string, ToolTutorial> = {
         },
         {
           q: 'How to choose between GCM and CBC?',
-          a: 'GCM is recommended — it has an authentication tag to detect tampering. CBC is only for legacy systems; no authentication, more vulnerable.',
+          a: 'GCM is recommended — it has an authentication tag to detect tampering. CBC is mainly for legacy systems; this tool adds an HMAC-SHA256 integrity check on top, but new data should still prefer GCM.',
         },
         {
           q: 'What is the ciphertext format?',
-          a: 'AES password mode: base64(salt[16] + iv + ciphertext); Hex mode: base64(iv + ciphertext). SM4-CBC password mode: base64(salt[16] + iv[16] + ciphertext); SM4-ECB has no IV.',
+          a: 'Always v2:base64(header + salt? + iv + ciphertext + HMAC?). The header records key source and algorithm; password mode includes a 16-byte salt; GCM binds metadata via AAD, while CBC/SM4-CBC append a 32-byte HMAC-SHA256.',
+        },
+        {
+          q: 'Can legacy ciphertext still be decrypted?',
+          a: 'No. Formats before v2 used a weaker key derivation and lacked integrity checks. This version only accepts ciphertext with the v2: prefix; re-encrypt with the same password.',
         },
         {
           q: 'What if decryption fails?',
@@ -1464,8 +1474,8 @@ export const TOOL_TUTORIALS: Record<string, ToolTutorial> = {
       en: 'Symmetric Encryption Tutorial - AES-256 / SM4 - Momo Toolbox',
     },
     seoDescription: {
-      zh: '详细教程:如何使用 Momo工具箱的对称加密工具,支持 AES-256-GCM/CBC 与国密 SM4-ECB/CBC,PBKDF2 或 SM3 密码派生,Web Crypto API + 纯 JS 本地处理,中英双语说明。',
-      en: 'Detailed tutorial: How to use Momo Toolbox symmetric encryption tool with AES-256-GCM/CBC and Chinese-standard SM4-ECB/CBC modes, PBKDF2 or SM3 password derivation, hex key. Web Crypto API + pure JS SM4. Bilingual descriptions.',
+      zh: '详细教程:如何使用 Momo工具箱的对称加密工具,支持 AES-256-GCM/CBC 与国密 SM4-CBC,PBKDF2-SHA256(60 万次)密码派生、HMAC 完整性校验,Web Crypto API + 纯 JS 本地处理,中英双语说明。',
+      en: 'Detailed tutorial: How to use Momo Toolbox symmetric encryption tool with AES-256-GCM/CBC and Chinese-standard SM4-CBC, PBKDF2-SHA256 (600,000 iterations) password derivation, HMAC integrity checks. Web Crypto API + pure JS SM4. Bilingual descriptions.',
     },
   },
   'screen-recorder': {

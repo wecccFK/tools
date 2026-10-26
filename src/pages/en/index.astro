@@ -43,23 +43,7 @@ const websiteSchema = {
     <span data-zh="Momo工具箱 - 免费在线工具集合" data-en="Momo Toolbox - Free Online Tools">Momo Toolbox - Free Online Tools</span>
   </h1>
 
-  <HomeContent client:load initialLang="en" />
-
-  {/* Home intro text: AdSense requires the homepage to have substantive content, not just navigation */}
-  <section style="max-width: 56rem; margin: 3rem auto; padding: 1.5rem;">
-    <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--text);">
-      <span data-zh="关于 Momo 工具箱" data-en="About Momo Toolbox">About Momo Toolbox</span>
-    </h2>
-    <p style="color: var(--text); line-height: 1.8; margin-bottom: 1rem;">
-      <span data-zh="Momo 工具箱是一个免费的在线工具集合,致力于为开发者、设计师、内容创作者和日常办公用户提供极速、安全、即开即用的实用工具。所有工具均在浏览器本地处理数据,不上传服务器,从根源上保护你的隐私。" data-en="Momo Toolbox is a free collection of online tools dedicated to providing fast, secure, and ready-to-use utilities for developers, designers, content creators, and everyday office users. All tools process data locally in the browser without uploading to servers, protecting your privacy at the root.">Momo Toolbox is a free collection of online tools dedicated to providing fast, secure, and ready-to-use utilities for developers, designers, content creators, and everyday office users. All tools process data locally in the browser without uploading to servers, protecting your privacy at the root.</span>
-    </p>
-    <p style="color: var(--text); line-height: 1.8; margin-bottom: 1rem;">
-      <span data-zh="目前共提供 21 个工具,覆盖开发者工具(JSON 格式化、Base64 编解码、URL 编解码、时间戳转换、哈希生成、JWT 解码、UUID 生成、HTTP 状态码查询、对称加密 AES/SM4)、文本工具(Markdown 编辑器)、图像工具(图片压缩、图片分割、AI 抠图)、生产力工具(二维码生成、密码生成器、单位换算、番茄钟、屏幕录制、全屏时钟、随机分组)四大类别。" data-en="Currently offers 21 tools covering four categories: Developer tools (JSON formatter, Base64, URL encoder, timestamp converter, hash generator, JWT decoder, UUID generator, HTTP status codes, AES/SM4 encryption), Text tools (Markdown editor), Image tools (image compression, image splitter, AI matting), and Productivity tools (QR code generator, password generator, unit converter, pomodoro timer, screen recorder, fullscreen clock, random group).">Currently offers 21 tools covering four categories: Developer tools (JSON formatter, Base64, URL encoder, timestamp converter, hash generator, JWT decoder, UUID generator, HTTP status codes, AES/SM4 encryption), Text tools (Markdown editor), Image tools (image compression, image splitter, AI matting), and Productivity tools (QR code generator, password generator, unit converter, pomodoro timer, screen recorder, fullscreen clock, random group).</span>
-    </p>
-    <p style="color: var(--text); line-height: 1.8;">
-      <span data-zh="技术架构基于 Astro + React + TypeScript,部署在 Cloudflare Pages 全球 CDN,加载速度极快。支持中英双语界面切换、暗黑模式、PWA 桌面安装。每个工具都配有详细的使用教程,涵盖使用场景、功能特点、使用示例、最佳实践和常见问题解答。" data-en="The technical architecture is based on Astro + React + TypeScript, deployed on Cloudflare Pages global CDN for extremely fast loading. Supports Chinese-English bilingual interface switching, dark mode, and PWA desktop installation. Each tool comes with a detailed tutorial covering use cases, features, examples, best practices, and FAQ.">The technical architecture is based on Astro + React + TypeScript, deployed on Cloudflare Pages global CDN for extremely fast loading. Supports Chinese-English bilingual interface switching, dark mode, and PWA desktop installation. Each tool comes with a detailed tutorial covering use cases, features, examples, best practices, and FAQ.</span>
-    </p>
-  </section>
+  <HomeContent client:idle={{ timeout: 3000 }} initialLang="en" />
 
   {/* Tool categories intro */}
   <section style="max-width: 56rem; margin: 2rem auto; padding: 1.5rem;">

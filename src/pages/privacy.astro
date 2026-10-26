@@ -2,9 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = '隐私政策 - Momo工具箱';
-const description = 'Momo工具箱隐私政策：所有工具数据均在浏览器本地处理，绝不发送服务器，不收集个人身份信息。使用 Cloudflare 隐私友好型分析，无 Cookie 不跨站追踪，仅 localStorage 保存语言、主题、收藏等偏好。';
-const updatedZh = '2026年6月28日';
-const updatedEn = 'June 28, 2026';
+const description = 'Momo工具箱隐私政策：工具数据在浏览器本地处理；使用 Cloudflare Web Analytics、Google Analytics 与 Google AdSense，并说明 Cookie 与退出方式。';
+const updatedZh = '2026年10月26日';
+const updatedEn = 'October 26, 2026';
 ---
 
 <BaseLayout title={title} description={description} canonical="https://www.web-tools.top/privacy">
@@ -22,6 +22,7 @@ const updatedEn = 'June 28, 2026';
         <li>您输入到工具中的内容<strong>永远不会</strong>发送到我们的服务器</li>
         <li>所有计算、转换、生成都在您的设备上完成</li>
         <li>我们不通过工具收集您处理的任何内容数据</li>
+        <li>个别工具（AI 抠图）需要从第三方 CDN 下载模型与运行时资源，但您的图片和输入内容不会被上传</li>
       </ul>
 
       <h2>本地存储（localStorage）</h2>
@@ -33,34 +34,41 @@ const updatedEn = 'June 28, 2026';
       </ul>
       <p>您可以随时通过浏览器设置清除这些数据，不会影响网站的正常使用。</p>
 
+      <h2>Cookie 与类似技术</h2>
+      <p>工具本身不使用 Cookie。第三方分析与广告服务（Google Analytics、Google AdSense）会在您访问时设置 Cookie 或读取设备标识；语言、主题、收藏等偏好保存在浏览器 localStorage 中，不会随请求发送。</p>
+      <p>您可以通过浏览器设置清除或阻止 Cookie，也可以在 <a href="https://adssettings.google.com/" target="_blank" rel="noopener">Google 广告设置</a> 中关闭个性化广告。阻止 Cookie 不影响工具本身的使用。</p>
+
       <h2>网站流量分析</h2>
-      <p>我们使用 <strong>Cloudflare Web Analytics</strong> 了解网站的访问量和工具使用情况，以便持续改进服务。该服务是 Cloudflare 提供的<strong>隐私友好型分析</strong>：</p>
+      <p>我们通过以下三种方式了解访问情况与页面性能，目的均为改进站点：</p>
       <ul>
-        <li><strong>不使用 Cookie</strong>：不会在您的浏览器中存储跟踪 Cookie</li>
-        <li><strong>不追踪个人身份信息</strong>：不收集您的姓名、邮箱、地址等</li>
-        <li><strong>不跨站追踪</strong>：不会在其他网站识别您的身份</li>
-        <li><strong>仅聚合统计</strong>：只统计页面浏览量、访问来源、国家/地区等聚合数据</li>
+        <li><strong>Cloudflare Web Analytics</strong>：不写入跟踪 Cookie，仅提供聚合访问统计，详见 <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare 隐私政策</a>。</li>
+        <li><strong>Google Analytics 4</strong>：通过 Cookie（如 <code>_ga</code>）统计页面浏览、访问来源、设备信息与大致地区。Google 声明其不存储完整 IP 地址。您可安装 <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics 停用插件</a> 选择退出。</li>
+        <li><strong>自建 Web Vitals 上报</strong>：页面会向我们的 Cloudflare Worker（<code>momo-vitals.wecccfk.workers.dev</code>）发送性能指标（LCP、CLS、INP、FCP、TTFB）、页面路径、User-Agent 与时间戳，用于定位性能问题。该数据<strong>不包含</strong>您在工具中输入的任何内容。</li>
       </ul>
-      <p>该服务由 Cloudflare 在边缘网络处理，详见 <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare 隐私政策</a>。如您希望完全不被统计，可使用浏览器隐私模式或广告拦截扩展。</p>
+
+      <h2>AI 抠图的模型下载</h2>
+      <p>AI 抠图使用 ISNet 模型在您的浏览器本地推理。首次使用时会从 IMG.LY 的 CDN（staticimgly.com）下载模型与 WebAssembly 运行时（约 40–80MB），并缓存在浏览器 IndexedDB 中；这些请求会像普通网页资源请求一样向该 CDN 暴露 IP 等连接信息。<strong>您的图片不会上传到该 CDN 或我们的服务器。</strong></p>
 
       <h2>第三方服务</h2>
       <p>本网站使用以下第三方服务，它们有各自独立的隐私政策：</p>
       <ul>
-        <li><strong>Cloudflare</strong>：提供网站托管、CDN 加速和 Web Analytics 服务。Cloudflare 可能会处理您的 IP 地址用于网络传输和聚合统计，详见 <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare 隐私政策</a>。</li>
-        <li><strong>Google Fonts</strong>：提供网页字体加载服务。Google 可能会收集您的 IP 地址和请求信息，详见 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 隐私政策</a>。</li>
+        <li><strong>Cloudflare</strong>：网站托管、CDN 加速、Web Analytics 与性能上报 Worker。Cloudflare 可能会处理您的 IP 地址用于网络传输和聚合统计，详见 <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare 隐私政策</a>。</li>
+        <li><strong>Google Fonts</strong>：网页字体加载，Google 可能会收集您的 IP 地址和请求信息，详见 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 隐私政策</a>。</li>
+        <li><strong>Google Analytics</strong>（Google LLC）：流量统计，详见 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 隐私政策</a>。</li>
+        <li><strong>Google AdSense</strong>（Google LLC）：广告投放，详见 <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google 广告政策</a>。</li>
+        <li><strong>IMG.LY</strong>：提供 AI 抠图模型与运行时资源（staticimgly.com），详见 <a href="https://img.ly/privacy-policy" target="_blank" rel="noopener">IMG.LY 隐私政策</a>。</li>
       </ul>
 
-      <h2>关于广告的说明</h2>
-      <p>目前本网站<strong>未接入任何广告服务</strong>，不展示广告内容。未来我们可能考虑接入广告服务（如 Google AdSense）以支持网站的持续运营。如接入广告，我们将：</p>
+      <h2>广告</h2>
+      <p>本网站使用 <strong>Google AdSense</strong> 展示广告以维持运营。Google 及其合作伙伴可能使用 Cookie（包括 DoubleClick Cookie）根据您在本站及其他网站的访问记录投放个性化广告，并衡量广告效果。</p>
       <ul>
-        <li>在本页面明确声明所使用的广告服务</li>
-        <li>仅在非工具操作区域展示广告，不打扰您的正常使用</li>
-        <li>不与工具处理的数据产生任何关联</li>
+        <li>广告位与工具操作区域分离，不读取、不关联您在工具中输入的内容</li>
+        <li>您可在 <a href="https://adssettings.google.com/" target="_blank" rel="noopener">Google 广告设置</a> 关闭个性化广告，或通过 <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">aboutads.info</a> 管理第三方广告 Cookie</li>
+        <li>工具核心功能保持免费，广告是维持站点运营的收入来源</li>
       </ul>
-      <p>工具核心功能将<strong>永久免费</strong>，广告仅作为可选的收入来源。</p>
 
       <h2>儿童隐私</h2>
-      <p>本网站适合所有年龄段用户使用，不收集任何年龄信息。由于我们不收集任何个人数据，也不涉及儿童隐私的特殊处理。</p>
+      <p>本网站面向一般用户，并非针对 13 岁以下儿童设计，也不会主动收集儿童的个人信息。若您认为儿童向我们提供了个人信息，请通过下方邮箱联系我们，我们会尽快删除。</p>
 
       <h2>数据安全</h2>
       <p>由于您的工具数据从未离开您的设备，数据安全完全由您掌控。我们建议您使用现代浏览器并保持系统更新。</p>
@@ -81,6 +89,7 @@ const updatedEn = 'June 28, 2026';
         <li>Content you enter into the tools is <strong>never</strong> sent to our servers</li>
         <li>All computation, conversion, and generation happen on your device</li>
         <li>We do not collect any content data you process with the tools</li>
+        <li>One tool (AI background removal) downloads model/runtime assets from a third-party CDN, but your images and inputs are never uploaded</li>
       </ul>
 
       <h2>Local Storage (localStorage)</h2>
@@ -92,34 +101,41 @@ const updatedEn = 'June 28, 2026';
       </ul>
       <p>You can clear this data anytime via your browser settings without affecting normal use of the site.</p>
 
+      <h2>Cookies and Similar Technologies</h2>
+      <p>The tools themselves do not use cookies. Third-party analytics and advertising services (Google Analytics, Google AdSense) may set cookies or read device identifiers when you visit. Language, theme and favorites preferences are stored in browser localStorage and are not sent with requests.</p>
+      <p>You can clear or block cookies in your browser settings, or turn off personalized advertising in <a href="https://adssettings.google.com/" target="_blank" rel="noopener">Google Ads Settings</a>. Blocking cookies does not affect the tools themselves.</p>
+
       <h2>Traffic Analytics</h2>
-      <p>We use <strong>Cloudflare Web Analytics</strong> to understand traffic and tool usage so we can continuously improve the service. This is a <strong>privacy-friendly analytics</strong> service provided by Cloudflare:</p>
+      <p>We use the following three methods to understand traffic and page performance, all for improving the site:</p>
       <ul>
-        <li><strong>No cookies</strong>: no tracking cookies are stored in your browser</li>
-        <li><strong>No personal identification</strong>: we do not collect your name, email, address, etc.</li>
-        <li><strong>No cross-site tracking</strong>: your identity is not recognized on other websites</li>
-        <li><strong>Aggregated only</strong>: only page views, referrers, country/region and other aggregate data are collected</li>
+        <li><strong>Cloudflare Web Analytics</strong>: no tracking cookies; aggregate traffic statistics only. See the <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>.</li>
+        <li><strong>Google Analytics 4</strong>: uses cookies (such as <code>_ga</code>) to measure page views, referrers, device information and approximate region. Google states that it does not store full IP addresses. You can opt out with the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</li>
+        <li><strong>Self-hosted Web Vitals reporting</strong>: pages send performance metrics (LCP, CLS, INP, FCP, TTFB), page path, User-Agent and timestamp to our Cloudflare Worker (<code>momo-vitals.wecccfk.workers.dev</code>) to help diagnose performance. This data does <strong>not</strong> include anything you enter into the tools.</li>
       </ul>
-      <p>This service is processed at Cloudflare's edge network. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>. To opt out completely, use your browser's private mode or a content blocker extension.</p>
+
+      <h2>AI Background Removal Model Downloads</h2>
+      <p>AI background removal runs the ISNet model locally in your browser. On first use, the model and WebAssembly runtime (~40–80MB) are downloaded from IMG.LY's CDN (staticimgly.com) and cached in your browser's IndexedDB. These requests expose connection information such as your IP address to that CDN, as any ordinary web asset request would. <strong>Your images are never uploaded to that CDN or to our servers.</strong></p>
 
       <h2>Third-Party Services</h2>
       <p>This website uses the following third-party services, each with its own privacy policy:</p>
       <ul>
-        <li><strong>Cloudflare</strong>: provides web hosting, CDN acceleration, and Web Analytics. Cloudflare may process your IP address for network transit and aggregate stats. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>.</li>
-        <li><strong>Google Fonts</strong>: provides web font loading. Google may collect your IP address and request information. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</li>
+        <li><strong>Cloudflare</strong>: hosting, CDN acceleration, Web Analytics and the performance-reporting Worker. Cloudflare may process your IP address for network transit and aggregate stats. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>.</li>
+        <li><strong>Google Fonts</strong>: web font loading. Google may collect your IP address and request information. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</li>
+        <li><strong>Google Analytics</strong> (Google LLC): traffic statistics. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</li>
+        <li><strong>Google AdSense</strong> (Google LLC): advertising. See <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google Advertising Policies</a>.</li>
+        <li><strong>IMG.LY</strong>: provides AI background removal model and runtime assets (staticimgly.com). See <a href="https://img.ly/privacy-policy" target="_blank" rel="noopener">IMG.LY Privacy Policy</a>.</li>
       </ul>
 
-      <h2>About Advertising</h2>
-      <p>Currently this website <strong>does not integrate any advertising service</strong> and displays no ads. In the future we may consider integrating an ad service (such as Google AdSense) to support ongoing operations. If we do, we will:</p>
+      <h2>Advertising</h2>
+      <p>This website uses <strong>Google AdSense</strong> to display ads that keep the service running. Google and its partners may use cookies (including the DoubleClick cookie) to serve personalized ads based on your visits to this and other websites, and to measure ad performance.</p>
       <ul>
-        <li>Clearly declare the ad service used on this page</li>
-        <li>Only display ads outside tool operation areas, without disrupting your normal use</li>
-        <li>Never associate ads with the data you process in tools</li>
+        <li>Ad units are separated from tool controls and never read or associate with what you enter into the tools</li>
+        <li>You can disable personalized advertising in <a href="https://adssettings.google.com/" target="_blank" rel="noopener">Google Ads Settings</a>, or manage third-party ad cookies at <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">aboutads.info</a></li>
+        <li>Core tool functionality remains free; advertising is the revenue source that keeps the site running</li>
       </ul>
-      <p>Core tool functionality will <strong>remain free forever</strong>; ads are only an optional revenue source.</p>
 
       <h2>Children's Privacy</h2>
-      <p>This website is suitable for users of all ages and does not collect any age information. Since we do not collect any personal data, no special handling of children's privacy is involved.</p>
+      <p>This website is intended for a general audience and is not directed to children under 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us at the email below and we will delete it.</p>
 
       <h2>Data Security</h2>
       <p>Since your tool data never leaves your device, data security is entirely under your control. We recommend using a modern browser and keeping your system up to date.</p>

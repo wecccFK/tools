@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import ToolContent from '../../../components/ToolContent.tsx';
+import ToolView from '../../../components/ToolView.astro';
 import { TOOLS, getToolById } from '../../../constants';
 import { TOOL_TUTORIALS } from '../../../data/toolTutorials';
 
@@ -58,7 +58,7 @@ const faqLd = faqLdEntries.length > 0 ? {
   <h1 class="sr-only">
     <span data-zh={tool.seoTitle?.zh || `${tool.name.zh} - Momo工具箱`} data-en={tool.seoTitle?.en || `${tool.name.en} - Momo Toolbox`}>{tool.seoTitle?.en || `${tool.name.en} - Momo Toolbox`}</span>
   </h1>
-  <ToolContent tool={tool} client:load initialLang="en" />
+  <ToolView tool={tool} lang="en" />
 
   {/* Detailed tool intro: AdSense requires substantive text on tool pages, not just UI */}
   {tutorial && (
